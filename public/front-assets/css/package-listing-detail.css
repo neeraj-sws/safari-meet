@@ -1,0 +1,206 @@
+#package-detail-slider.owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    width: 100%;
+    aspect-ratio: 16/9;
+    height: 75vh;
+}
+
+.random-images {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.general-info-list .list-name {
+    font: var(--font600-text-16);
+}
+
+.general-info-list .list-paragraph {
+    font: var(--font400-text-16);
+}
+
+.general-info-img img {
+    width: 300px;
+    object-fit: cover;
+    aspect-ratio: 4/3;
+}
+
+#package-detail-slider .owl-dot span {
+    background: #ffffff !important;
+}
+
+#package-detail-slider .owl-dot.active span {
+    background: #ffffff !important;
+    outline: 2px solid #ffffff;
+}
+
+#package-detail-slider .owl-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    right: 0px;
+}
+
+#package-detail-slider .owl-carousel.owl-loaded {
+    position: relative;
+}
+
+.interesting-fact-text h6 {
+    font: var(--link-text);
+    color: var(--primary-color-muted);
+}
+
+/* Accordion CSS */
+
+#itineraryAccordion .accordion-collapse,
+#itineraryAccordion .accordion-header,
+#faqAccordion .accordion-collapse,
+#faqAccordion .accordion-header,
+#mainspeciesAccordian .accordion-collapse,
+#mainspeciesAccordian .accordion-header,
+#zoneAccordian .accordion-collapse,
+#zoneAccordian .accordion-header,
+.all-accordion .accordion-collapse,
+.all-accordion .accordion-header {
+    background: #fff;
+}
+
+.accordion-button {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+.accordion-body ul li {
+    margin-bottom: 8px;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+#itineraryAccordion .accordion-header button,
+#faqAccordion .accordion-header button {
+    font: var(--link-text);
+}
+
+#itineraryAccordion li,
+#faqAccordion li {
+    font: var(--font400-text-16);
+}
+
+.package-lists li,
+.amenities span {
+    font: var(--font400-text-16);
+    color: var(--text-dark);
+}
+
+/* Accomodation section css */
+.accommodation-left img {
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.accommodation-right img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+}
+
+.guest-carousel-wrapper {
+    position: relative;
+}
+
+.guest-carousel-wrapper .carousel-text {
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    padding: 5rem 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width: 50% !important;
+    transform: translate(-50%, -50%);
+}
+
+.guest-carousel-wrapper .carousel-text h2 {
+    color: #fff;
+    margin: 0;
+    text-align: center;
+}
+
+.category span {
+    font: var(--font600-text-16);
+}
+
+.category p {
+    font: var(--font400-text-16);
+}
+
+.quick-info-box h4 {
+    font: var(--font600-text-16);
+}
+
+.quickinfo-list li img {
+    height: 20px;
+    width: 20px;
+}
+
+.quickinfo-list li span {
+    font: var(--medium-14-text);
+    font-size: 14px;
+    font-weight: 500;
+    color: #616161 !important;
+}
+
+.quickinfo-list li p {
+    font: var(--placeholder-text);
+    font-size: 16px;
+}
+
+.park-highlights .guest-reviews-section .owl-carousel.owl-loaded {
+    position: relative;
+}
+
+.park-highlights .guest-reviews-section .owl-theme .owl-nav {
+    margin-top: 10px;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+}
+
+.park-highlights .guest-reviews-section .owl-theme .owl-nav [class*=owl-] {
+    margin: 0px;
+}
+
+.park-highlights .guest-reviews-section .viewall-link {
+    position: absolute;
+    z-index: 9999;
+    top: 40px;
+}
+
+.park-highlights .guest-reviews-section {
+    position: relative;
+}
+
+.quick-info-box svg {
+    vertical-align: sub;
+}
+
+@media (min-width: 768px) {
+    .park-highlights {
+        position: sticky;
+        top: 10px;
+    }
+}
+
+@media (max-width: 445px) {
+    #section-rates div.col-4 {
+        padding: 5px !important;
+        margin-top: 5px;
+    }
+
+    #section-rates div {
+        font-size: 12px;
+    }
+}

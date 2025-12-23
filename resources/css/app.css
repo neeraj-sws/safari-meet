@@ -1,0 +1,37 @@
+
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "./style.css";
+@import "./slick-overrides.css";
+@import "./listingpages.css";
+@import "./package-listing-detail.css";
+@import "./common.css";
+@import "./responsive.css";
+@import "./skeleton-loader.css";
+@import "./fontawesome/all.min.css";
+@import "./plugins/fontawesome-iconpicker.css";
+
+
+.iconpicker-popover.popover.fade.bottom.in {
+           opacity: 9 !important;
+}
+
+.modal {
+    overflow-y: auto !important;
+}
+
+span.select2-selection.select2-selection--single {
+    height: auto;
+    border-color: #ced4da !important;
+}
+
+span.select2-selection__rendered {
+    padding: 0.275rem 1rem;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 0.275rem !important;
+}
+
+.select2-dropdown {
+    z-index: 999999 !important;
+}
