@@ -1,0 +1,741 @@
+/* Slick Carousel Overrides */
+
+/* Main carousel container */
+.slick-slider {
+    /* position: relative;
+    display: block;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none; */
+}
+
+.slick-list {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.slick-track {
+    display: flex;
+    position: relative;
+    left: 0;
+    top: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+
+.slick-slide img {
+    display: block;
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    /* border-radius: 40px; */
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    object-fit: cover;
+}
+
+.slick-initialized .slick-slide {
+    display: block;
+}
+
+.slick-vertical .slick-slide {
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+}
+
+/* Slick Dots - place after the carousel content so they don't overlap images */
+/* .slick-dots {
+    display: block !important;
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: auto !important;
+    margin: 12px auto 0 auto !important;
+    padding: 0 !important;
+    list-style: none !important;
+    text-align: center !important;
+} */
+
+.slick-dots li {
+    width: 10px !important;
+    height: 10px !important;
+    display: inline-block !important;
+    margin: 0 6px !important;
+}
+
+.slick-dots li button {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    outline: none !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    color: transparent !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    background: var(--primary-color) !important;
+    border: none !important;
+    border-radius: 50% !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.slick-dots li button:hover,
+.slick-dots li.slick-active button {
+    background: var(--accent-color, #f59856);
+}
+
+/* Ensure the carousel wrapper leaves space for dots and prevents overlap */
+.guest-carousel-wrapper {
+    /* padding-bottom: 64px; space for dots and controls */
+    position: relative;
+}
+
+/* Make sure overlay text sits above slides but below any header/navigation */
+.guest-carousel-wrapper .carousel-text {
+    z-index: 3;
+}
+
+/* Place dots above background but below overlay text if needed */
+.guest-carousel-wrapper .slick-dots {
+    z-index: 2;
+}
+
+/* Normalize carousel image heights and cropping so all slides appear same height */
+.guest-carousel-wrapper .carousel-image img,
+#package-detail-slider .carousel-image img,
+.slick-slide .carousel-image img {
+    width: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    aspect-ratio: 16 / 9 !important;
+    height: 75vh !important;
+}
+
+@media (max-width: 992px) {
+    .guest-carousel-wrapper .carousel-image img,
+    #package-detail-slider .carousel-image img,
+    .slick-slide .carousel-image img {
+        height: 420px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .guest-carousel-wrapper .carousel-image img,
+    #package-detail-slider .carousel-image img,
+    .slick-slide .carousel-image img {
+        height: 260px !important;
+    }
+}
+
+/* Slick Arrows */
+.slick-prev,
+.slick-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+    background: rgba(245, 152, 86, 0.9);
+    color: white;
+}
+
+.slick-prev {
+    left: 20px;
+}
+
+.slick-next {
+    right: 20px;
+}
+
+.slick-prev::before,
+.slick-next::before {
+    display: block;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--accent-color, #f59856);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.slick-prev:hover::before,
+.slick-next:hover::before {
+    color: white;
+}
+
+.slick-prev::before {
+    content: "\\f053";
+}
+
+.slick-next::before {
+    content: "\\f054";
+}
+
+/* For Top Safari Parks */
+#top-safari-park-owl.slick-slider {
+    margin-bottom: 60px;
+}
+
+#top-safari-park-owl .slick-slide {
+    padding: 0 15px !important;
+    height: auto !important;
+}
+
+#top-safari-park-owl .item {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 20px 0 !important;
+}
+
+#top-safari-park-owl .owl-slide {
+    text-align: center !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+/* Image Container - Fixed Size */
+#top-safari-park-owl .owl-slide a {
+    display: block !important;
+    width: 100% !important;
+}
+
+#top-safari-park-owl .card-image {
+    width: 250px !important;
+    height: 250px !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    display: block !important;
+    margin: 0 auto !important;
+    transition: transform 0.3s ease !important;
+    box-shadow: 0 4px 4px 0 hsl(0deg 0% 0% / 25%) !important;
+}
+
+#top-safari-park-owl .owl-slide p {
+    font: var(--body-text) !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    padding: 0px 10px !important;
+}
+
+/* For Top Rated Parks Carousel - Horizontal Layout */
+#top-rated-park-owl.slick-slider {
+    margin-bottom: 60px;
+}
+
+#top-rated-park-owl .slick-slide {
+    padding: 0 10px !important;
+    height: auto !important;
+}
+
+#top-rated-park-owl .item {
+    display: block !important;
+}
+
+/* Vertical Park Card */
+.vertical-park-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.vertical-park-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.park-card-link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.park-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.park-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.vertical-park-card:hover .park-image {
+    transform: scale(1.1);
+}
+
+.park-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(29, 67, 88, 0.95) 60%,
+        rgba(29, 67, 88, 0.98) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    min-height: 140px;
+}
+
+.vertical-park-card:hover .park-details {
+    opacity: 1;
+}
+
+.park-name {
+    /* margin: 0 0 10px 0; */
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent-color, #f59856);
+    line-height: 1.3;
+}
+
+.park-description {
+    /* margin: 0;
+    font-size: 13px;
+    color: #ddd;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden; */
+}
+
+/* Horizontal Park Card */
+.horizontal-park-card {
+    display: flex;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 140px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.horizontal-park-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.park-image-wrapper {
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.park-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.horizontal-park-card:hover .park-image {
+    transform: scale(1.1);
+}
+
+.park-details {
+    flex: 1;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(
+        135deg,
+        rgba(29, 67, 88, 0.95) 0%,
+        rgba(29, 67, 88, 0.98) 100%
+    );
+}
+
+.park-name-horizontal {
+    /* margin: 0 0 8px 0; */
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent-color, #f59856);
+    line-height: 1.3;
+}
+
+.park-description-horizontal {
+    /* margin: 0;
+    font-size: 13px;
+    color: #ddd;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden; */
+}
+
+/* Hide carousel if no-carousel class is added */
+#top-rated-park-owl.no-carousel .slick-prev,
+#top-rated-park-owl.no-carousel .slick-next,
+#top-rated-park-owl.no-carousel .slick-dots {
+    display: none !important;
+}
+
+#top-rated-park-owl.no-carousel .slick-slide {
+    display: inline-flex !important;
+    width: calc(33.333% - 20px) !important;
+    margin: 0 10px !important;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    /* #top-safari-park-owl .card-image {
+        width: 240px;
+        height: 240px;
+    }
+
+    #top-safari-park-owl .owl-slide h3 {
+        font-size: 16px;
+    } */
+}
+
+@media (max-width: 992px) {
+    /* #top-safari-park-owl .card-image {
+        width: 220px;
+        height: 220px;
+    } */
+
+    /* #top-safari-park-owl .owl-slide h3 {
+        font-size: 15px;
+    } */
+
+    .slick-prev,
+    .slick-next {
+        width: 40px;
+        height: 40px;
+        left: 15px;
+        right: 15px;
+    }
+
+    .slick-prev::before,
+    .slick-next::before {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* #top-safari-park-owl .card-image {
+        width: 200px;
+        height: 200px;
+    } */
+    /*
+    #top-safari-park-owl .owl-slide h3 {
+        font-size: 14px;
+    }
+
+    #top-safari-park-owl .owl-slide p {
+        font-size: 12px;
+    } */
+
+    .slick-prev,
+    .slick-next {
+        width: 35px;
+        height: 35px;
+        left: 10px;
+        right: 10px;
+    }
+
+    .slick-prev::before,
+    .slick-next::before {
+        font-size: 16px;
+    }
+
+    .slick-dots {
+        bottom: -35px;
+    }
+
+    .slick-dots li {
+        width: 10px;
+        height: 10px;
+        margin: 0 4px;
+    }
+}
+
+@media (max-width: 576px) {
+    /* #top-safari-park-owl .card-image {
+        width: 180px;
+        height: 180px;
+    } */
+
+    /* #top-safari-park-owl .owl-slide h3 {
+        font-size: 13px;
+        margin-top: 12px;
+    }
+
+    #top-safari-park-owl .owl-slide p {
+        font-size: 11px;
+    } */
+
+    #top-safari-park-owl .slick-slide {
+        padding: 0 10px;
+    }
+
+    .slick-prev,
+    .slick-next {
+        width: 32px;
+        height: 32px;
+        left: 5px;
+        right: 5px;
+    }
+
+    .slick-prev::before,
+    .slick-next::before {
+        font-size: 14px;
+    }
+}
+
+/* If user owns safari → show Interested box ABOVE */
+.park-highlights-wrapper.user-owned .guest-reviews-section {
+    order: 0;
+}
+
+/* Hero carousel (restore old look when using Slick) */
+.guest-carousel-wrapper {
+    position: relative;
+    /* height: 520px; adjust to desired hero height */
+    overflow: hidden;
+}
+
+.guest-carousel-wrapper .carousel-image {
+    height: 100%;
+    display: block;
+}
+
+.guest-carousel-wrapper .carousel-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-text {
+    z-index: 5;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+
+/* Slick dots placement (if you use Slick) */
+.slick-dots {
+    bottom: 16px;
+}
+
+.slick-dots li button:before {
+    content: unset !important;
+}
+.slick-dots .slick-active {
+    outline: 2px solid var(--primary-color);
+    border-radius: 50%;
+    outline-offset: 1.5px;
+}
+#package-detail-slider .slick-dots li button {
+    background-color: #fff !important;
+}
+#package-detail-slider .slick-dots .slick-active {
+    outline: 2px solid #fff;
+}
+#package-detail-slider .slick-dots {
+    bottom: 20px;
+}
+.slick-dotted.slick-slider {
+margin-bottom: 0px !important;
+}
+    li {
+
+        overflow-wrap: anywhere;
+    }
+
+    /* 01-12-2025 */
+.about-section {
+width: 100%;
+margin-bottom: 20px;
+overflow: hidden;
+}
+
+.about-section.left .img-box {
+float: left;
+width: 320px;
+margin-right: 25px;
+margin-bottom: 15px;
+}
+
+.about-section.right .img-box {
+float: right;
+width: 320px;
+margin-left: 25px;
+margin-bottom: 15px;
+}
+
+.about-section .img-box img {
+width: 100%;
+aspect-ratio: 3/4;
+object-fit: cover;
+}
+
+.about-section .text-box {
+display: block;
+}
+
+.about-section::after {
+content: "";
+display: block;
+clear: both;
+}
+
+@media (max-width: 768px) {
+.about-section.left .img-box,
+.about-section.right .img-box {
+float: none;
+width: 100%;
+margin: 0 0 20px 0;
+}
+}
+
+/* ====================================
+   Similar Packages Carousel - Limit Dots
+   ==================================== */
+
+/* Hide all dots for Similar Packages carousel */
+#similar-packages-owl .slick-dots {
+    display: none !important;
+}
+
+/* Show only a maximum of 5 dots, evenly spaced */
+#similar-packages-owl .slick-dots li {
+    display: none !important;
+}
+
+/* Show every nth dot to create pagination dots effect */
+/* This will show approximately 5-7 dots regardless of item count */
+#similar-packages-owl .slick-dots li:nth-child(4n+1) {
+    display: inline-block !important;
+}
+
+/* Ensure dots container is visible */
+#similar-packages-owl .slick-dots {
+    display: block !important;
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: auto !important;
+    margin: 12px auto 0 auto !important;
+    padding: 0 !important;
+    list-style: none !important;
+    text-align: center !important;
+}
+
+/* Ensure arrows are visible for Similar Packages carousel. */
+/* Ensure arrows are visible and positioned correctly for Similar Packages carousel. */
+#similar-packages-owl {
+    position: relative;
+}
+
+/* Position and style arrows: centered vertically, slightly outside the carousel bounds */
+#similar-packages-owl .slick-prev,
+#similar-packages-owl .slick-next {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 9999 !important;
+    background: var(--primary-color, #0b615e) !important;
+    color: #fff !important;
+    opacity: 1 !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    border: none !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18) !important;
+    padding: 0 !important;
+}
+
+/* Keep arrows inside the slider bounds to avoid page horizontal scroll */
+#similar-packages-owl .slick-prev { left: 12px !important; }
+#similar-packages-owl .slick-next { right: 12px !important; }
+
+/* Ensure the list hides overflow so arrows don't push page width */
+#similar-packages-owl .slick-list {
+    overflow: hidden !important;
+}
+
+/* Ensure SVG icons inside buttons are displayed correctly */
+#similar-packages-owl .slick-prev svg,
+#similar-packages-owl .slick-next svg {
+    display: block !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+
+@media (max-width: 768px) {
+    #similar-packages-owl .slick-prev { left: 8px !important; }
+    #similar-packages-owl .slick-next { right: 8px !important; }
+}
+

@@ -1,0 +1,400 @@
+/* ============================================
+   GLOBAL SKELETON LOADER STYLES
+   For use across all listing and detail pages
+   ============================================ */
+
+/* Base Skeleton Element Styles */
+.skeleton-element,
+.skeleton-image,
+.skeleton-text,
+.skeleton-button,
+.skeleton-badge {
+    background-color: #e9ecef;
+    background-image: linear-gradient(
+        90deg,
+        #e9ecef 0%,
+        rgba(11,97,94,0.06) 50%,
+        #e9ecef 100%
+    );
+    background-size: 200% 100%;
+    background-position: 200% 0;
+    display: block;
+    border-radius: 6px;
+    animation: skeleton-shimmer 2s infinite;
+}
+
+/* Color variables for easy theming */
+:root {
+    --skeleton-bg: #e9ecef;
+    --skeleton-highlight: #f5f7fa;
+    --skeleton-accent: #0b615e; /* primary teal */
+    --skeleton-accent-rgb: 11,97,94;
+    --skeleton-accent-light: rgba(11,97,94,0.06);
+}
+
+/* Species Skeleton - White background with subtle teal shimmer */
+.species-skeleton-card .skeleton-image {
+    background-color: #ffffff !important;
+    background-image: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        rgba(11,97,94,0.08) 50%,
+        #ffffff 100%
+    ) !important;
+    border: 1px solid #e0e0e0 !important;
+}
+
+/* Shimmer Animation */
+@keyframes skeleton-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Skeleton Image */
+.skeleton-image {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.skeleton-image.h-220 {
+    height: 220px;
+}
+
+.skeleton-image.h-300 {
+    height: 300px;
+}
+
+.skeleton-image.h-150 {
+    height: 150px;
+}
+
+/* Skeleton Text Lines */
+.skeleton-text {
+    height: 16px;
+    margin-bottom: 8px;
+}
+
+.skeleton-text.title {
+    height: 24px;
+    width: 85%;
+    margin-bottom: 12px;
+}
+
+.skeleton-text.subtitle {
+    height: 14px;
+    width: 70%;
+    margin-bottom: 8px;
+}
+
+.skeleton-text.line-short {
+    height: 14px;
+    width: 50%;
+}
+
+.skeleton-text.line-medium {
+    height: 14px;
+    width: 70%;
+}
+
+.skeleton-text.line-long {
+    height: 14px;
+    width: 95%;
+}
+
+/* Skeleton Buttons */
+.skeleton-button {
+    height: 36px;
+    width: 100%;
+    border-radius: 6px;
+}
+
+.skeleton-button.sm {
+    height: 32px;
+    width: 120px;
+}
+
+.skeleton-button.md {
+    height: 36px;
+    width: 150px;
+}
+
+.skeleton-button.lg {
+    height: 40px;
+    width: 100%;
+}
+
+/* Skeleton Badge/Tag */
+.skeleton-badge {
+    height: 20px;
+    width: 80px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+/* Make badges show a subtle accent so skeletons read like the final UI */
+.skeleton-badge {
+    background-color: rgba(11,97,94,0.08) !important;
+}
+
+.skeleton-badge.small {
+    width: 60px;
+}
+
+.skeleton-badge.medium {
+    width: 100px;
+}
+
+/* Skeleton Cards Container */
+.skeleton-card {
+    background: #fff;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.skeleton-card.mb-3 {
+    margin-bottom: 1rem;
+}
+
+/* Skeleton Card Body */
+.skeleton-card-body {
+    padding: 16px;
+}
+
+.skeleton-card-header {
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.skeleton-card-footer {
+    padding: 16px;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* Skeleton List Items */
+.skeleton-list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.skeleton-list-item-icon {
+    min-width: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.skeleton-list-item-text {
+    flex: 1;
+}
+
+.skeleton-list-item-text .skeleton-text {
+    width: 100%;
+}
+
+/* Skeleton Grid Layout Helpers */
+.skeleton-grid {
+    display: grid;
+    gap: 24px;
+}
+
+.skeleton-grid.grid-3 {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.skeleton-grid.grid-2 {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+/* Skeleton Row Layout */
+.skeleton-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.skeleton-row.align-center {
+    align-items: center;
+}
+
+.skeleton-row.align-between {
+    justify-content: space-between;
+}
+
+/* Skeleton Statistics */
+.skeleton-stat {
+    text-align: center;
+}
+
+.skeleton-stat .skeleton-text {
+    height: 14px;
+    width: 60%;
+    margin: 0 auto 8px;
+}
+
+.skeleton-stat-value {
+    height: 20px;
+    width: 40px;
+    margin: 0 auto;
+}
+
+/* Skeleton Pagination */
+.skeleton-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.skeleton-pagination-btn {
+    height: 36px;
+    width: 36px;
+    border-radius: 6px;
+}
+
+/* Skeleton Detail Page */
+.skeleton-detail-hero {
+    height: 350px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.skeleton-detail-content {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.skeleton-detail-section {
+    padding: 16px;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .skeleton-grid.grid-3 {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .skeleton-grid.grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .skeleton-text.title {
+        width: 95%;
+    }
+
+    .skeleton-text.subtitle {
+        width: 85%;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .skeleton-element,
+    .skeleton-image,
+    .skeleton-text,
+    .skeleton-button,
+    .skeleton-badge {
+        background-color: rgba(11,97,94,0.08) !important;
+        background-image: linear-gradient(
+            90deg,
+            #2d3748 0%,
+            rgba(11,97,94,0.04) 50%,
+            #2d3748 100%
+        );
+    }
+
+    .skeleton-card {
+        background: white;
+    }
+
+    .skeleton-card-header,
+    .skeleton-card-footer {
+        border-color: #2d3748;
+    }
+
+    .skeleton-detail-section {
+        border-color: #2d3748;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .skeleton-element,
+    .skeleton-image,
+    .skeleton-text,
+    .skeleton-button,
+    .skeleton-badge {
+        animation: none;
+        background-image: none;
+        opacity: 0.7;
+    }
+}
+
+/* Visibility Control with Livewire */
+.skeleton-loader-container {
+    display: flex;
+    flex-direction: column;
+}
+
+[wire:loading.flex] {
+    display: flex !important;
+}
+
+[wire:loading.flex].hidden {
+    display: none !important;
+}
+
+/* Bootstrap Grid Integration */
+.col-xl-4 .skeleton-card {
+    height: 100%;
+}
+
+.col-sm-6 .skeleton-card {
+    height: 100%;
+}
+
+.col-lg-3 .skeleton-card {
+    height: 100%;
+}
+
+/* Ensure no layout shift (CLS) */
+.skeleton-card,
+.card {
+    min-height: auto;
+}
+
+.skeleton-image,
+.card-img-top {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+}
+
+/* Loading Container State */
+.loading-overlay {
+    position: relative;
+}
+
+.loading-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    pointer-events: none;
+}
