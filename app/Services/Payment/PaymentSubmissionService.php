@@ -3,6 +3,7 @@
 namespace App\Services\Payment;
 
 use App\Models\Payment;
+use App\Models\Coupon;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\ImageUploadHelper;
 
@@ -17,6 +18,7 @@ class PaymentSubmissionService
         ?float $discounted_amount,
         float $final_amount,
         ?string $coupon_code,
+        $appliedCoupon = null
     ): Payment {
         $path = $screenshot
             ? ImageUploadHelper::upload($screenshot, 'uploads/payments')
@@ -35,6 +37,10 @@ class PaymentSubmissionService
         ]);
 
         $payable->update(['is_paid' => 1]);
+
+        if ($appliedCoupon) {
+            $appliedCoupon->increment('used_count');
+        }
 
         return $payment;
     }

@@ -36,9 +36,22 @@ class PaymentPageRedirect extends Component
 
     public $showCoupon = false;
     public $couponCode;
+    public $appliedCoupon;
 
     public $utr;
     public $screenshot;
+
+    public function isPaymentProofRequired(): bool
+    {
+        return $this->finalAmount > 0;
+    }
+
+    public function getSubmitButtonTextProperty(): string
+    {
+        return $this->isPaymentProofRequired()
+            ? 'Submit Payment Proof'
+            : 'Confirm Booking';
+    }
 
     public function mount(QrCodeGenerator $qrGenerator, $type, $uuid)
     {
@@ -102,6 +115,7 @@ class PaymentPageRedirect extends Component
         }
 
         $this->discount = $result['discount'];
+        $this->appliedCoupon = $result['coupon'];
         $this->finalAmount = $calculator->calculate(
             $this->baseAmount,
             $this->discount
@@ -117,12 +131,15 @@ class PaymentPageRedirect extends Component
     public function submitPaymentProof(
         PaymentSubmissionService $paymentService
     ) {
-        $this->validate([
+        $rules = [
             'screenshot' => 'nullable|image|max:2048',
             'utr' => 'nullable|string|max:255',
-        ]);
-       
-        if (!$this->screenshot && !$this->utr) {
+        ];
+
+        $this->validate($rules);
+
+        // Only require payment proof if amount is greater than 0
+        if ($this->isPaymentProofRequired() && !$this->screenshot && !$this->utr) {
             $this->addError('utr', 'Screenshot or UTR / Transaction ID is required');
             $this->addError('screenshot', 'Screenshot or  UTR / Transaction ID is required');
             return;
@@ -137,7 +154,7 @@ class PaymentPageRedirect extends Component
             $this->discount,
             $this->finalAmount,
             $this->couponCode,
-
+            $this->appliedCoupon
         );
 
         $this->sendMailToAdmin($payment);

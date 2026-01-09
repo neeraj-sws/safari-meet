@@ -13,7 +13,7 @@ class Coupon extends Component
     use WithPagination;
 
     public $itemId;
-    public $coupon_code, $start_date, $end_date, $amount, $status, $search = '';
+    public $coupon_code, $start_date, $end_date, $amount, $status, $usage_limit, $search = '';
     public $isEditing = false;
     public $pageTitle = 'Coupons';
 
@@ -33,6 +33,7 @@ class Coupon extends Component
             'start_date' => 'required',
             'end_date' => 'required',
             'amount' => 'required',
+            'usage_limit' => 'required',
         ];
     }
     public function render()
@@ -58,7 +59,8 @@ class Coupon extends Component
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'amount' => $this->amount,
-            'status'=>1,
+            'usage_limit' => $this->usage_limit,
+            'status' => 1,
         ]);
 
         $this->resetForm();
@@ -82,6 +84,7 @@ class Coupon extends Component
         $this->end_date = $item->end_date;
         $this->status = $item->status;
         $this->amount = $item->amount;
+        $this->usage_limit = $item->usage_limit;
         $this->isEditing = true;
     }
 
@@ -94,6 +97,7 @@ class Coupon extends Component
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'amount' => $this->amount,
+            'usage_limit' => $this->usage_limit,
         ]);
 
         $this->resetForm();
@@ -139,7 +143,8 @@ class Coupon extends Component
             'start_date',
             'end_date',
             'status',
-            'amount'
+            'amount',
+            'usage_limit',
         ]);
         $this->resetValidation();
     }

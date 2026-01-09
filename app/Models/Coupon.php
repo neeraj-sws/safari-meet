@@ -10,7 +10,7 @@ class Coupon extends Model
 
     protected $primaryKey = 'coupon_id';
 
-    protected $fillable = ["coupon_code","start_date","end_date","status","amount"];
+    protected $fillable = ["coupon_code","start_date","end_date","status","amount",'usage_limit','used_count'];
 
     // ID ALIAS
     public function getIdAttribute()

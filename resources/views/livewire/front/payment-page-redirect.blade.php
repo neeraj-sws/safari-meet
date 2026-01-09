@@ -91,74 +91,84 @@
 
             <!--  Payment Section -->
             <div class="col-lg-7 order-lg-1">
-                <h6>Complete Your Payment</h6>
+                <h6>Complete Your {{ $finalAmount > 0 ? 'Payment' : 'Booking' }}</h6>
 
-                <p>
-                    Scan the QR code below to pay
-                    <span class="price-highlight">₹{{ $finalAmount }}</span>
-                </p>
+                @if($finalAmount > 0)
+                    <p>
+                        Scan the QR code below to pay
+                        <span class="price-highlight">₹{{ $finalAmount }}</span>
+                    </p>
 
-                <!-- QR CODE -->
-                <div class="text-center mb-4">
-                    <img src="{{ $qrCode }}" alt="QR Code" class="qr-code-img">
-                </div>
+                    <!-- QR CODE -->
+                    <div class="text-center mb-4">
+                        <img src="{{ $qrCode }}" alt="QR Code" class="qr-code-img">
+                    </div>
+                @else
+                    <p class="alert alert-success">
+                        Great news! No payment is required for this booking. Click below to confirm your booking.
+                    </p>
+                @endif
 
                 <!-- Coupon Section -->
-                <button type="button" class="btn btn-link p-0 mb-2" wire:click="$toggle('showCoupon')">
-                    Have a coupon?
-                </button>
+                @if($finalAmount > 0)
+                    <button type="button" class="btn btn-link p-0 mb-2" wire:click="$toggle('showCoupon')">
+                        Have a coupon?
+                    </button>
 
-                @if ($showCoupon)
-                    <div class="card p-3 mb-3">
-                        <input type="text" class="form-control" placeholder="Enter coupon code"
-                            wire:model.defer="couponCode">
+                    @if ($showCoupon)
+                        <div class="card p-3 mb-3">
+                            <input type="text" class="form-control" placeholder="Enter coupon code"
+                                wire:model.defer="couponCode">
 
-                        @error('couponCode')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                            @error('couponCode')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
 
-                        <button type="button" class="btn btn-sm btn-success mt-2" wire:traget='applyCoupon'
-                            wire:loading.attr="disabled" wire:click="applyCoupon">
-                            <span wire:traget='applyCoupon' wire:loading.remove>
-                            Apply Coupon
-                            </span>
-                            <span wire:loading wire:traget='applyCoupon'>
-                                <span class="spinner-border spinner-border-sm"></span>
-                                Appling...
-                            </span>
-                        </button>
-                    </div>
+                            <button type="button" class="btn btn-sm btn-success mt-2" wire:traget='applyCoupon'
+                                wire:loading.attr="disabled" wire:click="applyCoupon">
+                                <span wire:traget='applyCoupon' wire:loading.remove>
+                                Apply Coupon
+                                </span>
+                                <span wire:loading wire:traget='applyCoupon'>
+                                    <span class="spinner-border spinner-border-sm"></span>
+                                    Appling...
+                                </span>
+                            </button>
+                        </div>
+                    @endif
                 @endif
 
                 <!--  Payment Proof Form -->
                 <form wire:submit.prevent="submitPaymentProof">
 
-                    <div class="mb-3">
-                        <label class="form-label">Upload Screenshot (OR)</label>
-                        <input type="file" class="form-control" wire:model="screenshot">
-                        @error('screenshot')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
+                    @if($finalAmount > 0)
+                        <div class="mb-3">
+                            <label class="form-label">Upload Screenshot (OR)</label>
+                            <input type="file" class="form-control" wire:model="screenshot">
+                            @error('screenshot')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">UTR / Transaction ID (OR)</label>
-                        <input type="text" class="form-control" wire:model="utr" placeholder="Enter UTR / Transaction ID  number">
-                        @error('utr')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
+                        <div class="mb-3">
+                            <label class="form-label">UTR / Transaction ID (OR)</label>
+                            <input type="text" class="form-control" wire:model="utr" placeholder="Enter UTR / Transaction ID  number">
+                            @error('utr')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    @endif
 
                     <button type="submit" class="btn btn-primary w-100 rounded-pill" wire:loading.attr="disabled"
                         wire:target="submitPaymentProof">
 
                         <span wire:loading.remove  wire:traget='submitPaymentProof'>
-                            Submit Payment Proof
+                            {{ $this->submitButtonText }}
                         </span>
 
                         <span wire:loading  wire:traget='submitPaymentProof'>
                             <span class="spinner-border spinner-border-sm"></span>
-                            Submitting...
+                            {{ $finalAmount > 0 ? 'Submitting...' : 'Confirming...' }}
                         </span>
                     </button>
                 </form>

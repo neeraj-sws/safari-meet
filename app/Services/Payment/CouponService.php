@@ -37,6 +37,13 @@ class CouponService
             ];
         }
 
+        if ($coupon->usage_limit && $coupon->used_count >= $coupon->usage_limit) {
+            return [
+                'valid' => false,
+                'message' => 'Coupon usage limit exceeded. This coupon is no longer eligible.',
+            ];
+        }
+
         // if ($amount < $coupon->min_amount) {
         //     return [
         //         'valid' => false,
@@ -49,6 +56,7 @@ class CouponService
         return [
             'valid' => true,
             'discount' => $discount,
+            'coupon' => $coupon,
             'message' => 'Coupon applied successfully',
         ];
     }

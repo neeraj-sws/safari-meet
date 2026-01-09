@@ -30,6 +30,15 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Usage limit<span class="text-danger">
+                                    *</span></label>
+                            <input type="number" class="form-control @error('usage_limit') is-invalid @enderror"
+                                wire:model="usage_limit" placeholder="Enter Number of usage limit Here...">
+                            @error('usage_limit')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
 
                         <div class="md-3">
                             <label for="start_date" class="form-label text-blue">Start Date <span
@@ -93,6 +102,8 @@
                                 <tr>
                                     <th style="width: 60px;">#</th>
                                     <th>Coupon Code</th>
+                                    <th>Usage Limit</th>
+                                    <th>Used Count</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>Status</th>
@@ -110,6 +121,8 @@
                                                 </span>
                                             </div>
                                         </td>
+                                        <td>{{ $item->usage_limit }}</td>
+                                        <td>{{ $item->used_count }}</td>
                                         <td>{{ $item->start_date }}</td>
                                         <td> {{ $item->end_date }}</td>
                                         <td>
