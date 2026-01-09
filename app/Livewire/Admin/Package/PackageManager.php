@@ -19,6 +19,7 @@ class PackageManager extends Component
     use WithFileUploads;
     use WithPagination;
     public $showModal = false, $isEditing = false, $editId, $deleteId;
+    public $publishedStatusId, $publishedStatusValue;
     public $modalTitle = 'Add', $pageTitle = 'Package';
     public $search = '';
     public $step = 1;
@@ -331,6 +332,24 @@ class PackageManager extends Component
         ]);
     }
 
+    public function confirmPublishStatus($id, $status)
+    {
+        $this->publishedStatusId = $id;
+        $this->publishedStatusValue = $status;
+        
+        $statusText = $status == 1 ? 'approve' : 'reject';
+        
+        $this->dispatch('swal:confirm', [
+            'title' => 'Are you sure?',
+            'text' => "Do you want to {$statusText} this package?",
+            'icon' => 'warning',
+            'showCancelButton' => true,
+            'confirmButtonText' => 'Yes, ' . ($status == 1 ? 'approve' : 'reject') . ' it!',
+            'cancelButtonText' => 'Cancel',
+            'action' => 'executePublishStatus'
+        ]);
+    }
+
     #[On('delete')]
     public function delete()
     {
@@ -482,10 +501,11 @@ class PackageManager extends Component
         $this->dispatch('swal:toast', ['type' => 'success', 'title' => '', 'message' => 'Status Changed Successfully']);
     }
 
-    public function publishedStatus($id, $status)
+    #[On('executePublishStatus')]
+    public function executePublishStatus()
     {
-        $park = Package::findOrFail($id);
-        $park->is_published = $status;
+        $park = Package::findOrFail($this->publishedStatusId);
+        $park->is_published = $this->publishedStatusValue;
         $park->save();
 
         $this->dispatch('swal:toast', ['type' => 'success', 'title' => '', 'message' => 'Status Changed Successfully']);

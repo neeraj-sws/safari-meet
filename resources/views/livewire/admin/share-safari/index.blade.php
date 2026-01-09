@@ -172,17 +172,17 @@
                                     @if ($shareSafari->is_approved == 0)
                                         <span class="badge bg-warning text-dark">Pending</span>
                                         <a class="btn btn-sm btn-outline-success"
-                                            wire:click="publishedStatus({{ $shareSafari->id }},1)">Active</a>
+                                            wire:click="confirmPublishStatus({{ $shareSafari->id }},1)">Active</a>
                                         <a class="btn btn-sm btn-outline-danger"
-                                            wire:click="publishedStatus({{ $shareSafari->id }},2)">Inactive</a>
+                                            wire:click="confirmPublishStatus({{ $shareSafari->id }},2)">Inactive</a>
                                     @elseif($shareSafari->is_approved == 1)
                                         <span class="badge bg-success text-dark">Active</span>
                                         <a class="btn btn-sm btn-outline-danger "
-                                            wire:click="publishedStatus({{ $shareSafari->id }},2)">Inactive</a>
+                                            wire:click="confirmPublishStatus({{ $shareSafari->id }},2)">Inactive</a>
                                     @elseif($shareSafari->is_approved == 2)
                                         <span class="badge bg-danger text-dark">Inactive</span>
                                         <a class="btn btn-sm btn-outline-success "
-                                            wire:click="publishedStatus({{ $shareSafari->id }},1)">Active</a>
+                                            wire:click="confirmPublishStatus({{ $shareSafari->id }},1)">Active</a>
                                     @endif
                                 </td>
                                 <td>
