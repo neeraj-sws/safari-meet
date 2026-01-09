@@ -121,7 +121,6 @@ class ShareSafari extends Model
                     //     File::delete($path);
                     // }
                     ImageUploadHelper::delete($model->$field);
-
                 }
             }
             SafariDiscussion::where('share_safari_id', $model->id)->delete();
@@ -141,10 +140,8 @@ class ShareSafari extends Model
         return $this->shared_safari_id;
     }
 
-    public function payments()
+    public function payment()
     {
-        return $this->hasOne(Payment::class, 'payable_id')
-            ->where('payable_type', 'shared-safari');
+        return $this->morphOne(Payment::class, 'payable');
     }
-
 }

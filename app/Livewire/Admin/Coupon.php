@@ -2,76 +2,63 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\State as ModelsCategory;
+use App\Models\Coupon as CouponModel;
 use Livewire\Attributes\{Layout, On, Validate};
 use Livewire\{Component, WithPagination};
-use Illuminate\Support\Str;
-use App\Models\Country;
+
 
 #[Layout('components.layouts.admin-app')]
-class States extends Component
+class Coupon extends Component
 {
     use WithPagination;
 
     public $itemId;
-    public $state_name, $country, $countries, $filter_country, $search = '';
+    public $coupon_code, $start_date, $end_date, $amount, $status, $search = '';
     public $isEditing = false;
-    public $pageTitle = 'States';
+    public $pageTitle = 'Coupons';
 
-    public $model = ModelsCategory::class;
-    public $view = 'livewire.admin.state';
+    public $model = CouponModel::class;
 
-
+    public function mount() {}
 
     public function rules()
     {
         $table = (new $this->model)->getTable();
 
         return [
-            'state_name' => $this->isEditing
-                ? 'required|string|max:50|unique:' . $table . ',name,' . $this->itemId . ',state_id'
-                : 'required|string|max:50|unique:' . $table . ',name',
+            'coupon_code' => $this->isEditing
+                ? 'required|string|max:50|unique:' . $table . ',coupon_code,' . $this->itemId . ',coupon_id'
+                : 'required|string|max:50|unique:' . $table . ',coupon_code',
 
-            'country' => 'required|exists:countries,country_id',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'amount' => 'required',
         ];
     }
-
-
-
-    public function mount()
-    {
-        $this->countries = Country::pluck('name', 'country_id');
-    }
-
     public function render()
     {
         $items = $this->model::query()
             ->when(
                 $this->search,
                 fn($q) =>
-                $q->where('name', 'like', "%{$this->search}%")
-            )
-            ->when(
-                $this->filter_country,
-                fn($q) =>
-                $q->where('country_id', $this->filter_country)
+                $q->where('coupon_code', 'like', "%{$this->search}%")
             )
             ->orderBy('updated_at', 'desc')
             ->paginate(10);
 
-
-        return view($this->view, compact('items'));
+        return view('livewire.admin.coupon', compact('items'));
     }
-
-
 
     public function store()
     {
         $this->validate($this->rules());
 
         $this->model::create([
-            'name' => $this->state_name,
-            'country_id' => $this->country,
+            'coupon_code' => $this->coupon_code,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'amount' => $this->amount,
+            'status'=>1,
         ]);
 
         $this->resetForm();
@@ -90,11 +77,12 @@ class States extends Component
         $item = $this->model::findOrFail($id);
 
         $this->itemId = $item->id;
-        $this->state_name = $item->name;
-        $this->country = $item->country_id;
+        $this->coupon_code = $item->coupon_code;
+        $this->start_date = $item->start_date;
+        $this->end_date = $item->end_date;
+        $this->status = $item->status;
+        $this->amount = $item->amount;
         $this->isEditing = true;
-
-        $this->dispatch('initializeIconPicker');
     }
 
     public function update()
@@ -102,8 +90,10 @@ class States extends Component
         $this->validate($this->rules());
 
         $this->model::findOrFail($this->itemId)->update([
-            'name' => $this->state_name,
-            'country_id' => $this->country,
+            'coupon_code' => $this->coupon_code,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'amount' => $this->amount,
         ]);
 
         $this->resetForm();
@@ -144,11 +134,26 @@ class States extends Component
 
     public function resetForm()
     {
-        $this->reset(['state_name', 'country', 'itemId', 'isEditing']);
+        $this->reset([
+            'coupon_code',
+            'start_date',
+            'end_date',
+            'status',
+            'amount'
+        ]);
         $this->resetValidation();
     }
 
-      public function updating()
+    public function toggleStatus($id)
+    {
+        $model = $this->model::findOrFail($id);
+        $model->status = !$model->status;
+        $model->save();
+
+        $this->dispatch('swal:toast', ['type' => 'success', 'title' => '', 'message' => 'Status Changed Successfully']);
+    }
+
+    public function updating()
     {
         $this->resetPage();
     }

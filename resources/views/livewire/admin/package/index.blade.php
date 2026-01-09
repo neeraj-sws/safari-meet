@@ -121,9 +121,9 @@
 
                                         <div><strong>Amount:</strong> ₹{{ $shareSafari->payment->amount }}</div>
 
-                                        @if($shareSafari->payment->rrn)
+                                        @if($shareSafari->payment->utr)
                                         <div class="text-muted">
-                                            <strong>RRN:</strong> {{ $shareSafari->payment->rrn }}
+                                            <strong>UTR / Transaction ID:</strong> {{ $shareSafari->payment->utr }}
                                         </div>
                                         @endif
 

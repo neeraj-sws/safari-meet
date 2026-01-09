@@ -1,6 +1,6 @@
 <header>
     @php
-    use Illuminate\Support\Facades\Auth;
+        use Illuminate\Support\Facades\Auth;
     @endphp
 
     <style>
@@ -55,16 +55,15 @@
                 <ul class="navbar-nav ms-auto align-items-center">
 
                     @auth
-                    <!-- Create Shared Safari -->
-                    <li class="nav-item me-2">
-                        @if ((Auth::user()->user_type == 1 && Auth::user()->status == 1) || Auth::user()->user_type ==
-                        0)
-                        <a href="{{ route('createsaharedshafari') }}"
-                            class="btn btn-sm btn-primary blue-btn-hover blue-btn-hover px-3 w-100 rounded-pill">
-                            Create Shared Safari
-                        </a>
-                        @endif
-                    </li>
+                        <!-- Create Shared Safari -->
+                        <li class="nav-item me-2">
+                            @if ((Auth::user()->user_type == 1 && Auth::user()->status == 1) || Auth::user()->user_type == 0)
+                                <a href="{{ route('createsaharedshafari') }}"
+                                    class="btn btn-sm btn-primary blue-btn-hover blue-btn-hover px-3 w-100 rounded-pill">
+                                    Create Shared Safari
+                                </a>
+                            @endif
+                        </li>
                     @endauth
 
                     <!-- Nav Links -->
@@ -90,47 +89,51 @@
                     </li>
 
                     @guest
-                    <li class="nav-item">
-                        <a class="nav-link align-items-center count-days" href="{{ route('login') }}">
-                            Login
-                            <i class="fa-solid fa-right-to-bracket"></i>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link align-items-center count-days" href="{{ route('login') }}">
+                                Login
+                                <i class="fa-solid fa-right-to-bracket"></i>
+                            </a>
+                        </li>
                     @endguest
 
                     @auth
-                    <li class="nav-item dropdown ms-2">
+                        <li class="nav-item dropdown ms-2">
 
-                        <a class="nav-link dropdown-toggle align-items-center" href="#" id="userDropdown" role="button"
-                            data-bs-toggle="dropdown">
-                            @php
-                            $user = Auth::user();
-                            $userImage = $user && $user->profile_photo_path
-                            ? asset($user->profile_photo_path)
-                            : asset('front-assets/images/user.png');
-                            @endphp
+                            <a class="nav-link dropdown-toggle align-items-center" href="#" id="userDropdown"
+                                role="button" data-bs-toggle="dropdown">
+                                @php
+                                    $user = Auth::user();
+                                    $userImage =
+                                        $user && $user->profile_photo_path
+                                            ? asset($user->profile_photo_path)
+                                            : asset('front-assets/images/user.png');
+                                @endphp
 
-                            <img src="{{ $userImage }}" alt="User" class="rounded-circle me-2" width="32" height="32"
-                                style="object-fit: cover;">
+                                <img src="{{ $userImage }}" alt="User" class="rounded-circle me-2" width="32"
+                                    height="32" style="object-fit: cover;">
 
-                            <span class="fw-semibold">{{ Auth::user()->name }}</span>
-                        </a>
-                        <div class="d-flex justify-content-center">
-                            <ul class="dropdown-menu dropdown-menu-end text-center">
-                                @if (Auth::user()->user_type == 1 && Auth::user()->status == 1)
-                                <li><a class="dropdown-item" href="{{ route('agent.dashboard') }}">Dashboard</a></li>
-                                @endif
-                                <li><a class="dropdown-item" href="{{ route('profile') }}">My Profile</a></li>
-                                <li><a class="dropdown-item" href="{{ route('user-wishlist') }}">Wishlist</a></li>
-                                <li><a class="dropdown-item" href="{{ route('changepassword') }}">Change Password</a>
-                                </li>
-                                <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
-                            </ul>
+                                <span class="fw-semibold">{{ Auth::user()->name }}</span>
+                            </a>
+                            <div class="d-flex justify-content-center">
+                                <ul class="dropdown-menu dropdown-menu-end text-center">
+                                    @if (Auth::user()->user_type == 1 && Auth::user()->status == 1)
+                                        <li><a class="dropdown-item" href="{{ route('agent.dashboard') }}">Dashboard</a>
+                                        </li>
+                                    @endif
+                                    <li><a class="dropdown-item" href="{{ route('profile') }}">My Profile</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('user-wishlist') }}">Wishlist</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('transaction-history') }}">Transaction
+                                            History</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('changepassword') }}">Change Password</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <div wire:ignore>
+                            <livewire:front.common.front-notification-master :key="'front-notification'" />
                         </div>
-                    </li>
-                    <div wire:ignore>
-                        <livewire:front.common.front-notification-master :key="'front-notification'" />
-                    </div>
                     @endauth
                 </ul>
             </div>

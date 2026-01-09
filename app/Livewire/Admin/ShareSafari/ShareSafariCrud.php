@@ -51,7 +51,7 @@ class ShareSafariCrud extends Component
         $this->userCount = ShareSafari::where('organized_type', 'user')->count();
         $this->adminCount = ShareSafari::where('organized_type', 'admin')->count();
         $this->agentCount = ShareSafari::where('organized_type', 'agent')->count();
-        $shareSafaries = ShareSafari::with('payments')->orderBy('updated_at', 'desc');
+        $shareSafaries = ShareSafari::with('payment')->orderBy('updated_at', 'desc');
         if (!empty($this->search)) {
             $shareSafaries->where(function ($q) {
                 $q->where('title', 'like', '%' . $this->search . '%');
