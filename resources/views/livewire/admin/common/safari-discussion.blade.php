@@ -57,11 +57,11 @@
                                 <div class="mt-1">
                                     <a href="javascript:;" wire:click="toggleReplyBox({{ $d->id }})"
                                         class="text-light small">
-                                        <i class="bi bi-reply"></i> Reply
+                                        <i class="fas fa-reply"></i> Reply
                                     </a>
                                     <a href="javascript:;" wire:click="deleteDiscussion({{ $d->id }})"
                                         class="text-danger small">
-                                        <i class="bi bi-trash"></i> Delete
+                                        <i class="fas fa-trash"></i> Delete
                                     </a>
                                 </div>
                             </div>

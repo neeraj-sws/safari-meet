@@ -3,7 +3,7 @@
     <div class="text-end mb-3">
         <button class="btn {{ $showFormSection ? 'btn-secondary' : 'btn-primary' }}" type="button"
             wire:click="{{ $showFormSection ? 'hideForm' : 'showForm' }}">
-            <i class="bi {{ $showFormSection ? 'bi-x-circle' : 'bi-plus-circle' }} me-1"></i>
+            <i class="fas {{ $showFormSection ? 'fa-times-circle' : 'fa-plus-circle' }} me-1"></i>
             {{ $showFormSection ? 'Hide Form' : 'Add Rate Headings' }}
         </button>
     </div>
@@ -17,7 +17,7 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h6 class="mb-0">Rate Heading Entries</h6>
                         <button type="button" class="btn btn-outline-primary btn-sm" wire:click="AddBlankFormList">
-                            <i class="bi bi-plus-lg me-1"></i> Add Field
+                            <i class="fas fa-plus me-1"></i> Add Field
                         </button>
                     </div>
 
@@ -27,7 +27,7 @@
                             <div class="d-flex justify-content-end">
                                 <button type="button" class="btn btn-danger btn-sm"
                                     wire:click="removeFormList({{ $index }})">
-                                    <i class="bi bi-trash me-1"></i> Remove
+                                    <i class="fas fa-trash me-1"></i> Remove
                                 </button>
                             </div>
                             <div class="mt-2">

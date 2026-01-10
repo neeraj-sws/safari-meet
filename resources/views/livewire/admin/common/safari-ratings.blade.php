@@ -3,7 +3,7 @@
     <div class="text-end mb-3">
         <button class="btn {{ $showFormSection ? 'btn-secondary' : 'btn-primary' }}" type="button"
             wire:click="{{ $showFormSection ? 'hideForm' : 'showForm' }}">
-            <i class="bi {{ $showFormSection ? 'bi-x-circle' : 'bi-plus-circle' }} me-1"></i>
+            <i class="fas {{ $showFormSection ? 'fa-times-circle' : 'fa-plus-circle' }} me-1"></i>
             {{ $showFormSection ? 'Hide Form' : 'Add Rate Headings' }}
         </button>
     </div>
