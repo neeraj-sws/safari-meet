@@ -2,18 +2,17 @@
 
 namespace App\Providers;
 
+use App\Contracts\Repositories\ParkRepositoryInterface;
 use App\Models\SiteSetting;
+use App\Repositories\ParkRepository;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
+        public function register(): void
     {
-        //
+        $this->app->bind(ParkRepositoryInterface::class, ParkRepository::class);
     }
 
     /**
