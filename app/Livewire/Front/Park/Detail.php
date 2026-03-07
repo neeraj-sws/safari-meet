@@ -3,7 +3,7 @@
 namespace App\Livewire\Front\Park;
 
 use App\Helpers\UserHelper;
-use App\Models\{EnquiryAccommodation, Park, Package, Enquiry, ShareSafari};
+use App\Models\{EnquiryAccommodation, Park, Package, Enquiry, ShareSafari, Admin};
 use Livewire\Component;
 use App\Mail\DynamicMail;
 use Livewire\Attributes\Layout;
@@ -126,9 +126,14 @@ class  Detail extends Component
 
         $parsed = UserHelper::parseTemplate('USERENQUIRY', $data);
 
-        Mail::to($enquiry->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
+        // Mail::to($enquiry->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
+        dispatch(function () use ($enquiry, $parsed) {
+            Mail::to($enquiry->email)->send(
+                new DynamicMail($parsed['subject'], $parsed['body'])
+            );
+        })->afterResponse();
 
         $data = [
             'name' => $enquiry->name,
@@ -145,9 +150,16 @@ class  Detail extends Component
 
         $parsed = UserHelper::parseTemplate('ADMINENQURY', $data);
 
-        Mail::to('shifankhan@yopmail.com')->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
+        $adminEmail = Admin::first()?->email;
+        if ($adminEmail) {
+            dispatch(function () use ($parsed, $adminEmail) {
+                Mail::to($adminEmail)->send(
+                    new DynamicMail($parsed['subject'], $parsed['body'])
+                );
+            })->afterResponse();
+        }
+
+        
 
         $this->dispatch('formSubmitted');
         $this->reset(['safaris', 'user_email', 'travellers', 'accommodation', 'start_date', 'end_date', 'user_name', 'user_number']);

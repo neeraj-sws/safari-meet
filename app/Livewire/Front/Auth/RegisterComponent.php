@@ -109,7 +109,7 @@ class RegisterComponent extends Component
 
         $parsed = UserHelper::parseTemplate('AGENTEMAILVERIFY', $data);
          dispatch(function () use ($user, $parsed) {
-            Mail::to($this->email)->send(
+            Mail::to($this->email)->send( 
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();

@@ -53,9 +53,14 @@ class CreateEnquiryService
 
         $parsed = UserHelper::parseTemplate('USERENQUIRY', $payload);
 
-        Mail::to($enquiry->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
+        // Mail::to($enquiry->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
+        dispatch(function () use ($enquiry, $parsed) {
+            Mail::to($enquiry->email)->send(
+                new DynamicMail($parsed['subject'], $parsed['body'])
+            );
+        })->afterResponse();
     }
 
     protected function sendAdminMail(Enquiry $enquiry, string $url): void
@@ -75,8 +80,13 @@ class CreateEnquiryService
 
         $parsed = UserHelper::parseTemplate('ADMINENQURY', $payload);
 
-        Mail::to(Admin::query()->value('email'))->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
+        // Mail::to(Admin::query()->value('email'))->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
+        dispatch(function () use ($parsed) {
+            Mail::to(Admin::query()->value('email'))->send(
+                new DynamicMail($parsed['subject'], $parsed['body'])
+            );
+        })->afterResponse();
     }
 }

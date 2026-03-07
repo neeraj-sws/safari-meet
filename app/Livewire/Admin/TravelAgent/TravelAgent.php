@@ -90,9 +90,14 @@ class TravelAgent extends Component
         ];
 
         $parsed = UserHelper::parseTemplate('REGISTRATIONSTATUS', $data);
-        Mail::to($user->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
+        // Mail::to($user->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
+        dispatch(function () use ($user, $parsed) {
+            Mail::to($user->email)->send(
+                new DynamicMail($parsed['subject'], $parsed['body'])
+            );
+        })->afterResponse();
 
         $this->resetForm();
         $this->dispatch('swal:toast', [
@@ -193,9 +198,14 @@ class TravelAgent extends Component
                 ];
 
                 $parsed = UserHelper::parseTemplate('REGISTRATIONSTATUS', $data);
-                Mail::to($user->email)->queue(
-                    new DynamicMail($parsed['subject'], $parsed['body'])
-                );
+                // Mail::to($user->email)->queue(
+                //     new DynamicMail($parsed['subject'], $parsed['body'])
+                // );
+                dispatch(function () use ($user, $parsed) {
+                    Mail::to($user->email)->send(
+                        new DynamicMail($parsed['subject'], $parsed['body'])
+                    );
+                })->afterResponse();
                 $user->status =  $this->status;
                 // $user->password =  Hash::make($password);
                 $user->save();
@@ -226,9 +236,16 @@ class TravelAgent extends Component
         ];
 
         $parsed = UserHelper::parseTemplate('REGISTRATIONSTATUS', $data);
-        Mail::to($user->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
+        // Mail::to($user->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
+        dispatch(function () use ($user, $parsed) {
+            Mail::to($user->email)->send(
+                new DynamicMail($parsed['subject'], $parsed['body'])
+            );
+        })->afterResponse();
+
+         $this->ShowRemark = false;
 
         $this->reset(['ShowRemark', 'remark']);
 

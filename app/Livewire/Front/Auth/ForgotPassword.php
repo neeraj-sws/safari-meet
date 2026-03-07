@@ -47,9 +47,14 @@ class ForgotPassword extends Component
 
         $parsed = UserHelper::parseTemplate('FORGOTPASSWORD', $data);
 
-        Mail::to($user->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
+        // Mail::to($user->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
+         dispatch(function () use ($user, $parsed) {
+            Mail::to($user->email)->send(
+                new DynamicMail($parsed['subject'], $parsed['body'])
+            );
+        })->afterResponse();
 
         log_activity('auth.forgot_password', [
             'user_id' => $user->id,

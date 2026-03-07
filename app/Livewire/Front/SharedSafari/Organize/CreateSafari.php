@@ -95,10 +95,8 @@ class CreateSafari extends Component
     private function checkUserStatus(): void
     {
         if (Auth::guard('web')->user()->status != 1) {
-            redirect()
-                ->route('profile-edit')
-                ->with('error', 'Verify/Update your profile to create safari')
-                ->send();
+            $this->redirect(route('profile-edit'), navigate: false);
+            session()->flash('error', 'Verify/Update your profile to create safari');
         }
     }
 

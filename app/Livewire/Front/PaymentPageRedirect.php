@@ -181,9 +181,14 @@ class PaymentPageRedirect extends Component
             'year' => date('Y'),
         ]);
 
-        Mail::to($admin->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'], $payment->screenshot)
-        );
+        // Mail::to($admin->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'], $payment->screenshot)
+        // );
+         dispatch(function () use ($admin, $parsed, $payment) {
+            Mail::to($admin->email)->send(
+                new DynamicMail($parsed['subject'], $parsed['body'], $payment->screenshot)
+            );
+        })->afterResponse();
     }
 
     private function sendMailToUser(Payment $payment)
@@ -201,9 +206,15 @@ class PaymentPageRedirect extends Component
             'year' => date('Y'),
         ]);
 
-        Mail::to($user->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'], $payment->screenshot)
-        );
+        // Mail::to($user->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'], $payment->screenshot)
+        // );
+
+         dispatch(function () use ($user, $parsed) {
+            Mail::to($user->email)->send(
+                new DynamicMail($parsed['subject'], $parsed['body'])
+            );
+        })->afterResponse();
     }
     public function render()
     {

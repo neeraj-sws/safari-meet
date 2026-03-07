@@ -68,7 +68,7 @@ class VerifyEmail extends Component
 
         $parsed = UserHelper::parseTemplate('AFTERREGISTRATION', $data);
         dispatch(function () use ($user, $parsed) {
-            Mail::to($user->email)->send(
+            Mail::to($user->email)->send( 
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
