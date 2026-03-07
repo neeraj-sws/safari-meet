@@ -8,9 +8,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
 
-class DynamicMail extends Mailable implements ShouldQueue
+class DynamicMail extends Mailable 
 {
-    use Queueable, SerializesModels;
+   
 
     public string $subjectLine;
     public string $bodyHtml;

@@ -170,9 +170,16 @@ class UserAuthController extends BaseController
         ];
 
         $parsed = UserHelper::parseTemplate('AFTERREGISTRATION', $data);
-        Mail::to($request->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
+        // Mail::to($request->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
+
+         dispatch(function () use ($user, $parsed) {
+                Mail::to($user->email)->send(
+                    new DynamicMail($parsed['subject'], $parsed['body'])
+                );
+        })->afterResponse();
+
 
         if ($user->user_type == 0) {
             $user->status = 0;
@@ -186,9 +193,15 @@ class UserAuthController extends BaseController
             ];
 
             $parsed = UserHelper::parseTemplate('REGISTRATIONSTATUS', $data);
-            Mail::to($user->email)->queue(
-                new DynamicMail($parsed['subject'], $parsed['body'])
-            );
+            // Mail::to($user->email)->queue(
+            //     new DynamicMail($parsed['subject'], $parsed['body'])
+            // );
+
+            dispatch(function () use ($user, $parsed) {
+                    Mail::to($user->email)->send(
+                        new DynamicMail($parsed['subject'], $parsed['body'])
+                    );
+             })->afterResponse();
         }
 
         $user->save();

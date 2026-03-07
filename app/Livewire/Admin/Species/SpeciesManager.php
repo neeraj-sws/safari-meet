@@ -247,12 +247,12 @@ class SpeciesManager extends Component
                 },
             ],
             'display_image' => ($this->editId && !empty($this->previousImage))
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360'
+                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
 
             'banner_image' => ($this->editId && !empty($this->previousBannerImage))
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360'
+                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
         ];
     }
 
@@ -265,24 +265,36 @@ class SpeciesManager extends Component
             'name.max' => 'The Name may not be greater than 100 characters.',
             'name.regex' => 'The Name may only contain letters and spaces between words.',
 
-            'display_image.max' => 'The display image must not be greater than 5 MB.',
-            'banner_image.max'  => 'The banner image must not be greater than 5 MB.',
+            'display_image.max' => 'The display image must not be greater than 15 MB.',
+            'banner_image.max'  => 'The banner image must not be greater than 15 MB.',
         ];
     }
 
 
     public function removeDisplayImage(): void
     {
-        if ($this->display_image) {
-            $this->display_image->delete();
-        }
-        $this->display_image = null;
+        $this->clearTemporaryUpload('display_image');
     }
-    public function removeBannerImage()
+
+    public function removeBannerImage(): void
     {
-        if ($this->banner_image) {
-            $this->banner_image->delete();
+        $this->clearTemporaryUpload('banner_image');
+    }
+
+    public function removeOverViewImage(): void
+    {
+        $this->removeDisplayImage();
+    }
+
+    private function clearTemporaryUpload(string $property): void
+    {
+        $file = $this->{$property};
+
+        if ($file && method_exists($file, 'delete')) {
+            $file->delete();
         }
-        $this->banner_image = null;
+
+        $this->{$property} = null;
+        $this->resetValidation($property);
     }
 }
