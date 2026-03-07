@@ -301,8 +301,8 @@ class AddSharedSafariComponent extends Component
             ],
             'share_seats' => 'required',
             'display_image' => ($this->isEditing && !empty($this->previousImage))
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120'
-                : 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360'
+                : 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360',
         ];
     }
 

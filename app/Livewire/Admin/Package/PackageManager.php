@@ -413,8 +413,8 @@ class PackageManager extends Component
             'no_of_safari' => 'required|integer|min:1',
 
             'display_image' => ($this->editId && !empty($this->previousImage))
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360'
+                : 'required|image|mimes:jpg,jpeg,png,webp|max:15360',
         ];
     }
 

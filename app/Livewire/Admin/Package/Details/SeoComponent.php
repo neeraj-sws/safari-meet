@@ -45,7 +45,7 @@ class SeoComponent extends Component
         $this->validate([
             'meta_title' => 'required|string|max:100',
             'meta_description' => 'required|string|max:500',
-            'meta_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'meta_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360',
         ], [
             'meta_title.required' => 'Meta Title is required.',
             'meta_title.max' => 'Meta Title cannot be longer than 100 characters.',

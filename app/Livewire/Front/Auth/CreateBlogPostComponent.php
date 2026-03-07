@@ -47,7 +47,7 @@ class CreateBlogPostComponent extends Component
             if ($this->type_of_media === 'image') {
                 $rules['image'] = 'required|mimes:jpg,jpeg,png,webp|max:10240'; // 10MB
             } elseif ($this->type_of_media === 'video') {
-                $rules['video'] = 'required|mimes:mp4,mov,avi,mkv,flv,webm|max:51200'; // 50MB
+                $rules['video'] = 'required|mimes:mp4,mov,avi,mkv,flv,webm|max:15360'; // 15MB
             }
         }
 

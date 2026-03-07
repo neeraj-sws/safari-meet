@@ -87,10 +87,10 @@ class ParkOverview extends Component
             'state_id' => 'required',
             'country_id' => 'required',
             'park_overview_image' => ($this->isEditing && !empty($this->overviewpreviousImage))
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360'
+                : 'required|image|mimes:jpg,jpeg,png,webp|max:15360',
         ], [
-            'park_overview_image.max' => 'The banner image must not be greater than 5 MB.',
+            'park_overview_image.max' => 'The banner image must not be greater than 15 MB.',
         ]);
         if (!empty($this->park)) {
 

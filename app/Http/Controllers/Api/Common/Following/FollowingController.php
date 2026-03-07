@@ -112,7 +112,7 @@ class FollowingController extends BaseController
             ]);
         } elseif ($request->type_of_media == 'video') {
             $validator->addRules([
-                'video' => 'required|mimes:mp4,mov,avi,mkv,flv,webm|max:51200',
+                'video' => 'required|mimes:mp4,mov,avi,mkv,flv,webm|max:15360',
             ]);
         }
 

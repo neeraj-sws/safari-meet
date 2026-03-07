@@ -178,12 +178,12 @@ class AddParkComponent extends Component
             ],
 
             'data_image' => ($this->isEditing && !empty($this->previousImage))
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360'
+                : 'required|image|mimes:jpg,jpeg,png,webp|max:15360',
 
             'banner_image' => ($this->isEditing && !empty($this->previousBannerImage))
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360'
+                : 'required|image|mimes:jpg,jpeg,png,webp|max:15360',
         ];
     }
 

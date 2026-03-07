@@ -49,8 +49,8 @@ class ReachabilityModes extends Component
                 : [Rule::unique($table, 'title')]
             ),
             'display_image' => ($this->itemId && !empty($this->previousImage))
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360'
+                : 'required|image|mimes:jpg,jpeg,png,webp|max:15360',
         ];
     }
 

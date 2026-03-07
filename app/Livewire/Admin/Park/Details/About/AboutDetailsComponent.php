@@ -75,8 +75,8 @@ class AboutDetailsComponent extends Component
                 },
             ],
             'aboutImage' => ($this->isEditing
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120'),
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360'
+                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360'),
             'description' => 'required',
         ];
 

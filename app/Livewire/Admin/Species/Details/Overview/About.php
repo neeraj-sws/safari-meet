@@ -46,8 +46,8 @@ class About extends Component
         $this->validate([
             'about' => 'required',
             'overview_image' => ($this->overViewData)
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360'
+                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
         ], [
             'overview_image.max' => 'The banner image must not be greater than 5 MB.',
         ]);

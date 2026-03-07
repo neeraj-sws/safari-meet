@@ -443,10 +443,10 @@ class SharedSafariController extends BaseController
             case 3:
 
                 $validator = Validator::make($request->all(), [
-                    'display_image' => 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
+                    'display_image' => 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
                     'shared_safari_id' => 'required',
                 ], [
-                    'display_image.max' => 'The display image must not be greater than 5 MB.',
+                    'display_image.max' => 'The display image must not be greater than 15 MB.',
                 ]);
 
                 if ($validator->fails()) {

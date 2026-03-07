@@ -478,7 +478,7 @@ class CreateSafari extends Component
             return;
 
         $this->validate([
-            'display_image' => 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
+            'display_image' => 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
         ], [
             'display_image.max' => 'The display image must not be greater than 5 MB.',
         ]);
@@ -516,7 +516,7 @@ class CreateSafari extends Component
     public function updatedDisplayImage()
     {
         $this->validate([
-            'display_image' => 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
+            'display_image' => 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
         ]);
     }
 
