@@ -1,4 +1,4 @@
-/* ============================================
+﻿/* ============================================
    GLOBAL SKELETON LOADER STYLES
    For use across all listing and detail pages
    ============================================ */
@@ -349,11 +349,11 @@
     flex-direction: column;
 }
 
-[wire:loading.flex] {
+[wire\:loading\.flex] {
     display: flex !important;
 }
 
-[wire:loading.flex].hidden {
+[wire\:loading\.flex].hidden {
     display: none !important;
 }
 
@@ -398,3 +398,4 @@
     background: transparent;
     pointer-events: none;
 }
+
