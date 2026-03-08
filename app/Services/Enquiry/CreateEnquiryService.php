@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Helpers\UserHelper;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\DynamicMail;
+use Throwable;
 
 class CreateEnquiryService
 {
@@ -57,10 +58,18 @@ class CreateEnquiryService
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
         dispatch(function () use ($enquiry, $parsed) {
-            Mail::to($enquiry->email)->send(
-                new DynamicMail($parsed['subject'], $parsed['body'])
-            );
-        })->afterResponse();
+            try {
+                Mail::to($enquiry->email)->send(
+                    new DynamicMail($parsed['subject'], $parsed['body'])
+                );
+            } catch (Throwable $e) {
+                logger()->error('API enquiry user mail failed', [
+                    'enquiry_id' => $enquiry->id ?? null,
+                    'email' => $enquiry->email,
+                    'error' => $e->getMessage(),
+                ]);
+            }
+        })->onConnection('sync');
     }
 
     protected function sendAdminMail(Enquiry $enquiry, string $url): void
@@ -83,10 +92,26 @@ class CreateEnquiryService
         // Mail::to(Admin::query()->value('email'))->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
-        dispatch(function () use ($parsed) {
-            Mail::to(Admin::query()->value('email'))->send(
-                new DynamicMail($parsed['subject'], $parsed['body'])
-            );
-        })->afterResponse();
+        dispatch(function () use ($enquiry, $parsed) {
+            $adminEmail = Admin::query()->value('email');
+            if (!$adminEmail) {
+                return;
+            }
+
+            try {
+                Mail::to($adminEmail)->send(
+                    new DynamicMail($parsed['subject'], $parsed['body'])
+                );
+            } catch (Throwable $e) {
+                logger()->error('API enquiry admin mail failed', [
+                    'enquiry_id' => $enquiry->id ?? null,
+                    'email' => $adminEmail,
+                    'error' => $e->getMessage(),
+                ]);
+            }
+        })->onConnection('sync');
     }
 }
+
+
+

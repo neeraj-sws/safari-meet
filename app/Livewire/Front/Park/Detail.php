@@ -9,6 +9,7 @@ use App\Mail\DynamicMail;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Throwable;
 
 class  Detail extends Component
 {
@@ -130,10 +131,18 @@ class  Detail extends Component
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
         dispatch(function () use ($enquiry, $parsed) {
-            Mail::to($enquiry->email)->send(
-                new DynamicMail($parsed['subject'], $parsed['body'])
-            );
-        })->afterResponse();
+            try {
+                Mail::to($enquiry->email)->send(
+                    new DynamicMail($parsed['subject'], $parsed['body'])
+                );
+            } catch (Throwable $e) {
+                logger()->error('Park enquiry user mail failed', [
+                    'enquiry_id' => $enquiry->id ?? null,
+                    'email' => $enquiry->email,
+                    'error' => $e->getMessage(),
+                ]);
+            }
+        })->onConnection('sync');
 
         $data = [
             'name' => $enquiry->name,
@@ -152,14 +161,21 @@ class  Detail extends Component
 
         $adminEmail = Admin::first()?->email;
         if ($adminEmail) {
-            dispatch(function () use ($parsed, $adminEmail) {
-                Mail::to($adminEmail)->send(
-                    new DynamicMail($parsed['subject'], $parsed['body'])
-                );
-            })->afterResponse();
+            dispatch(function () use ($enquiry, $parsed, $adminEmail) {
+                try {
+                    Mail::to($adminEmail)->send(
+                        new DynamicMail($parsed['subject'], $parsed['body'])
+                    );
+                } catch (Throwable $e) {
+                    logger()->error('Park enquiry admin mail failed', [
+                        'enquiry_id' => $enquiry->id ?? null,
+                        'email' => $adminEmail,
+                        'error' => $e->getMessage(),
+                    ]);
+                }
+            })->onConnection('sync');
         }
 
-        
 
         $this->dispatch('formSubmitted');
         $this->reset(['safaris', 'user_email', 'travellers', 'accommodation', 'start_date', 'end_date', 'user_name', 'user_number']);
@@ -228,3 +244,7 @@ class  Detail extends Component
         $this->activeTab = $value;
     }
 }
+
+
+
+
