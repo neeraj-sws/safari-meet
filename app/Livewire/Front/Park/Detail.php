@@ -246,5 +246,3 @@ class  Detail extends Component
 }
 
 
-
-

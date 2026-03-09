@@ -97,7 +97,7 @@ class TimingAndCost extends Component
             'morning_time.required' => 'The Morning Time is required.',
             'morning_time.regex' => 'The Morning Time can only contain letters, numbers, and the characters: -, /, |, :, ;.',
 
-            'travel_info_image.max'  => 'The banner image must not be greater than 5 MB.',
+            'travel_info_image.max'  => 'The banner image must not be greater than 15 MB.',
 
         ]);
 

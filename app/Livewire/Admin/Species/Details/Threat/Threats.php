@@ -56,7 +56,7 @@ class Threats extends Component
                     'image' => 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
                 ], [
                     'image.required' => 'The Image field is required.',
-                    'image.max'  => 'The banner image must not be greater than 5 MB.',
+                    'image.max'  => 'The banner image must not be greater than 15 MB.',
                 ]);
                 $image = $this->image;
                 // $origPath = $image->store($path, 'public_root');
@@ -81,7 +81,7 @@ class Threats extends Component
 
             ], [
                 'image.required' => 'The Image field is required.',
-                'image.max'  => 'The banner image must not be greater than 5 MB.',
+                'image.max'  => 'The banner image must not be greater than 15 MB.',
             ]);
             $image = $this->image;
             // $path = 'uploads/species/threat';

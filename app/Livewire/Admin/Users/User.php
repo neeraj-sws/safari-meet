@@ -94,6 +94,7 @@ class User extends Component
         // Mail::to($user->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
+
         dispatch(function () use ($user, $parsed) {
             Mail::to($user->email)->send(
                 new DynamicMail($parsed['subject'], $parsed['body'])
@@ -240,12 +241,12 @@ class User extends Component
         // Mail::to($user->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
-         dispatch(function () use ($user, $parsed) {
+        dispatch(function () use ($user, $parsed) {
             Mail::to($user->email)->send(
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
-
+        
         $this->reset(['ShowRemark', 'remark']);
 
         $this->dispatch('swal:toast', ['type' => 'success', 'title' => '', 'message' => 'Status Changed Successfully']);

@@ -89,7 +89,7 @@ class SafariTravelInfo extends Component
             'nearest_railway.required' => 'Nearest Railway is required.',
             'nearest_railway.regex' => 'Nearest Railway must contain only letters, commas, and spaces.',
             'nearest_railway.max' => 'Nearest Railway must not exceed 100 characters.',
-            'travel_info_image.max'  => 'The banner image must not be greater than 5 MB.',
+            'travel_info_image.max'  => 'The banner image must not be greater than 15 MB.',
         ]);
 
 

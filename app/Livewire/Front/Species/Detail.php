@@ -16,7 +16,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
-use Throwable;
 
 class Detail extends Component
 {
@@ -153,20 +152,12 @@ class Detail extends Component
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
         dispatch(function () use ($enquiry, $parsed) {
-            try {
                 Mail::to($enquiry->email)->send(
                     new DynamicMail($parsed['subject'], $parsed['body'])
                 );
-            } catch (Throwable $e) {
-                logger()->error('Species enquiry user mail failed', [
-                    'enquiry_id' => $enquiry->id ?? null,
-                    'email' => $enquiry->email,
-                    'error' => $e->getMessage(),
-                ]);
-            }
-        })->onConnection('sync');
+        })->afterResponse();
 
-$data = [
+        $data = [
             'name' => $enquiry->name,
             'number' => $enquiry->number,
             'safaris' => $enquiry->safaris,
@@ -180,23 +171,15 @@ $data = [
         ];
 
         $parsed = UserHelper::parseTemplate('ADMINENQURY', $data);
-        $adminEmail = Admin::first()?->email;
-        if ($adminEmail) {
-            dispatch(function () use ($enquiry, $parsed, $adminEmail) {
-                try {
-                    Mail::to($adminEmail)->send(
-                        new DynamicMail($parsed['subject'], $parsed['body'])
-                    );
-                } catch (Throwable $e) {
-                    logger()->error('Species enquiry admin mail failed', [
-                        'enquiry_id' => $enquiry->id ?? null,
-                        'email' => $adminEmail,
-                        'error' => $e->getMessage(),
-                    ]);
-                }
-            })->onConnection('sync');
-        }
 
+        // Mail::to(Admin::find(1)->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
+         dispatch(function () use ($parsed) {
+            Mail::to(Admin::find(1)->email)->send(
+                new DynamicMail($parsed['subject'], $parsed['body'])
+            );
+        })->afterResponse();
 
         $this->resetFields();
         $this->dispatch('swal:toast', ['type' => 'success', 'title' => '', 'message' => 'Your quote request has been submitted!']);
@@ -224,6 +207,3 @@ $data = [
         $this->activeTab = $value;
     }
 }
-
-
-

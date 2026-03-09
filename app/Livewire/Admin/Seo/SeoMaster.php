@@ -46,7 +46,7 @@ class SeoMaster extends Component
     public function messages()
     {
         return [
-            'meta_image.max' => 'The banner image must not be greater than 5 MB.',
+            'meta_image.max' => 'The banner image must not be greater than 15 MB.',
         ];
     }
 

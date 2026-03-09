@@ -309,7 +309,7 @@ class AddSharedSafariComponent extends Component
     public function messages()
     {
         return [
-            'display_image.max' => 'The display image must not be greater than 5 MB.',
+            'display_image.max' => 'The display image must not be greater than 15 MB.',
         ];
     }
 

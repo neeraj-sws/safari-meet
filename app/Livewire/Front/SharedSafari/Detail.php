@@ -399,7 +399,7 @@ class Detail extends Component
             ];
             $parsed = UserHelper::parseTemplate('SEATALLOTED', $data);
             // Mail::to($user->email)->queue(new DynamicMail($parsed['subject'], $parsed['body']));
-            dispatch(function () use ($user, $parsed) {
+             dispatch(function () use ($user, $parsed) {
                 Mail::to($user->email)->send(
                     new DynamicMail($parsed['subject'], $parsed['body'])
                 );
@@ -591,7 +591,7 @@ class Detail extends Component
 
         $parsed = UserHelper::parseTemplate('SEATALLOTED', $data);
         // Mail::to($checkUser->allottedUser->email)->queue(
-            // new DynamicMail($parsed['subject'], $parsed['body'])
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
         dispatch(function () use ($checkUser, $parsed) {
             Mail::to($checkUser->allottedUser->email)->send(

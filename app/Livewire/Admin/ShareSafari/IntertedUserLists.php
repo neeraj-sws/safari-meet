@@ -149,7 +149,7 @@ class IntertedUserLists extends Component
             ];
             $parsed = UserHelper::parseTemplate('SEATALLOTED', $data);
             // Mail::to($user->email)->queue(new DynamicMail($parsed['subject'], $parsed['body']));
-            dispatch(function () use ($user, $parsed) {
+             dispatch(function () use ($user, $parsed) {
                 Mail::to($user->email)->send(
                     new DynamicMail($parsed['subject'], $parsed['body'])
                 );
@@ -308,6 +308,7 @@ class IntertedUserLists extends Component
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
+
 
         $totalAllottedSeats = SafariAllottedSeat::where('shared_safari_id', $this->shareSafari->id)
             ->sum('number_of_seat');

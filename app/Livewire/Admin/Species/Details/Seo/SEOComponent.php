@@ -6,7 +6,6 @@ use App\Helpers\ImageHelper;
 use App\Helpers\ImageUploadHelper;
 use App\Models\Species;
 use App\Models\SpeciesDetailsCharactersticModel;
-use Illuminate\Support\Facades\Schema;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -75,27 +74,23 @@ class SEOComponent extends Component
             'meta_image.mimes' => 'Only JPG, JPEG, PNG, WEBP images are allowed.',
         ]);
 
-        $species = Species::findOrFail($this->species->id);
+        $species = Species::find($this->species->id);
+        $metaImagePath = $species->meta_image;
+        $path = 'uploads/species/meta_image';
+        if ($this->meta_image) {
 
-        $updatePayload = [
+            // $origImage = $this->meta_image->store($path, 'public_root');
+            // $metaImagePath = ImageHelper::convertToAvif($origImage, $path);
+
+            ImageUploadHelper::delete($metaImagePath);
+            $metaImagePath = ImageUploadHelper::upload($this->meta_image, $path);
+        }
+        $species->update([
             'meta_title' => ucwords($this->meta_title),
             'meta_key' => $this->meta_key,
             'meta_description' => $this->meta_description,
-        ];
-
-        if (Schema::hasColumn($species->getTable(), 'meta_image')) {
-            $metaImagePath = $species->meta_image;
-            $path = 'uploads/species/meta_image';
-
-            if ($this->meta_image) {
-                ImageUploadHelper::delete($metaImagePath);
-                $metaImagePath = ImageUploadHelper::upload($this->meta_image, $path);
-            }
-
-            $updatePayload['meta_image'] = $metaImagePath;
-        }
-
-        $species->update($updatePayload);
+            'meta_image' => $metaImagePath,
+        ]);
 
         $this->dispatch('swal:toast', ['type' => 'success', 'title' => '', 'message' => 'SEO Details Added Successfully']);
     }

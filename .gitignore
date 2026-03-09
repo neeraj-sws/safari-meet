@@ -11,6 +11,8 @@
 /storage/*.key
 /storage/pail
 /vendor
+/live-data
+/Old-data
 /backup/*
 .env
 .env.backup

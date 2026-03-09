@@ -131,12 +131,19 @@ class PaymentPageRedirect extends Component
     public function submitPaymentProof(
         PaymentSubmissionService $paymentService
     ) {
-        $rules = [
-            'screenshot' => 'nullable|image|max:2048',
+       $rules = [
+            'screenshot' => 'nullable|image|max:15360',
             'utr' => 'nullable|string|max:255',
         ];
 
-        $this->validate($rules);
+        $messages = [
+            'screenshot.image' => 'The screenshot must be a valid image file.',
+            'screenshot.max' => 'The screenshot must not be larger than 15 MB.',
+            'utr.string' => 'The UTR must be a valid text value.',
+            'utr.max' => 'The UTR may not be greater than 255 characters.',
+        ];
+
+        $this->validate($rules, $messages);
 
         // Only require payment proof if amount is greater than 0
         if ($this->isPaymentProofRequired() && !$this->screenshot && !$this->utr) {
@@ -210,7 +217,7 @@ class PaymentPageRedirect extends Component
         //     new DynamicMail($parsed['subject'], $parsed['body'], $payment->screenshot)
         // );
 
-         dispatch(function () use ($user, $parsed) {
+        dispatch(function () use ($user, $parsed) {
             Mail::to($user->email)->send(
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );

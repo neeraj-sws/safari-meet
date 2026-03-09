@@ -20,18 +20,28 @@ use App\Livewire\TravelAgent\Common\ShowAgentNotification;
 use App\Livewire\TravelAgent\Package\PackageEnquiry;
 
 
-Route::get('/optimize', function () {
+Route::get('/optimize', function () { 
     try {
-        Artisan::call('cache:clear');
-        Artisan::call('route:clear');
-        Artisan::call('config:clear');
-        Artisan::call('view:clear');
-        Artisan::call('route:cache');
-        Artisan::call('optimize:clear');
-        Artisan::call('optimize');
+         Artisan::call('cache:clear');
+         Artisan::call('route:clear');
+         Artisan::call('config:clear');
+         Artisan::call('view:clear');
+         Artisan::call('route:cache');
+         Artisan::call('optimize:clear');
+         Artisan::call('optimize');
     } catch (\Exception $e) {
     }
     return 'Application cache has been cleared';
+});
+
+Route::get('/queue-mail', function () {
+    try {
+     Artisan::call('artisan queue:work --stop-when-empty');
+     Log::info("Queue processed successfully");
+    } catch (\Exception $e) {
+        Log::error("Error processing queue: " . $e->getMessage());
+    }
+    return 'Application queue has been processed';
 });
 
 

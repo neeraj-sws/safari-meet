@@ -239,13 +239,12 @@ class TravelAgent extends Component
         // Mail::to($user->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
+
         dispatch(function () use ($user, $parsed) {
             Mail::to($user->email)->send(
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
-
-         $this->ShowRemark = false;
 
         $this->reset(['ShowRemark', 'remark']);
 

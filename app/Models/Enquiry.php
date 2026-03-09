@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Enquiry extends Model
 {
     use HasFactory;
-
-    protected $table = 'enquiries';
+    protected $table = "enquiries";
     protected $primaryKey = 'enquiry_id';
 
     protected $fillable = [
-        'safaris',
+         'safaris',
         'travellers',
         'accommodation_id',
         'ip_address',
@@ -28,7 +27,7 @@ class Enquiry extends Model
         'url',
         'name',
         'number',
-        'email',
+         'email',
     ];
 
     public function accommodation()

@@ -50,12 +50,13 @@ class ForgotPassword extends Component
         // Mail::to($user->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
-         dispatch(function () use ($user, $parsed) {
+
+        dispatch(function () use ($user, $parsed) {
             Mail::to($user->email)->send(
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
-
+        
         log_activity('auth.forgot_password', [
             'user_id' => $user->id,
             'email' => $user->email ?? null,

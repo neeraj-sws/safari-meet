@@ -88,7 +88,7 @@ class AboutDetailsComponent extends Component
             'heading.regex' => 'The heading may only contain letters and single spaces between words.',
 
             'aboutImage.required' => 'The image is required.',
-            'aboutImage.max'  => 'The banner image must not be greater than 5 MB.',
+            'aboutImage.max'  => 'The banner image must not be greater than 15 MB.',
             'description.required' => 'The description is required.',
         ];
 

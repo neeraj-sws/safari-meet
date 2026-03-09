@@ -105,7 +105,7 @@ class DietDetailsComponent extends Component
 
             'dietImage.required' => 'The diet image is required.',
             'dietImage.image' => 'The diet image must be a valid image file (jpg, png, etc.).',
-            'dietImage.max' => 'The display image must not be greater than 5 MB.',
+            'dietImage.max' => 'The display image must not be greater than 15 MB.',
 
             'description.required' => 'The Diet Details is required.',
             'description.string' => 'The Diet Details must be a string.',

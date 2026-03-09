@@ -3,16 +3,7 @@
 namespace App\Livewire\Admin\Species;
 
 use App\Models\{
-    Species,
-    SpeciesThreatModel,
-    SpeciesPhysicalAppereancesModel,
-    SpeciesOverviewModel,
-    SpeciesLifestyleModel,
-    SpeciesInterestingFactsModel,
-    DietModel,
-    SpeciesDetailsDynamicTabs,
-    SpeciesDetailsCharactersticModel,
-    AdaptationModel
+    Species
 };
 
 use App\Helpers\ImageHelper;

@@ -1,4 +1,4 @@
-﻿/* Some default styles */
+/* Some default styles */
 body,
 html {
     font-family: "Inter", sans-serif;
@@ -1429,7 +1429,5 @@ footer.scrollnewclass {
 .starting-price{
     border-color: var(--card-lines-divider) !important;
 }
-
-
 
 

@@ -185,7 +185,6 @@ class UserAuthController extends BaseController
                 );
         })->afterResponse();
 
-
         if ($user->user_type == 0) {
             $user->status = 0;
             $data = [
@@ -271,7 +270,7 @@ class UserAuthController extends BaseController
             // Mail::to($request->email)->queue(new DynamicMail($parsed['subject'], $parsed['body']));
             dispatch(function () use ($request, $parsed) {
                 Mail::to($request->email)->send(new DynamicMail($parsed['subject'], $parsed['body']));
-            })->afterResponse();
+            })->afterResponse(); 
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 400,

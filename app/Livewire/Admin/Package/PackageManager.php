@@ -453,7 +453,7 @@ class PackageManager extends Component
             'display_image.required' => 'Display Image is required.',
             'display_image.image' => 'Display Image must be an image file.',
             'display_image.mimes' => 'Display Image must be a jpg, jpeg, png, or webp file.',
-            'display_image.max' => 'The banner image must not be greater than 5 MB.',
+            'display_image.max' => 'The banner image must not be greater than 15 MB.',
         ];
     }
 

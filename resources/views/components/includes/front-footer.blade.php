@@ -12,8 +12,8 @@
                             class="{{ request()->routeIs('aboutUs') ? 'active' : '' }}">About Us</a></li>
                     <li><a href="{{ route('faqs') }}" class="{{ request()->routeIs('faqs') ? 'active' : '' }}">FAQ</a>
                     </li>
-                   <li><a href="{{ route('media') }}" class="{{ request()->routeIs('media') ? 'active' : '' }}">Social Media</a>
-                    </li>
+					{{-- <li><a href="{{ route('media') }}" class="{{ request()->routeIs('media') ? 'active' : '' }}">Social Media</a>
+                    </li> --}}
                 </ul>
             </div>
             <div class="col-md-auto col-sm-6 footer-section">

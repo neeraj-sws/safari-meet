@@ -95,7 +95,7 @@ class LoginComponent extends Component
                 //     new DynamicMail($parsed['subject'], $parsed['body'])
                 // );
 
-                 dispatch(function () use ($user, $parsed) {
+                dispatch(function () use ($user, $parsed) {
                     Mail::to($this->email)->send(
                         new DynamicMail($parsed['subject'], $parsed['body'])
                     );

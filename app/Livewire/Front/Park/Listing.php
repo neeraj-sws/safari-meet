@@ -18,7 +18,7 @@ class Listing  extends Component
 
     public $parks, $states, $species, $stayCategory, $park_datas, $shareSafaris, $BestTimesVisits;
     public $stateSelect = null, $speciesSelect = null, $parkSelect = null, $stayCategorySelect = null, $bestTimeSelect = [], $allFiltersValue = [];
-    public $perPage = 12, $seoContents, $orderbyfilter, $totalCount = 0;
+    public $perPage = 6, $seoContents, $orderbyfilter, $totalCount = 0;
 
     public function mount()
     {
@@ -51,7 +51,7 @@ class Listing  extends Component
 
     public function loadMore()
     {
-        $this->perPage += 9;
+        $this->perPage += 3;
     }
 
 
@@ -114,7 +114,7 @@ class Listing  extends Component
     }
 
     public function firstTimeLoading(){
-
+        
     }
 
     public function updatedStateSelect()

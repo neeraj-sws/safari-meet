@@ -12,7 +12,6 @@ use App\Models\State;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Schema;
 
 class HomeComponent extends Component
 {
@@ -30,10 +29,6 @@ class HomeComponent extends Component
         // Cache::forget('homeSeo');
 
         $this->homePageBanner = Cache::remember('homePageBanner', 1440, function () {
-            if (!Schema::hasTable('home_page_banners')) {
-                return null;
-            }
-
             return HomePageBannerModel::where('status', true)->first();
         });
 

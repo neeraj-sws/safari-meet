@@ -191,7 +191,7 @@ class AgentRegistration extends Component
         // Mail::to($this->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
-         dispatch(function () use ($user, $parsed) {
+        dispatch(function () use ($user, $parsed) {
             Mail::to($user->email)->send(
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );

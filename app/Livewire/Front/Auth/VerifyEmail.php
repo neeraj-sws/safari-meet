@@ -67,14 +67,14 @@ class VerifyEmail extends Component
         ];
 
         $parsed = UserHelper::parseTemplate('AFTERREGISTRATION', $data);
-        dispatch(function () use ($user, $parsed) {
+        // Mail::to($this->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
+         dispatch(function () use ($user, $parsed) {
             Mail::to($user->email)->send( 
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
-        // Mail::to($this->email)->queue(
-        //     new DynamicMail($parsed['subject'], $parsed['body'])
-        // );
         if ($user->user_type == 0) {
             $user->status = 0;
             $data = [
@@ -87,15 +87,15 @@ class VerifyEmail extends Component
             ];
 
             $parsed = UserHelper::parseTemplate('REGISTRATIONSTATUS', $data);
-            dispatch(function () use ($user, $parsed) {
+            // Mail::to($user->email)->queue(
+            //     new DynamicMail($parsed['subject'], $parsed['body'])
+            // );
+             dispatch(function () use ($user, $parsed) {
                 Mail::to($user->email)->send(
                     new DynamicMail($parsed['subject'], $parsed['body'])
                 );
             })->afterResponse();
-            // Mail::to($user->email)->queue(
-            //     new DynamicMail($parsed['subject'], $parsed['body'])
-            // );
-            
+
             log_activity('user.approve', [
                 'user_id' => $user->id,
                 'email' => $user->email ?? null,
@@ -139,15 +139,14 @@ class VerifyEmail extends Component
             'year' => date('Y'),
         ];
         $parsed = UserHelper::parseTemplate('AGENTEMAILVERIFY', $data);
+        // Mail::to($this->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
         dispatch(function () use ($user, $parsed) {
             Mail::to($this->email)->send(
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
-        // Mail::to($this->email)->queue(
-        //     new DynamicMail($parsed['subject'], $parsed['body'])
-        // );
-        
         log_activity('otp.verificationrequest', [
             'actor_type' => class_basename($user),
             'actor_id' => $user->id,
