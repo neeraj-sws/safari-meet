@@ -99,7 +99,11 @@
                     <div class="filter-applied-container">
                         <div class="d-sm-flex align-items-center justify-content-between mb-2 flex-wrap">
                             <div class="what's-found mb-lg-0 mb-3">
+<<<<<<< HEAD
                                 <p class="mb-0">We found <b>{{ $totalCount }}</b> Active {{ Str::plural('Park', $totalCount) }}</p>
+=======
+                                <p class="mb-0">We found <b>{{ count($parks) }}</b> Active Park</p>
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                             </div>
                             <div class="d-lg-inline-block d-flex align-items-center justify-content-between mb-3">
                                 <div class="sort-by mb-sm-0">

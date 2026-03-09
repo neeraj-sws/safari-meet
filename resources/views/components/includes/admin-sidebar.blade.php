@@ -29,15 +29,23 @@
                                   </a>
                               </li>
 
+<<<<<<< HEAD
                               <li class="">
+=======
+                                <li class="">
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                                   <a class="has-arrow" href="javascript:;">
                                       <div class="parent-icon"><i class="lni lni-users"></i>
                                       </div>
                                       <div class="menu-title">All Users</div>
                                   </a>
                                   <ul class="mm-collapse">
+<<<<<<< HEAD
                                       <li> <a href="{{ route('admin.travel_agent') }}"><i
                                                   class="lni lni-users"></i>Travel Agents</a>
+=======
+                                      <li> <a href="{{ route('admin.travel_agent') }}"><i class="lni lni-users"></i>Travel Agents</a>
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                                       </li>
                                       <li> <a href="{{ route('admin.allUser') }}"><i class="lni lni-users"></i>Users</a>
                                       </li>
@@ -52,6 +60,7 @@
                                       <div class="menu-title">All Enquiries</div>
                                   </a>
                                   <ul class="mm-collapse">
+<<<<<<< HEAD
                                       <li> <a href="{{ route('admin.packageenquiries') }}"><i
                                                   class="bx bx-message-square-dots"></i>Package Enquiries</a>
                                       </li>
@@ -60,6 +69,13 @@
                                       </li>
                                       <li> <a href="{{ route('admin.contact-submissions') }}"> <i
                                                   class="bx bx-message-square-dots"></i>Contact Us Enquiries</a>
+=======
+                                      <li> <a href="{{ route('admin.packageenquiries') }}"><i class="bx bx-message-square-dots"></i>Package Enquiries</a>
+                                      </li>
+                                      <li> <a href="{{ route('admin.enquiries') }}"><i class="bx bx-message-square-dots"></i>Enquiries</a>
+                                      </li>
+                                      <li> <a href="{{ route('admin.contact-submissions') }}"> <i class="bx bx-message-square-dots"></i>Contact Us Enquiries</a>
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                                       </li>
                                   </ul>
                               </li>
@@ -114,6 +130,7 @@
 
                                   </ul>
                               </li>
+<<<<<<< HEAD
                               <li>
                                   <a href="{{ route('admin.transaction-history') }}">
                                       <div class="parent-icon">
@@ -122,6 +139,9 @@
                                       <div class="menu-title">Transaction History</div>
                                   </a>
                               </li>
+=======
+
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
                               <li class="">
                                   <a class="has-arrow" href="javascript:;">
@@ -136,9 +156,12 @@
                                                   class="bx bx-map-pin"></i>States</a></li>
                                       <li> <a href="{{ route('admin.city') }}"><i class="bx bx-map-pin"></i>City</a>
                                       </li>
+<<<<<<< HEAD
                                       <li> <a href="{{ route('admin.coupon') }}"><i
                                                   class="bx bx-map-pin"></i>Coupons</a>
                                       </li>
+=======
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                                   </ul>
                               </li>
 
@@ -187,7 +210,11 @@
                                                   class="lni lni-thunder-alt"></i>Weather</a></li>
                                       <li> <a href="{{ route('admin.failed-jobs') }}"><i
                                                   class="lni lni-thunder-alt"></i>Failed Jobs</a></li>
+<<<<<<< HEAD
                                       <li> <a href="{{ route('admin.activity-log') }}"><i
+=======
+                                        <li> <a href="{{ route('admin.activity-log') }}"><i
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                                                   class="lni lni-thunder-alt"></i>Activity Log</a></li>
                                       <li class="">
                                           <a class="has-arrow" href="javascript:;">
@@ -227,8 +254,12 @@
                                       <!--            class="bx bx-envelope"></i>Contact Us</a></li>-->
                                       <li> <a href="{{ route('admin.cleardata.cleardata') }}"><i
                                                   class="lni lni-trash"></i>Data Cleaner</a></li>
+<<<<<<< HEAD
                                       <li> <a href="{{ route('admin.why_verify_profile') }}"><i
                                                   class="bx bx-info-circle"></i>Why Verify Profile</a></li>
+=======
+                                    <li> <a href="{{ route('admin.why_verify_profile') }}"><i class="bx bx-info-circle"></i>Why Verify Profile</a></li>
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                                       <li> <a href="{{ route('admin.about_us') }}"><i
                                                   class="bx bx-info-circle"></i>About
                                               Us</a></li>

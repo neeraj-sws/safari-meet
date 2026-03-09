@@ -83,7 +83,11 @@
 
                     <div class="card-footer text-end">
                         <button type="button" class="btn btn-primary" wire:click="store">
+<<<<<<< HEAD
                             <i class="fas fa-save"></i> Save All
+=======
+                            <i class="bi bi-save"></i> Save All
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                         </button>
                         <button type="button" class="btn btn-secondary" wire:click="$set('showForm', false)">
                             Cancel

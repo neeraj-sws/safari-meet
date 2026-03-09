@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('parks', function (Blueprint $table) {
+<<<<<<< HEAD
             $table->bigIncrements('park_id');
             $table->string('name')->nullable();
             $table->string('title')->nullable();
@@ -46,6 +47,23 @@ return new class extends Migration
             $table->tinyInteger('top_safari')->default(0);
             $table->string('meta_image')->nullable();
             $table->uuid('uuid')->nullable();
+=======
+            $table->id();
+            $table->string('title');
+            $table->string('slug');
+            $table->text('short_description')->nullable();
+            $table->longText('description')->nullable();
+            $table->integer('city_id')->nullable();
+            $table->integer('state_id');
+            $table->integer('country_id');
+            $table->text('train')->comment('nearest train station')->nullable();
+            $table->text('airport')->comment('nearest airport')->nullable();
+            $table->text('safari_session')->nullable();
+            $table->integer('wildlife_found')->nullable();
+            $table->string('safari_cost')->nullable();
+            $table->string('safari_mode')->nullable();
+            $table->string('closed_months')->nullable();
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             $table->timestamps();
         });
     }

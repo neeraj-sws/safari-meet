@@ -3,13 +3,20 @@
 namespace App\Livewire\Front\Park;
 
 use App\Helpers\UserHelper;
+<<<<<<< HEAD
 use App\Models\{EnquiryAccommodation, Park, Package, Enquiry, ShareSafari, Admin};
+=======
+use App\Models\{EnquiryAccommodation, Park, Package, Enquiry, ShareSafari};
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 use Livewire\Component;
 use App\Mail\DynamicMail;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+<<<<<<< HEAD
 use Throwable;
+=======
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
 class  Detail extends Component
 {
@@ -127,6 +134,7 @@ class  Detail extends Component
 
         $parsed = UserHelper::parseTemplate('USERENQUIRY', $data);
 
+<<<<<<< HEAD
         // Mail::to($enquiry->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
@@ -143,6 +151,11 @@ class  Detail extends Component
                 ]);
             }
         })->onConnection('sync');
+=======
+        Mail::to($enquiry->email)->queue(
+            new DynamicMail($parsed['subject'], $parsed['body'])
+        );
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
         $data = [
             'name' => $enquiry->name,
@@ -159,6 +172,7 @@ class  Detail extends Component
 
         $parsed = UserHelper::parseTemplate('ADMINENQURY', $data);
 
+<<<<<<< HEAD
         $adminEmail = Admin::first()?->email;
         if ($adminEmail) {
             dispatch(function () use ($enquiry, $parsed, $adminEmail) {
@@ -176,6 +190,11 @@ class  Detail extends Component
             })->onConnection('sync');
         }
 
+=======
+        Mail::to('shifankhan@yopmail.com')->queue(
+            new DynamicMail($parsed['subject'], $parsed['body'])
+        );
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
         $this->dispatch('formSubmitted');
         $this->reset(['safaris', 'user_email', 'travellers', 'accommodation', 'start_date', 'end_date', 'user_name', 'user_number']);
@@ -244,5 +263,8 @@ class  Detail extends Component
         $this->activeTab = $value;
     }
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b

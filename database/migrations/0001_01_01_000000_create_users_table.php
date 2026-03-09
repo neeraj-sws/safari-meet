@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
+<<<<<<< HEAD
             $table->bigIncrements('user_id');
             $table->string('name')->nullable();
             $table->string('username')->nullable();
@@ -49,6 +50,13 @@ return new class extends Migration
             $table->string('remark')->nullable();
             $table->unsignedTinyInteger('is_profile_complete')->default(0);
             $table->boolean('agree_t_c')->default(false);
+=======
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             $table->rememberToken();
             $table->timestamps();
         });

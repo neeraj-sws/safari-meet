@@ -53,10 +53,17 @@ class Threats extends Component
 
             if (($this->image)) {
                 $this->validate([
+<<<<<<< HEAD
                     'image' => 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
                 ], [
                     'image.required' => 'The Image field is required.',
                     'image.max'  => 'The banner image must not be greater than 15 MB.',
+=======
+                    'image' => 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
+                ], [
+                    'image.required' => 'The Image field is required.',
+                    'image.max'  => 'The banner image must not be greater than 5 MB.',
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                 ]);
                 $image = $this->image;
                 // $origPath = $image->store($path, 'public_root');
@@ -77,11 +84,19 @@ class Threats extends Component
             $this->theratData->save();
         } else {
             $this->validate([
+<<<<<<< HEAD
                 'image' => 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
 
             ], [
                 'image.required' => 'The Image field is required.',
                 'image.max'  => 'The banner image must not be greater than 15 MB.',
+=======
+                'image' => 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
+
+            ], [
+                'image.required' => 'The Image field is required.',
+                'image.max'  => 'The banner image must not be greater than 5 MB.',
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             ]);
             $image = $this->image;
             // $path = 'uploads/species/threat';

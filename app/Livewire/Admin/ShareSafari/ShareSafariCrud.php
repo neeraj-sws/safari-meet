@@ -17,7 +17,10 @@ class ShareSafariCrud extends Component
     use WithFileUploads;
     use WithPagination;
     public $showModal = false, $isEditing = false, $editId, $deleteId;
+<<<<<<< HEAD
     public $publishedStatusId, $publishedStatusValue;
+=======
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     public $modalTitle = 'Add', $pageTitle = 'Shared Safari';
     public $search = '';
     public $step = 1;
@@ -52,7 +55,11 @@ class ShareSafariCrud extends Component
         $this->userCount = ShareSafari::where('organized_type', 'user')->count();
         $this->adminCount = ShareSafari::where('organized_type', 'admin')->count();
         $this->agentCount = ShareSafari::where('organized_type', 'agent')->count();
+<<<<<<< HEAD
         $shareSafaries = ShareSafari::with('payment')->orderBy('updated_at', 'desc');
+=======
+        $shareSafaries = ShareSafari::with('payments')->orderBy('updated_at', 'desc');
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         if (!empty($this->search)) {
             $shareSafaries->where(function ($q) {
                 $q->where('title', 'like', '%' . $this->search . '%');
@@ -113,6 +120,7 @@ class ShareSafariCrud extends Component
         ]);
     }
 
+<<<<<<< HEAD
     public function confirmPublishStatus($id, $status)
     {
         $this->publishedStatusId = $id;
@@ -131,6 +139,8 @@ class ShareSafariCrud extends Component
         ]);
     }
 
+=======
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     #[On('delete')]
     public function delete()
     {
@@ -188,11 +198,17 @@ class ShareSafariCrud extends Component
         $this->dispatch('swal:toast', ['type' => 'success', 'title' => '', 'message' => 'Status Changed Successfully']);
     }
 
+<<<<<<< HEAD
     #[On('executePublishStatus')]
     public function executePublishStatus()
     {
         $safari = ShareSafari::findOrFail($this->publishedStatusId);
         $status = $this->publishedStatusValue;
+=======
+    public function publishedStatus($id, $status)
+    {
+        $safari = ShareSafari::findOrFail($id);
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         $safari->is_approved = $status;
         $safari->save();
         if ($status == 1) {

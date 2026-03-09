@@ -38,9 +38,15 @@ class ParkDos extends Component
         $this->validate([
             'doRules' => 'required',
             'dos_image' => ($this->isEditing && !empty($this->doPreviousImage)) ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120'
+<<<<<<< HEAD
                 : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
         ], [
             'dos_image.max' => 'The banner image must not be greater than 15 MB.',
+=======
+                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
+        ], [
+            'dos_image.max' => 'The banner image must not be greater than 5 MB.',
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ]);
 
 

@@ -48,8 +48,13 @@ class ThingToCarries extends Component
             ),
             'short_description' => 'required',
             'display_image' => ($this->itemId && !empty($this->previousImage))
+<<<<<<< HEAD
                 ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360'
                 : 'required|image|mimes:jpg,jpeg,png,webp|max:15360',
+=======
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120'
+                : 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ];
     }
 

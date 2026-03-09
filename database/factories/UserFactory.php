@@ -22,6 +22,7 @@ class UserFactory extends Factory
 
         if ($cityIds === null) {
             $cityIds = City::where('state_id', 21)->pluck('city_id')->toArray();
+<<<<<<< HEAD
 
             if (empty($cityIds)) {
                 // Ensure location records exist for factory defaults
@@ -41,6 +42,8 @@ class UserFactory extends Factory
 
                 $cityIds = [$city->city_id];
             }
+=======
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         }
 
         $cityId = $cityIds[array_rand($cityIds)];

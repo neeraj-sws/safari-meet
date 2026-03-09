@@ -148,6 +148,7 @@ class Detail extends Component
 
         $parsed = UserHelper::parseTemplate('USERENQUIRY', $data);
 
+<<<<<<< HEAD
         // Mail::to($enquiry->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
@@ -156,6 +157,11 @@ class Detail extends Component
                     new DynamicMail($parsed['subject'], $parsed['body'])
                 );
         })->afterResponse();
+=======
+        Mail::to($enquiry->email)->queue(
+            new DynamicMail($parsed['subject'], $parsed['body'])
+        );
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
         $data = [
             'name' => $enquiry->name,
@@ -172,6 +178,7 @@ class Detail extends Component
 
         $parsed = UserHelper::parseTemplate('ADMINENQURY', $data);
 
+<<<<<<< HEAD
         // Mail::to(Admin::find(1)->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
@@ -180,6 +187,11 @@ class Detail extends Component
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
+=======
+        Mail::to(Admin::find(1)->email)->queue(
+            new DynamicMail($parsed['subject'], $parsed['body'])
+        );
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
         $this->resetFields();
         $this->dispatch('swal:toast', ['type' => 'success', 'title' => '', 'message' => 'Your quote request has been submitted!']);

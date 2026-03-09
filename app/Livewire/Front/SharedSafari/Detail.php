@@ -398,12 +398,16 @@ class Detail extends Component
                 'year' => date('Y'),
             ];
             $parsed = UserHelper::parseTemplate('SEATALLOTED', $data);
+<<<<<<< HEAD
             // Mail::to($user->email)->queue(new DynamicMail($parsed['subject'], $parsed['body']));
              dispatch(function () use ($user, $parsed) {
                 Mail::to($user->email)->send(
                     new DynamicMail($parsed['subject'], $parsed['body'])
                 );
             })->afterResponse();
+=======
+            Mail::to($user->email)->queue(new DynamicMail($parsed['subject'], $parsed['body']));
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
             $type = ($this->shareSafari->organized_type == 'admin') ? 'App\Models\Admin' : 'App\Models\User';
             createNotification(
@@ -440,12 +444,16 @@ class Detail extends Component
                 'year' => date('Y'),
             ];
             $parsed = UserHelper::parseTemplate('SEATALLOTED', $data);
+<<<<<<< HEAD
             // Mail::to($user->email)->queue(new DynamicMail($parsed['subject'], $parsed['body']));
             dispatch(function () use ($user, $parsed) {
                 Mail::to($user->email)->send(
                     new DynamicMail($parsed['subject'], $parsed['body'])
                 );
             })->afterResponse();
+=======
+            Mail::to($user->email)->queue(new DynamicMail($parsed['subject'], $parsed['body']));
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
             $type = ($this->shareSafari->organized_type == 'admin') ? 'App\Models\Admin' : 'App\Models\User';
             createNotification(
@@ -533,12 +541,16 @@ class Detail extends Component
             ];
 
             $parsed = UserHelper::parseTemplate('SEAT_STATUS_UPDATE', $data);
+<<<<<<< HEAD
             // Mail::to($user->email)->queue(new DynamicMail($parsed['subject'], $parsed['body']));
             dispatch(function () use ($user, $parsed) {
                 Mail::to($user->email)->send(
                     new DynamicMail($parsed['subject'], $parsed['body'])
                 );
             })->afterResponse();
+=======
+            Mail::to($user->email)->queue(new DynamicMail($parsed['subject'], $parsed['body']));
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         }
 
         $this->allottedSetsUser();
@@ -590,6 +602,7 @@ class Detail extends Component
         ];
 
         $parsed = UserHelper::parseTemplate('SEATALLOTED', $data);
+<<<<<<< HEAD
         // Mail::to($checkUser->allottedUser->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
@@ -598,6 +611,11 @@ class Detail extends Component
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
+=======
+        Mail::to($checkUser->allottedUser->email)->queue(
+            new DynamicMail($parsed['subject'], $parsed['body'])
+        );
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
         $totalAllottedSeats = SafariAllottedSeat::where('shared_safari_id', $this->shareSafari->id)
             ->sum('number_of_seat');
@@ -665,12 +683,16 @@ class Detail extends Component
                 ];
 
                 $parsed = UserHelper::parseTemplate('SEAT_STATUS_UPDATE', $data);
+<<<<<<< HEAD
                 // Mail::to($user->email)->queue(new DynamicMail($parsed['subject'], $parsed['body']));
                 dispatch(function () use ($user, $parsed) {
                     Mail::to($user->email)->send(
                         new DynamicMail($parsed['subject'], $parsed['body'])
                     );
                 })->afterResponse();
+=======
+                Mail::to($user->email)->queue(new DynamicMail($parsed['subject'], $parsed['body']));
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             }
         }
 

@@ -95,12 +95,19 @@ class CreateSafari extends Component
     private function checkUserStatus(): void
     {
         if (Auth::guard('web')->user()->status != 1) {
+<<<<<<< HEAD
             // redirect()
             //     ->route('profile-edit')
             //     ->with('error', 'Verify/Update your profile to create safari')
             //     ->send();
              $this->redirect(route('profile-edit'), navigate: false);
             session()->flash('error', 'Verify/Update your profile to create safari');
+=======
+            redirect()
+                ->route('profile-edit')
+                ->with('error', 'Verify/Update your profile to create safari')
+                ->send();
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         }
     }
 
@@ -482,9 +489,15 @@ class CreateSafari extends Component
             return;
 
         $this->validate([
+<<<<<<< HEAD
             'display_image' => 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
         ], [
             'display_image.max' => 'The display image must not be greater than 15 MB.',
+=======
+            'display_image' => 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
+        ], [
+            'display_image.max' => 'The display image must not be greater than 5 MB.',
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ]);
 
         $userDetails = UserHelper::UserIPDetails();

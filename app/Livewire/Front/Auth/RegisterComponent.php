@@ -108,6 +108,7 @@ class RegisterComponent extends Component
         ];
 
         $parsed = UserHelper::parseTemplate('AGENTEMAILVERIFY', $data);
+<<<<<<< HEAD
         // Mail::to($this->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
@@ -117,6 +118,11 @@ class RegisterComponent extends Component
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
+=======
+        Mail::to($this->email)->queue(
+            new DynamicMail($parsed['subject'], $parsed['body'])
+        );
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
         log_activity('auth.signup', [
             'actor_type' => class_basename($user),

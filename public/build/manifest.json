@@ -20,7 +20,11 @@
     "src": "node_modules/slick-carousel/slick/fonts/slick.woff"
   },
   "resources/css/app.css": {
+<<<<<<< HEAD
     "file": "assets/app-gb1GIt9n.css",
+=======
+    "file": "assets/app-DJ4EeeFr.css",
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -56,6 +60,7 @@
     "file": "assets/fa-v4compatibility-C9RhG_FT.woff2",
     "src": "resources/css/webfonts/fa-v4compatibility.woff2"
   },
+<<<<<<< HEAD
   "resources/images/animal-images/tiger.png": {
     "file": "assets/tiger-kjMNM8kP.png",
     "src": "resources/images/animal-images/tiger.png"
@@ -72,6 +77,8 @@
     "file": "assets/home-hero-banner-XLxh-q-r.png",
     "src": "resources/images/banner-image/home-hero-banner.png"
   },
+=======
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
   "resources/js/app.js": {
     "file": "assets/app-BQYOTuYl.js",
     "name": "app",

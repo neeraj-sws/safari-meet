@@ -3,7 +3,20 @@
 namespace App\Livewire\Admin\Species;
 
 use App\Models\{
+<<<<<<< HEAD
     Species
+=======
+    Species,
+    SpeciesThreatModel,
+    SpeciesPhysicalAppereancesModel,
+    SpeciesOverviewModel,
+    SpeciesLifestyleModel,
+    SpeciesInterestingFactsModel,
+    DietModel,
+    SpeciesDetailsDynamicTabs,
+    SpeciesDetailsCharactersticModel,
+    AdaptationModel
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 };
 
 use App\Helpers\ImageHelper;
@@ -238,12 +251,21 @@ class SpeciesManager extends Component
                 },
             ],
             'display_image' => ($this->editId && !empty($this->previousImage))
+<<<<<<< HEAD
                 ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360'
                 : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
 
             'banner_image' => ($this->editId && !empty($this->previousBannerImage))
                 ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360'
                 : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
+=======
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120'
+                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
+
+            'banner_image' => ($this->editId && !empty($this->previousBannerImage))
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120'
+                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ];
     }
 
@@ -256,14 +278,20 @@ class SpeciesManager extends Component
             'name.max' => 'The Name may not be greater than 100 characters.',
             'name.regex' => 'The Name may only contain letters and spaces between words.',
 
+<<<<<<< HEAD
             'display_image.max' => 'The display image must not be greater than 15 MB.',
             'banner_image.max'  => 'The banner image must not be greater than 15 MB.',
+=======
+            'display_image.max' => 'The display image must not be greater than 5 MB.',
+            'banner_image.max'  => 'The banner image must not be greater than 5 MB.',
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ];
     }
 
 
     public function removeDisplayImage(): void
     {
+<<<<<<< HEAD
         $this->clearTemporaryUpload('display_image');
     }
 
@@ -287,5 +315,18 @@ class SpeciesManager extends Component
 
         $this->{$property} = null;
         $this->resetValidation($property);
+=======
+        if ($this->display_image) {
+            $this->display_image->delete();
+        }
+        $this->display_image = null;
+    }
+    public function removeBannerImage()
+    {
+        if ($this->banner_image) {
+            $this->banner_image->delete();
+        }
+        $this->banner_image = null;
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     }
 }

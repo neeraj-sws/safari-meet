@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Common\Species;
 
+<<<<<<< HEAD
 use App\Helpers\UserHelper;
 use App\Http\Controllers\Api\BaseController;
 use App\Mail\DynamicMail;
@@ -9,6 +10,11 @@ use App\Models\AdaptationModel;
 use App\Models\Admin;
 use App\Models\DietModel;
 use App\Models\Enquiry;
+=======
+use App\Http\Controllers\Api\BaseController;
+use App\Models\AdaptationModel;
+use App\Models\DietModel;
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 use App\Models\Species;
 use App\Models\SpeciesDetailsDynamicTabs;
 use App\Models\SpeciesInterestingFactsModel;
@@ -16,6 +22,7 @@ use App\Models\SpeciesLifestyleModel;
 use App\Models\SpeciesOverviewModel;
 use App\Models\SpeciesPhysicalAppereancesModel;
 use App\Models\SpeciesThreatModel;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -67,6 +74,31 @@ class SpeciesOverviewController extends BaseController
             'limit'    => $limit,
             'total'    => $total,
             'has_more' => $limit < $total,
+=======
+
+class SpeciesOverviewController extends BaseController
+{
+    public function TopSpecies()
+    {
+        $baseUrl = env('APP_URL');
+
+        $species = Species::select('species_id','name','slug','display_image','banner_image')->where('status', 1)->get();
+
+        foreach ($species as $item) {
+
+            if (!empty($item->display_image) && filter_var($item->display_image, FILTER_VALIDATE_URL) === false) {
+                $item->display_image = rtrim($baseUrl, '/') . '/' . ltrim($item->display_image, '/');
+            }
+
+            if (!empty($item->banner_image) && filter_var($item->banner_image, FILTER_VALIDATE_URL) === false) {
+                $item->banner_image = rtrim($baseUrl, '/') . '/' . ltrim($item->banner_image, '/');
+            }
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $species,
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ], 200);
     }
 
@@ -77,7 +109,11 @@ class SpeciesOverviewController extends BaseController
         $species = Species::select('species_id', 'name', 'slug', 'display_image', 'banner_image')
             ->with(['charactersticDetails' => function ($query) {
                 $query->select('species_details_characterstic_id', 'species_id', 'species_characterstics', 'title')
+<<<<<<< HEAD
                     ->where('status', 1);
+=======
+                      ->where('status', 1);
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             }])
             ->where('slug', $slug)
             ->first();
@@ -109,16 +145,27 @@ class SpeciesOverviewController extends BaseController
 
     public function speciesData($id)
     {
+<<<<<<< HEAD
         $characterstic_id = request()->query(key: 'species_characterstics');
         $tab_id = request()->query('species_details_characterstic_id');
         $tabData = null;
         $responseData = $this->getSpeciesDataByTitle($characterstic_id, $id, $tab_id);
+=======
+        $characterstic_id = request()->query('species_characterstics');
+        $tab_id = request()->query('species_details_characterstic_id');
+        $tabData = null;
+        $responseData = $this->getSpeciesDataByTitle($characterstic_id, $id,$tab_id);
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         if (!$responseData) {
             return response()->json([
                 'success' => false,
                 'data' => [],
                 'message' => 'No data found for the specified title.',
+<<<<<<< HEAD
             ], 200);
+=======
+            ],200);
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         }
         $responseDataArray = is_array($responseData) ? $responseData : $responseData->toArray();
         $tabDataArray = $tabData ? $tabData->toArray() : null;
@@ -128,7 +175,11 @@ class SpeciesOverviewController extends BaseController
             'data' => array_merge(['tab_data' => $tabDataArray], $responseDataArray),
         ], 200);
     }
+<<<<<<< HEAD
     private function getSpeciesDataByTitle($characterstic_id, $id, $tab_id)
+=======
+    private function getSpeciesDataByTitle($characterstic_id, $id,$tab_id)
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     {
         switch ($characterstic_id) {
 
@@ -137,7 +188,11 @@ class SpeciesOverviewController extends BaseController
             case '2':
                 return $this->getPhysicalAppearanceData($tab_id, $id,);
             case '4':
+<<<<<<< HEAD
                 return $this->getThreatsData($tab_id, $id, $tab_id);
+=======
+                return $this->getThreatsData($tab_id, $id,$tab_id);
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             case '5':
                 return $this->getInterestingFactsData($tab_id, $id);
             default:
@@ -220,4 +275,8 @@ class SpeciesOverviewController extends BaseController
     {
         return SpeciesDetailsDynamicTabs::where('species_id', $id)->where('species_details_characterstics_id', $tab_id)->first();
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 }

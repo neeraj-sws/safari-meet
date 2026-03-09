@@ -1,7 +1,11 @@
 <?php
 
 use App\Livewire\Front\Auth\{AgentRegistration, ChangePassword, EditUserprofileComponent, ForgotPassword, ForgotPasswordReset, LoginComponent, RegisterComponent, Tankyou, TravelPartnerSingUpComponent, UserprofileComponent, VerifyEmail};
+<<<<<<< HEAD
 use App\Livewire\Front\{MediaFeedComponent, ContactUs, HomeComponent, PaymentPageRedirect, SearchResult, UserPaymentHistory};
+=======
+use App\Livewire\Front\{MediaFeedComponent, ContactUs, HomeComponent, PaymentPageRedirect, SearchResult};
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 use App\Livewire\Front\Pages\{AboutUs, Faqs, PrivacyPolicy, RefundPolicy, TermsConditions, WhyVerifyProfile};
 use App\Livewire\Front\Park\{Listing as ParkListing, Detail as ParkDetail};
 use App\Livewire\Front\SafariPackage\{Detail as SafariPackageDetail, Listing as SafariPackageListing};
@@ -20,6 +24,7 @@ use App\Livewire\TravelAgent\Common\ShowAgentNotification;
 use App\Livewire\TravelAgent\Package\PackageEnquiry;
 
 
+<<<<<<< HEAD
 Route::get('/optimize', function () { 
     try {
          Artisan::call('cache:clear');
@@ -29,11 +34,23 @@ Route::get('/optimize', function () {
          Artisan::call('route:cache');
          Artisan::call('optimize:clear');
          Artisan::call('optimize');
+=======
+Route::get('/optimize', function () {
+    try {
+        Artisan::call('cache:clear');
+        Artisan::call('route:clear');
+        Artisan::call('config:clear');
+        Artisan::call('view:clear');
+        Artisan::call('route:cache');
+        Artisan::call('optimize:clear');
+        Artisan::call('optimize');
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     } catch (\Exception $e) {
     }
     return 'Application cache has been cleared';
 });
 
+<<<<<<< HEAD
 Route::get('/queue-mail', function () {
     try {
      Artisan::call('artisan queue:work --stop-when-empty');
@@ -44,6 +61,8 @@ Route::get('/queue-mail', function () {
     return 'Application queue has been processed';
 });
 
+=======
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
 Route::get('/', HomeComponent::class)->name('home');
 Route::get('thankyou', Tankyou::class)->name('thankyou');
@@ -112,7 +131,10 @@ Route::middleware('auth.guard:web')->group(function () {
     Route::get('update-sahared-shafari/{slug?}/{type?}/{subtype?}', CreateSafari::class)->name('edit.saharedshafari');
     Route::get('wishlist', WishlistMaster::class)->name('user-wishlist');
     Route::get('payment/{type?}/{uuid?}', PaymentPageRedirect::class)->name('redirect-to-payment-page');
+<<<<<<< HEAD
      Route::get('transaction-history', UserPaymentHistory::class)->name('transaction-history');
+=======
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
 
     // agent panle
