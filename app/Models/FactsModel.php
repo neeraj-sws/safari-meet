@@ -12,6 +12,8 @@ class FactsModel extends Model
 
     protected $table = "facts";
 
+    protected $primaryKey = 'fact_id';
+
     protected $fillable = [
         'species_id',
         'title',

@@ -38,15 +38,15 @@ class SeoMaster extends Component
             'meta_title' => 'required|string',
             'meta_description' => 'required|string',
             'meta_image' => ($this->itemId && !empty($this->previousImage))
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360'
+                : 'required|image|mimes:jpg,jpeg,png,webp|max:15360',
         ];
     }
 
     public function messages()
     {
         return [
-            'meta_image.max' => 'The banner image must not be greater than 5 MB.',
+            'meta_image.max' => 'The banner image must not be greater than 15 MB.',
         ];
     }
 

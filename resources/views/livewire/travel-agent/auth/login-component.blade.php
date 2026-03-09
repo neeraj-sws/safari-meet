@@ -32,7 +32,7 @@
                                                     placeholder="Enter Password">
                                                 <span class="input-group-text bg-transparent"
                                                     onclick="togglePassword()">
-                                                    <i class='bi bi-eye-slash' id="password-icon"></i>
+                                                    <i class='fas fa-eye-slash' id="password-icon"></i>
                                                 </span>
                                             </div>
                                             @error('password')
@@ -76,12 +76,12 @@
             const passwordIcon = document.getElementById("password-icon");
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";
-                passwordIcon.classList.remove("bi-eye-slash");
-                passwordIcon.classList.add("bi-eye");
+                passwordIcon.classList.remove("fa-eye-slash");
+                passwordIcon.classList.add("fa-eye");
             } else {
                 passwordInput.type = "password";
-                passwordIcon.classList.remove("bi-eye");
-                passwordIcon.classList.add("bi-eye-slash");
+                passwordIcon.classList.remove("fa-eye");
+                passwordIcon.classList.add("fa-eye-slash");
             }
         };
     </script>

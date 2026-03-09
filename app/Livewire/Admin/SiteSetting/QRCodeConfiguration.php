@@ -15,7 +15,8 @@ class QRCodeConfiguration extends Component
         'USER_SAFARI_PRICE' => '',
         'AGENT_SAFARI_PRICE' => '',
         'AGENT_PACKAGE_PRICE' => '',
-        'QR_IMAGE' => null,
+        'UPI_ID' => "",
+        'UPI_MERCHANT_NAME' => '',
     ];
 
     public $existingQrImage; // for showing saved image
@@ -25,31 +26,39 @@ class QRCodeConfiguration extends Component
         $settings = SiteSetting::pluck('value', 'key')->toArray();
 
         foreach ($this->key as $k => $v) {
-            if ($k === 'QR_IMAGE') {
-                $this->existingQrImage = $settings[$k] ?? null;
-            } else {
-                $this->key[$k] = $settings[$k] ?? '';
-            }
+            $this->key[$k] = $settings[$k] ?? '';
         }
     }
 
     public function save()
     {
-        $this->validate([
-            'key.USER_SAFARI_PRICE' => 'required|integer',
-            'key.AGENT_SAFARI_PRICE' => 'required|integer',
-            'key.AGENT_PACKAGE_PRICE' => 'required|integer',
-            'key.QR_IMAGE' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-        ]);
+        $this->validate(
+            [
+                'key.USER_SAFARI_PRICE'   => 'required|integer',
+                'key.AGENT_SAFARI_PRICE'  => 'required|integer',
+                'key.AGENT_PACKAGE_PRICE' => 'required|integer',
+                'key.UPI_ID'              => 'required|string',
+                'key.UPI_MERCHANT_NAME'   => 'required|string',
+            ],
+            [
+                'key.USER_SAFARI_PRICE.required'    => 'User Safari Price is required.',
+                'key.USER_SAFARI_PRICE.integer'     => 'User Safari Price must be a number.',
+
+                'key.AGENT_SAFARI_PRICE.required'   => 'Agent Safari Price is required.',
+                'key.AGENT_SAFARI_PRICE.integer'    => 'Agent Safari Price must be a number.',
+
+                'key.AGENT_PACKAGE_PRICE.required'  => 'Agent Package Price is required.',
+                'key.AGENT_PACKAGE_PRICE.integer'   => 'Agent Package Price must be a number.',
+
+                'key.UPI_ID.required'               => 'UPI ID is required.',
+                'key.UPI_ID.string'                 => 'UPI ID must be a valid text.',
+
+                'key.UPI_MERCHANT_NAME.required'    => 'UPI Merchant Name is required.',
+                'key.UPI_MERCHANT_NAME.string'      => 'UPI Merchant Name must be valid text.',
+            ]
+        );
 
         foreach ($this->key as $key => $value) {
-
-            if ($key === 'QR_IMAGE' && $value) {
-                $path = 'uploads/QR';
-                 ImageUploadHelper::delete($this->existingQrImage);
-                $value = ImageUploadHelper::upload($value, $path);
-                $this->existingQrImage = $value;
-            }
 
             SiteSetting::updateOrCreate(
                 ['key' => $key],

@@ -1160,7 +1160,7 @@ div#distance-table .table-striped>tbody>tr:nth-of-type(odd)>* {
 
 /* Profile Page */
 .cover-image {
-    background-image: url(../images/banner-image/banner-2.jpg);
+    background-image: url('../images/banner-image/banner-2.jpg');
     height: 300px;
     background-size: cover;
     background-position: center;

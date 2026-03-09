@@ -3,12 +3,13 @@
 namespace App\Livewire\Front\Park;
 
 use App\Helpers\UserHelper;
-use App\Models\{EnquiryAccommodation, Park, Package, Enquiry, ShareSafari};
+use App\Models\{EnquiryAccommodation, Park, Package, Enquiry, ShareSafari, Admin};
 use Livewire\Component;
 use App\Mail\DynamicMail;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Throwable;
 
 class  Detail extends Component
 {
@@ -126,9 +127,22 @@ class  Detail extends Component
 
         $parsed = UserHelper::parseTemplate('USERENQUIRY', $data);
 
-        Mail::to($enquiry->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
+        // Mail::to($enquiry->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
+        dispatch(function () use ($enquiry, $parsed) {
+            try {
+                Mail::to($enquiry->email)->send(
+                    new DynamicMail($parsed['subject'], $parsed['body'])
+                );
+            } catch (Throwable $e) {
+                logger()->error('Park enquiry user mail failed', [
+                    'enquiry_id' => $enquiry->id ?? null,
+                    'email' => $enquiry->email,
+                    'error' => $e->getMessage(),
+                ]);
+            }
+        })->onConnection('sync');
 
         $data = [
             'name' => $enquiry->name,
@@ -145,9 +159,23 @@ class  Detail extends Component
 
         $parsed = UserHelper::parseTemplate('ADMINENQURY', $data);
 
-        Mail::to('shifankhan@yopmail.com')->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
+        $adminEmail = Admin::first()?->email;
+        if ($adminEmail) {
+            dispatch(function () use ($enquiry, $parsed, $adminEmail) {
+                try {
+                    Mail::to($adminEmail)->send(
+                        new DynamicMail($parsed['subject'], $parsed['body'])
+                    );
+                } catch (Throwable $e) {
+                    logger()->error('Park enquiry admin mail failed', [
+                        'enquiry_id' => $enquiry->id ?? null,
+                        'email' => $adminEmail,
+                        'error' => $e->getMessage(),
+                    ]);
+                }
+            })->onConnection('sync');
+        }
+
 
         $this->dispatch('formSubmitted');
         $this->reset(['safaris', 'user_email', 'travellers', 'accommodation', 'start_date', 'end_date', 'user_name', 'user_number']);
@@ -216,3 +244,5 @@ class  Detail extends Component
         $this->activeTab = $value;
     }
 }
+
+

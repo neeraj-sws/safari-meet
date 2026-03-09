@@ -98,9 +98,9 @@ class WhatToCarry extends Component
         $this->validate([
             'heading' => 'required|string|max:255',
             'short_description' => 'required|string|max:500',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360',
         ], [
-            'image.max' => 'The banner image must not be greater than 5 MB.',
+            'image.max' => 'The banner image must not be greater than 15 MB.',
         ]);
 
         $item = ParkWhatToCarryModel::find($this->whatToCarryId);

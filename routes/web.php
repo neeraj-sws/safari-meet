@@ -1,7 +1,7 @@
 <?php
 
 use App\Livewire\Front\Auth\{AgentRegistration, ChangePassword, EditUserprofileComponent, ForgotPassword, ForgotPasswordReset, LoginComponent, RegisterComponent, Tankyou, TravelPartnerSingUpComponent, UserprofileComponent, VerifyEmail};
-use App\Livewire\Front\{MediaFeedComponent, ContactUs, HomeComponent, PaymentPageRedirect, SearchResult};
+use App\Livewire\Front\{MediaFeedComponent, ContactUs, HomeComponent, PaymentPageRedirect, SearchResult, UserPaymentHistory};
 use App\Livewire\Front\Pages\{AboutUs, Faqs, PrivacyPolicy, RefundPolicy, TermsConditions, WhyVerifyProfile};
 use App\Livewire\Front\Park\{Listing as ParkListing, Detail as ParkDetail};
 use App\Livewire\Front\SafariPackage\{Detail as SafariPackageDetail, Listing as SafariPackageListing};
@@ -20,18 +20,28 @@ use App\Livewire\TravelAgent\Common\ShowAgentNotification;
 use App\Livewire\TravelAgent\Package\PackageEnquiry;
 
 
-Route::get('/optimize', function () {
+Route::get('/optimize', function () { 
     try {
-        Artisan::call('cache:clear');
-        Artisan::call('route:clear');
-        Artisan::call('config:clear');
-        Artisan::call('view:clear');
-        Artisan::call('route:cache');
-        Artisan::call('optimize:clear');
-        Artisan::call('optimize');
+         Artisan::call('cache:clear');
+         Artisan::call('route:clear');
+         Artisan::call('config:clear');
+         Artisan::call('view:clear');
+         Artisan::call('route:cache');
+         Artisan::call('optimize:clear');
+         Artisan::call('optimize');
     } catch (\Exception $e) {
     }
     return 'Application cache has been cleared';
+});
+
+Route::get('/queue-mail', function () {
+    try {
+     Artisan::call('artisan queue:work --stop-when-empty');
+     Log::info("Queue processed successfully");
+    } catch (\Exception $e) {
+        Log::error("Error processing queue: " . $e->getMessage());
+    }
+    return 'Application queue has been processed';
 });
 
 
@@ -102,6 +112,7 @@ Route::middleware('auth.guard:web')->group(function () {
     Route::get('update-sahared-shafari/{slug?}/{type?}/{subtype?}', CreateSafari::class)->name('edit.saharedshafari');
     Route::get('wishlist', WishlistMaster::class)->name('user-wishlist');
     Route::get('payment/{type?}/{uuid?}', PaymentPageRedirect::class)->name('redirect-to-payment-page');
+     Route::get('transaction-history', UserPaymentHistory::class)->name('transaction-history');
 
 
     // agent panle

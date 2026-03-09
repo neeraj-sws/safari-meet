@@ -17,6 +17,7 @@ class ShareSafariCrud extends Component
     use WithFileUploads;
     use WithPagination;
     public $showModal = false, $isEditing = false, $editId, $deleteId;
+    public $publishedStatusId, $publishedStatusValue;
     public $modalTitle = 'Add', $pageTitle = 'Shared Safari';
     public $search = '';
     public $step = 1;
@@ -51,7 +52,7 @@ class ShareSafariCrud extends Component
         $this->userCount = ShareSafari::where('organized_type', 'user')->count();
         $this->adminCount = ShareSafari::where('organized_type', 'admin')->count();
         $this->agentCount = ShareSafari::where('organized_type', 'agent')->count();
-        $shareSafaries = ShareSafari::with('payments')->orderBy('updated_at', 'desc');
+        $shareSafaries = ShareSafari::with('payment')->orderBy('updated_at', 'desc');
         if (!empty($this->search)) {
             $shareSafaries->where(function ($q) {
                 $q->where('title', 'like', '%' . $this->search . '%');
@@ -112,6 +113,24 @@ class ShareSafariCrud extends Component
         ]);
     }
 
+    public function confirmPublishStatus($id, $status)
+    {
+        $this->publishedStatusId = $id;
+        $this->publishedStatusValue = $status;
+        
+        $statusText = $status == 1 ? 'approve' : 'reject';
+        
+        $this->dispatch('swal:confirm', [
+            'title' => 'Are you sure?',
+            'text' => "Do you want to {$statusText} this safari?",
+            'icon' => 'warning',
+            'showCancelButton' => true,
+            'confirmButtonText' => 'Yes, ' . ($status == 1 ? 'approve' : 'reject') . ' it!',
+            'cancelButtonText' => 'Cancel',
+            'action' => 'executePublishStatus'
+        ]);
+    }
+
     #[On('delete')]
     public function delete()
     {
@@ -169,9 +188,11 @@ class ShareSafariCrud extends Component
         $this->dispatch('swal:toast', ['type' => 'success', 'title' => '', 'message' => 'Status Changed Successfully']);
     }
 
-    public function publishedStatus($id, $status)
+    #[On('executePublishStatus')]
+    public function executePublishStatus()
     {
-        $safari = ShareSafari::findOrFail($id);
+        $safari = ShareSafari::findOrFail($this->publishedStatusId);
+        $status = $this->publishedStatusValue;
         $safari->is_approved = $status;
         $safari->save();
         if ($status == 1) {

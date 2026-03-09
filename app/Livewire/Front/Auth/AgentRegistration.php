@@ -188,9 +188,14 @@ class AgentRegistration extends Component
         ];
 
         $parsed = UserHelper::parseTemplate('AGENTEMAILVERIFY', $data);
-        Mail::to($this->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
+        // Mail::to($this->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
+        dispatch(function () use ($user, $parsed) {
+            Mail::to($user->email)->send(
+                new DynamicMail($parsed['subject'], $parsed['body'])
+            );
+        })->afterResponse();
 
         createNotification(
             16,

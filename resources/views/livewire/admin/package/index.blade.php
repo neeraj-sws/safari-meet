@@ -121,9 +121,9 @@
 
                                         <div><strong>Amount:</strong> ₹{{ $shareSafari->payment->amount }}</div>
 
-                                        @if($shareSafari->payment->rrn)
+                                        @if($shareSafari->payment->utr)
                                         <div class="text-muted">
-                                            <strong>RRN:</strong> {{ $shareSafari->payment->rrn }}
+                                            <strong>UTR / Transaction ID:</strong> {{ $shareSafari->payment->utr }}
                                         </div>
                                         @endif
 
@@ -152,17 +152,17 @@
                                 @if ($shareSafari->is_published == 0)
                                 <span class="badge bg-warning text-dark">Pending</span>
                                 <a class="btn btn-sm btn-outline-success"
-                                    wire:click="publishedStatus({{ $shareSafari->id }},1)">Active</a>
+                                    wire:click="confirmPublishStatus({{ $shareSafari->id }},1)">Active</a>
                                 <a class="btn btn-sm btn-outline-danger"
-                                    wire:click="publishedStatus({{ $shareSafari->id }},2)">Inactive</a>
+                                    wire:click="confirmPublishStatus({{ $shareSafari->id }},2)">Inactive</a>
                                 @elseif($shareSafari->is_published == 1)
                                 <span class="badge bg-success text-dark">Active</span>
                                 <a class="btn btn-sm btn-outline-danger "
-                                    wire:click="publishedStatus({{ $shareSafari->id }},2)">Inactive</a>
+                                    wire:click="confirmPublishStatus({{ $shareSafari->id }},2)">Inactive</a>
                                 @elseif($shareSafari->is_published == 2)
                                 <span class="badge bg-danger text-dark">Inactive</span>
                                 <a class="btn btn-sm btn-outline-success "
-                                    wire:click="publishedStatus({{ $shareSafari->id }},1)">Active</a>
+                                    wire:click="confirmPublishStatus({{ $shareSafari->id }},1)">Active</a>
                                 @endif
                             </td>
                             <td>

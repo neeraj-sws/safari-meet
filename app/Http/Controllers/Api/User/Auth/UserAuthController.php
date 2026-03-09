@@ -103,9 +103,14 @@ class UserAuthController extends BaseController
         ];
 
         $parsed = UserHelper::parseTemplate('AGENTEMAILVERIFY', $data);
-        Mail::to($validated['email'])->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
+        // Mail::to($validated['email'])->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
+        dispatch(function () use ($validated, $parsed) {
+            Mail::to($validated['email'])->send(
+                new DynamicMail($parsed['subject'], $parsed['body'])
+            );
+        })->afterResponse();
 
         return response()->json([
             'status' => 200,
@@ -170,9 +175,15 @@ class UserAuthController extends BaseController
         ];
 
         $parsed = UserHelper::parseTemplate('AFTERREGISTRATION', $data);
-        Mail::to($request->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
+        // Mail::to($request->email)->queue(
+        //     new DynamicMail($parsed['subject'], $parsed['body'])
+        // );
+
+         dispatch(function () use ($user, $parsed) {
+                Mail::to($user->email)->send( 
+                    new DynamicMail($parsed['subject'], $parsed['body'])
+                );
+        })->afterResponse();
 
         if ($user->user_type == 0) {
             $user->status = 0;
@@ -186,9 +197,15 @@ class UserAuthController extends BaseController
             ];
 
             $parsed = UserHelper::parseTemplate('REGISTRATIONSTATUS', $data);
-            Mail::to($user->email)->queue(
-                new DynamicMail($parsed['subject'], $parsed['body'])
-            );
+            // Mail::to($user->email)->queue(
+            //     new DynamicMail($parsed['subject'], $parsed['body'])
+            // );
+
+            dispatch(function () use ($user, $parsed) {
+                    Mail::to($user->email)->send(  
+                        new DynamicMail($parsed['subject'], $parsed['body'])
+                    );
+             })->afterResponse();
         }
 
         $user->save();
@@ -250,7 +267,10 @@ class UserAuthController extends BaseController
 
         $parsed = UserHelper::parseTemplate('AGENTEMAILVERIFY', $data);
         try {
-            Mail::to($request->email)->queue(new DynamicMail($parsed['subject'], $parsed['body']));
+            // Mail::to($request->email)->queue(new DynamicMail($parsed['subject'], $parsed['body']));
+            dispatch(function () use ($request, $parsed) {
+                Mail::to($request->email)->send(new DynamicMail($parsed['subject'], $parsed['body']));
+            })->afterResponse(); 
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 400,

@@ -32,7 +32,7 @@ class States extends Component
                 ? 'required|string|max:50|unique:' . $table . ',name,' . $this->itemId . ',state_id'
                 : 'required|string|max:50|unique:' . $table . ',name',
 
-            'country' => 'required|exists:countries,country_id', 
+            'country' => 'required|exists:countries,country_id',
         ];
     }
 
@@ -147,7 +147,7 @@ class States extends Component
         $this->reset(['state_name', 'country', 'itemId', 'isEditing']);
         $this->resetValidation();
     }
-    
+
       public function updating()
     {
         $this->resetPage();

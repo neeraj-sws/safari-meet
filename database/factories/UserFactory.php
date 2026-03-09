@@ -22,6 +22,28 @@ class UserFactory extends Factory
 
         if ($cityIds === null) {
             $cityIds = City::where('state_id', 21)->pluck('city_id')->toArray();
+<<<<<<< HEAD
+
+            if (empty($cityIds)) {
+                // Ensure location records exist for factory defaults
+                $country = \App\Models\Country::firstOrCreate(
+                    ['country_id' => 101],
+                    ['sortname' => 'IN', 'name' => 'India', 'phonecode' => '91']
+                );
+
+                $state = \App\Models\State::firstOrCreate(
+                    ['state_id' => 21],
+                    ['country_id' => $country->country_id, 'name' => 'Default State']
+                );
+
+                $city = City::firstOrCreate(
+                    ['state_id' => $state->state_id, 'name' => 'Default City']
+                );
+
+                $cityIds = [$city->city_id];
+            }
+=======
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         }
 
         $cityId = $cityIds[array_rand($cityIds)];

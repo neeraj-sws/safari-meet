@@ -10,6 +10,7 @@ class ContactUsForm extends Model
     use HasFactory;
 
     protected $table = "contact_us_forms";
+    protected $primaryKey = 'contact_us_form_id';
     protected $fillable = [
         'name',
         'email',

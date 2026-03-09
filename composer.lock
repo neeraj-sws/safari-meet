@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
+    "content-hash": "c24a294a5018e83c0221a194c9d22b7a",
+=======
     "content-hash": "797dfe40154db876193bc4008c751d61",
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -6942,6 +6946,8 @@
     ],
     "packages-dev": [
         {
+<<<<<<< HEAD
+=======
             "name": "barryvdh/laravel-debugbar",
             "version": "v3.16.1",
             "source": {
@@ -7027,6 +7033,7 @@
             "time": "2025-11-19T08:31:25+00:00"
         },
         {
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             "name": "brianium/paratest",
             "version": "v7.8.4",
             "source": {
@@ -8440,6 +8447,8 @@
             "time": "2022-02-21T01:04:05+00:00"
         },
         {
+<<<<<<< HEAD
+=======
             "name": "php-debugbar/php-debugbar",
             "version": "v2.2.4",
             "source": {
@@ -8513,6 +8522,7 @@
             "time": "2025-07-22T14:01:30+00:00"
         },
         {
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             "name": "phpdocumentor/reflection-common",
             "version": "2.2.0",
             "source": {
@@ -10407,5 +10417,9 @@
         "php": "^8.2"
     },
     "platform-dev": {},
+<<<<<<< HEAD
+    "plugin-api-version": "2.9.0"
+=======
     "plugin-api-version": "2.6.0"
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 }

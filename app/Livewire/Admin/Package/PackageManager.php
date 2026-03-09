@@ -19,6 +19,7 @@ class PackageManager extends Component
     use WithFileUploads;
     use WithPagination;
     public $showModal = false, $isEditing = false, $editId, $deleteId;
+    public $publishedStatusId, $publishedStatusValue;
     public $modalTitle = 'Add', $pageTitle = 'Package';
     public $search = '';
     public $step = 1;
@@ -331,6 +332,24 @@ class PackageManager extends Component
         ]);
     }
 
+    public function confirmPublishStatus($id, $status)
+    {
+        $this->publishedStatusId = $id;
+        $this->publishedStatusValue = $status;
+        
+        $statusText = $status == 1 ? 'approve' : 'reject';
+        
+        $this->dispatch('swal:confirm', [
+            'title' => 'Are you sure?',
+            'text' => "Do you want to {$statusText} this package?",
+            'icon' => 'warning',
+            'showCancelButton' => true,
+            'confirmButtonText' => 'Yes, ' . ($status == 1 ? 'approve' : 'reject') . ' it!',
+            'cancelButtonText' => 'Cancel',
+            'action' => 'executePublishStatus'
+        ]);
+    }
+
     #[On('delete')]
     public function delete()
     {
@@ -394,8 +413,8 @@ class PackageManager extends Component
             'no_of_safari' => 'required|integer|min:1',
 
             'display_image' => ($this->editId && !empty($this->previousImage))
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360'
+                : 'required|image|mimes:jpg,jpeg,png,webp|max:15360',
         ];
     }
 
@@ -434,7 +453,7 @@ class PackageManager extends Component
             'display_image.required' => 'Display Image is required.',
             'display_image.image' => 'Display Image must be an image file.',
             'display_image.mimes' => 'Display Image must be a jpg, jpeg, png, or webp file.',
-            'display_image.max' => 'The banner image must not be greater than 5 MB.',
+            'display_image.max' => 'The banner image must not be greater than 15 MB.',
         ];
     }
 
@@ -482,10 +501,11 @@ class PackageManager extends Component
         $this->dispatch('swal:toast', ['type' => 'success', 'title' => '', 'message' => 'Status Changed Successfully']);
     }
 
-    public function publishedStatus($id, $status)
+    #[On('executePublishStatus')]
+    public function executePublishStatus()
     {
-        $park = Package::findOrFail($id);
-        $park->is_published = $status;
+        $park = Package::findOrFail($this->publishedStatusId);
+        $park->is_published = $this->publishedStatusValue;
         $park->save();
 
         $this->dispatch('swal:toast', ['type' => 'success', 'title' => '', 'message' => 'Status Changed Successfully']);

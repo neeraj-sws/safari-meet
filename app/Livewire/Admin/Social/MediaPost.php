@@ -50,9 +50,9 @@ class MediaPost extends Component
 
         if (!$this->isEditing) {
             if ($this->type_of_media === 'image') {
-                $rules['image'] = 'required|mimes:jpg,jpeg,png,webp,avif|max:10240';
+                $rules['image'] = 'required|mimes:jpg,jpeg,png,webp,avif|max:15360';
             } elseif ($this->type_of_media === 'video') {
-                $rules['video'] = 'required|mimes:mp4,mov,avi,mkv,flv,webm|max:51200';
+                $rules['video'] = 'required|mimes:mp4,mov,avi,mkv,flv,webm|max:15360';
             }
         }
 

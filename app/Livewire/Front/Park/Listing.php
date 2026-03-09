@@ -18,7 +18,7 @@ class Listing  extends Component
 
     public $parks, $states, $species, $stayCategory, $park_datas, $shareSafaris, $BestTimesVisits;
     public $stateSelect = null, $speciesSelect = null, $parkSelect = null, $stayCategorySelect = null, $bestTimeSelect = [], $allFiltersValue = [];
-    public $perPage = 6, $seoContents, $orderbyfilter;
+    public $perPage = 6, $seoContents, $orderbyfilter, $totalCount = 0;
 
     public function mount()
     {
@@ -105,6 +105,7 @@ class Listing  extends Component
             }
         }
 
+        $this->totalCount = $query->count();
         $this->parks = $query->take($this->perPage)->get();
 
         return view('livewire.front.park.list')->layoutData([

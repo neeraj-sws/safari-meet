@@ -12,6 +12,42 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('parks', function (Blueprint $table) {
+<<<<<<< HEAD
+            $table->bigIncrements('park_id');
+            $table->string('name')->nullable();
+            $table->string('title')->nullable();
+            $table->string('slug')->nullable();
+            $table->text('short_description')->nullable();
+            $table->longText('description')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->unsignedBigInteger('state_id')->nullable();
+            $table->unsignedBigInteger('country_id')->nullable();
+            $table->integer('wildlife_found')->nullable();
+            $table->string('closed_months')->nullable();
+            $table->string('area')->nullable();
+            $table->string('established')->nullable();
+            $table->string('famous_for')->nullable();
+            $table->string('core_zone_price')->nullable();
+            $table->string('buffer_zone_price')->nullable();
+            $table->string('core_zone')->nullable();
+            $table->string('buffer_zone')->nullable();
+            $table->string('entry_gates')->nullable();
+            $table->string('nearest_railway')->nullable();
+            $table->string('morning_time')->nullable();
+            $table->string('afternoon_time')->nullable();
+            $table->tinyInteger('status')->default(1);
+            $table->string('display_image')->nullable();
+            $table->string('banner_image')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->string('banner_title')->nullable();
+            $table->tinyInteger('top_rated')->default(0);
+            $table->tinyInteger('popular')->default(0);
+            $table->tinyInteger('trending')->default(0);
+            $table->tinyInteger('top_safari')->default(0);
+            $table->string('meta_image')->nullable();
+            $table->uuid('uuid')->nullable();
+=======
             $table->id();
             $table->string('title');
             $table->string('slug');
@@ -27,6 +63,7 @@ return new class extends Migration
             $table->string('safari_cost')->nullable();
             $table->string('safari_mode')->nullable();
             $table->string('closed_months')->nullable();
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             $table->timestamps();
         });
     }

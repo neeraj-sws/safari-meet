@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\ClearData;
 
+use App\Http\Controllers\Admin\TableTruncateController;
 use App\Models\SpeciesFamilyModel as Model;
 use App\Models\{
     AdaptationModel,
@@ -70,6 +71,7 @@ class ClearData extends Component
             2 => 'deletepark',
             3 => 'deletePackage',
             4 => 'deleteSharedSafari',
+            5 => 'deleteAllData',
         ];
 
         $this->dispatch('swal:confirm', [
@@ -282,4 +284,25 @@ class ClearData extends Component
             'message' => 'Shared Safari Data Cleared Successfully'
         ]);
     }
+       #[On('deleteAllData')]
+    public function deleteAllData()
+    {
+        try {
+            $response = app(TableTruncateController::class)->truncateAllAllowedTables();
+            $payload = $response->getData(true);
+
+            $this->dispatch('swal:toast', [
+                'type' => 'success',
+                'title' => '',
+                'message' => $payload['message'] ?? 'All allowed tables truncated successfully.',
+            ]);
+        } catch (\Throwable $exception) {
+            $this->dispatch('swal:toast', [
+                'type' => 'error',
+                'title' => '',
+                'message' => 'Unable to truncate all data. Please try again.',
+            ]);
+        }
+    }
+
 }

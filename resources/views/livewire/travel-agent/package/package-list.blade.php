@@ -88,7 +88,7 @@
                                     Pay Now
                                 </a>
                                 @else
-                                <a class="btn btn-sm btn-outline-success">Payed</a>
+                                <a class="btn btn-sm btn-outline-success">Paid</a>
                                 @endif
                             </td>
 

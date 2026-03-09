@@ -13,11 +13,11 @@
 
                 <div class="mt-1 d-flex gap-2">
                     <a href="javascript:;" wire:click="toggleReplyBox({{ $discussion->id }})" class="text-light small">
-                        <i class="bi bi-reply"></i> Reply
+                        <i class="fas fa-reply"></i> Reply
                     </a>
                     <a href="javascript:;" wire:click="deleteDiscussion({{ $discussion->id }})"
                         class="text-danger small">
-                        <i class="bi bi-trash"></i> Delete
+                        <i class="fas fa-trash"></i> Delete
                     </a>
                 </div>
             </div>

@@ -111,7 +111,7 @@
                                 </p>
                             </div>
                         </form>
-                        <div>
+						{{-- <div>
                             <hr class="my-3">
                         </div>
                         <div class="d-grid mb-2">
@@ -126,7 +126,7 @@
                                 type="button">
                                 <i class="fab fa-facebook-f me-2"></i> Sign up with Facebook
                             </button>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>

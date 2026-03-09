@@ -16,7 +16,10 @@
         "livewire/livewire": "^3.6"
     },
     "require-dev": {
+<<<<<<< HEAD
+=======
         "barryvdh/laravel-debugbar": "^3.16",
+>>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         "fakerphp/faker": "^1.23",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.13",

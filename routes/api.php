@@ -1,14 +1,18 @@
 <?php
 
 use App\Http\Controllers\Api\Admin\Auth\AdminAuthController;
+use App\Http\Controllers\Api\Common\AccommodationController;
+use App\Http\Controllers\Api\Common\EnquiryController;
 use App\Http\Controllers\Api\Common\Following\FollowingController;
 use App\Http\Controllers\Api\Common\Public\ParkController;
+use App\Http\Controllers\Api\Common\Public\TopRatedParksController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\User\Auth\UserAuthController;
 use App\Http\Controllers\Api\Common\Public\PublicController;
 use App\Http\Controllers\Api\Common\SafariPackage\SafariPackageController;
 use App\Http\Controllers\Api\Common\SharedSafari\SharedSafariController;
 use App\Http\Controllers\Api\Common\Species\SpeciesOverviewController;
+
 
 // Route::post('login', [AdminAuthController::class, "login"]);
 // NEW DEV
@@ -63,7 +67,10 @@ Route::prefix('public')->group(function () {
         Route::get('search', [ParkController::class, 'getSearchParks']);
         Route::get('details/{slug}', [ParkController::class, 'getParkDetails']);
         Route::get('tabs/details', [ParkController::class, 'getParkTabsDetails']);
+         Route::post('park_quotes', [EnquiryController::class, 'store']);
     });
+
+    Route::get('top-rated-parks', [TopRatedParksController::class, 'index']);
 
     Route::prefix('shared-safari')->name('shared-safari.')->group(function () {
         Route::get('/', [SharedSafariController::class, 'getSharedSafari']);
@@ -92,6 +99,8 @@ Route::prefix('public')->group(function () {
         Route::get('/', [SpeciesOverviewController::class, 'TopSpecies']);
         Route::get('/{slug}', [SpeciesOverviewController::class, 'speciesDetail']);
         Route::get('/tab/{id}', [SpeciesOverviewController::class, 'speciesData']);
+        Route::post('species_safari_quotes', [EnquiryController::class, 'store']);
+        Route::get('get/accommodation', [AccommodationController::class, 'index']);
     });
 
     Route::get('/get-besttime-to-visit', [PublicController::class, 'getBestTimetoVisit']);

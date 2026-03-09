@@ -89,7 +89,7 @@
                     <div class="card-footer text-end">
                         <button type="button" class="btn btn-primary" wire:click="store" wire:loading.attr="disabled">
                             <span wire:loading.remove wire:target="store">
-                                <i class="bi bi-save"></i> Save All
+                                <i class="fas fa-save"></i> Save All
                             </span>
                             <span wire:loading wire:target="store">
                                 <i class="fas fa-spinner fa-spin"></i> Saving...
