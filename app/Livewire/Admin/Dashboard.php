@@ -2,21 +2,14 @@
 
 namespace App\Livewire\Admin;
 
-<<<<<<< HEAD
 use App\Models\{Park, ShareSafari, Package, Species, Payment, User};
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
-=======
-use App\Models\{Park, ShareSafari, Package, Species};
-use Livewire\Attributes\Layout;
-use Livewire\Component;
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
 #[Layout('components.layouts.admin-app')]
 class Dashboard extends Component
 {
-<<<<<<< HEAD
     public $parksCount;
     public $safarisCount;
     public $packagesCount;
@@ -108,17 +101,6 @@ class Dashboard extends Component
         $this->newUsersThisMonth = User::whereYear('created_at', now()->year)
             ->whereMonth('created_at', now()->month)
             ->count();
-=======
-    public $parksCount,$safarisCount,$packagesCount,$speciesCount ;
-
-    public function render()
-    {
-
-            $this->parksCount= Park::count();
-            $this->safarisCount=  ShareSafari::count();
-            $this->packagesCount=  Package::count();
-            $this->speciesCount=  Species::count();
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
         return view('livewire.admin.dashboard');
     }

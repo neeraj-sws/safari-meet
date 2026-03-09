@@ -121,11 +121,7 @@
     <!-- Put this just above your closing </body> tag or in your layout -->
     {{-- <script src="https://cdn.tiny.cloud/1/ywqmxeye1bqw640inrzx59t5k336ioq2oad0rc5d4cydjlnt/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script> --}}
-<<<<<<< HEAD
     <script src="https://cdn.tiny.cloud/1/ywqmxeye1bqw640inrzx59t5k336ioq2oad0rc5d4cydjlnt/tinymce/6/tinymce.min.js"
-=======
-    <script src="https://cdn.tiny.cloud/1/703e60ik4bbf0tgpid8nx2ir9yzwu22hdo6ab11waghkcofx/tinymce/6/tinymce.min.js"
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         referrerpolicy="origin"></script>
 
     @include('components.includes.sweet-alert')

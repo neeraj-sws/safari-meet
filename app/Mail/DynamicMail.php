@@ -8,16 +8,10 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
 
-<<<<<<< HEAD
 // class DynamicMail extends Mailable implements ShouldQueue
 class DynamicMail extends Mailable 
 {
     // use Queueable, SerializesModels;
-=======
-class DynamicMail extends Mailable implements ShouldQueue
-{
-    use Queueable, SerializesModels;
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
     public string $subjectLine;
     public string $bodyHtml;
@@ -32,10 +26,7 @@ class DynamicMail extends Mailable implements ShouldQueue
 
     public function build()
     {
-<<<<<<< HEAD
            
-=======
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         $mail = $this->subject($this->subjectLine)
             ->html($this->bodyHtml);
 

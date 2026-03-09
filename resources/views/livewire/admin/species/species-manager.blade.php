@@ -134,11 +134,7 @@
                                                                 <button type="button"
                                                                     class="btn btn-sm btn-danger position-absolute top-0 end-0 rounded-circle z-3"
                                                                     style="padding:0.2rem 0.4rem"
-<<<<<<< HEAD
                                                                     wire:click="removeDisplayImage">
-=======
-                                                                    wire:click="removeOverViewImage">
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                                                                     ×
                                                                 </button>
                                                             @elseif ($isEditing && !empty($previousImage))
@@ -201,11 +197,7 @@
                                                                 <button type="button"
                                                                     class="btn btn-sm btn-danger position-absolute top-0 end-0 rounded-circle z-3"
                                                                     style="padding:0.2rem 0.4rem"
-<<<<<<< HEAD
                                                                     wire:click="removeBannerImage">
-=======
-                                                                    wire:click="removeOverViewImage">
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                                                                     ×
                                                                 </button>
                                                             @elseif ($isEditing && !empty($previousBannerImage))

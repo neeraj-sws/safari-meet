@@ -1,6 +1,5 @@
 <div class="container">
     @php
-<<<<<<< HEAD
         use App\Helpers\SettingHelper;
     @endphp
     @include('livewire.components.breadcrumb', [
@@ -10,17 +9,6 @@
         'addUrl' => route('admin.sharedsafari.addsafari'),
         'addText' => 'Add',
         'pageTitle' => $pageTitle,
-=======
-    use App\Helpers\SettingHelper;
-    @endphp
-    @include('livewire.components.breadcrumb', [
-    'menu' => $pageTitle,
-    'submenus' => [$pageTitle],
-    'addButton' => true,
-    'addUrl' => route('admin.sharedsafari.addsafari'),
-    'addText' => 'Add',
-    'pageTitle' => $pageTitle,
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     ])
     <div class="card">
         <div class="card-body">
@@ -31,11 +19,7 @@
                             placeholder="Select Park">
                             <option value="">Select Park</option>
                             @foreach ($safariParks as $parkId => $parkValue)
-<<<<<<< HEAD
                                 <option value="{{ $parkId }}">{{ $parkValue }}</option>
-=======
-                            <option value="{{ $parkId }}">{{ $parkValue }}</option>
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                             @endforeach
                         </select>
                     </div>
@@ -46,11 +30,7 @@
                             placeholder="Select Visit Purpose">
                             <option value="">Select Visit Purpose</option>
                             @foreach ($visitPurposes as $visitPurposesId => $visitPurposesValue)
-<<<<<<< HEAD
                                 <option value="{{ $visitPurposesId }}">{{ $visitPurposesValue }}</option>
-=======
-                            <option value="{{ $visitPurposesId }}">{{ $visitPurposesValue }}</option>
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                             @endforeach
                         </select>
                     </div>
@@ -61,11 +41,7 @@
                             wire:model="filter_stayCategories" placeholder="Select Stay Category">
                             <option value="">Select Stay Category</option>
                             @foreach ($stayCategories as $stayCategoriesId => $stayCategoriesValue)
-<<<<<<< HEAD
                                 <option value="{{ $stayCategoriesId }}">{{ $stayCategoriesValue }}</option>
-=======
-                            <option value="{{ $stayCategoriesId }}">{{ $stayCategoriesValue }}</option>
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                             @endforeach
                         </select>
                     </div>
@@ -134,18 +110,13 @@
                             <th>Trending</th>
                             <th>Top-Rated</th>
                             @if ($activeState == 1)
-<<<<<<< HEAD
                                 <th>Interested Users</th>
-=======
-                            <th>Interested Users</th>
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                             @endif
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($shareSafaries as $index => $shareSafari)
-<<<<<<< HEAD
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $shareSafari->title }}</td>
@@ -270,129 +241,6 @@
                                     @endif
                                 </td>
                             </tr>
-=======
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $shareSafari->title }}</td>
-                            <td>{{ $shareSafari->park->name ?? '-' }}</td>
-                            <td>{{ $shareSafari->day }} → {{ $shareSafari->night }}</td>
-                            <td>₹{{ SettingHelper::formatPrice($shareSafari->min_price_pp) }} - ₹{{
-                                SettingHelper::formatPrice($shareSafari->max_price_pp) }}</td>
-                            <td>{{ $shareSafari->total_seats }}
-                                (Shared - {{ $shareSafari->share_seats }})
-                            </td>
-                            <td>
-                                @if($shareSafari->payments)
-
-                                <a class="btn btn-sm btn-outline-primary" data-bs-toggle="collapse"
-                                    href="#paymentDetails{{ $shareSafari->id }}" role="button" aria-expanded="false"
-                                    aria-controls="paymentDetails{{ $shareSafari->id }}">
-                                    View Payment
-                                </a>
-
-                                <div class="collapse mt-2" id="paymentDetails{{ $shareSafari->id }}">
-                                    <div class="border p-2 rounded bg-light">
-
-                                        <div><strong>Amount:</strong> ₹{{ $shareSafari->payments->amount }}</div>
-
-                                        @if($shareSafari->payments->rrn)
-                                        <div class="text-muted">
-                                            <strong>RRN:</strong> {{ $shareSafari->payments->rrn }}
-                                        </div>
-                                        @endif
-
-                                        @if($shareSafari->payments->screenshot)
-                                        <div class="mt-1">
-                                            <a href="{{ $shareSafari->payments->screenshot }}" target="_blank"
-                                                class="text-decoration-underline">
-                                                View Screenshot
-                                            </a>
-                                        </div>
-                                        @endif
-
-                                        <div class="text-muted small mt-1">
-                                            {{ $shareSafari->payments->created_at->format('d M Y, h:i A') }}
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                @else
-                                <span class="badge bg-secondary">Unpaid</span>
-                                @endif
-                            </td>
-
-
-                            <td>
-                                @if ($shareSafari->is_approved == 0)
-                                <span class="badge bg-warning text-dark">Pending</span>
-                                <a class="btn btn-sm btn-outline-success"
-                                    wire:click="publishedStatus({{ $shareSafari->id }},1)">Active</a>
-                                <a class="btn btn-sm btn-outline-danger"
-                                    wire:click="publishedStatus({{ $shareSafari->id }},2)">Inactive</a>
-                                @elseif($shareSafari->is_approved == 1)
-                                <span class="badge bg-success text-dark">Active</span>
-                                <a class="btn btn-sm btn-outline-danger "
-                                    wire:click="publishedStatus({{ $shareSafari->id }},2)">Inactive</a>
-                                @elseif($shareSafari->is_approved == 2)
-                                <span class="badge bg-danger text-dark">Inactive</span>
-                                <a class="btn btn-sm btn-outline-success "
-                                    wire:click="publishedStatus({{ $shareSafari->id }},1)">Active</a>
-                                @endif
-                            </td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" id="{{ $shareSafari->id }}" type="checkbox"
-                                        role="switch" wire:change="toggleStatus({{ $shareSafari->id }})"
-                                        @checked($shareSafari->status)>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" id="Popular{{ $shareSafari->id }}" type="checkbox"
-                                        role="switch" wire:change="toggleStatusPopular({{ $shareSafari->id }})"
-                                        @checked($shareSafari->popular)>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" id="Trending{{ $shareSafari->id }}" type="checkbox"
-                                        role="switch" wire:change="toggleStatusTrending({{ $shareSafari->id }})"
-                                        @checked($shareSafari->trending)>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" id="TopRated{{ $shareSafari->id }}" type="checkbox"
-                                        role="switch" wire:change="toggleStatusTopRated({{ $shareSafari->id }})"
-                                        @checked($shareSafari->top_rated)>
-                                </div>
-                            </td>
-                            @if ($activeState == 1)
-                            <td class="text-center">
-                                <a href="{{ route('admin.sharedsafari.interested', $shareSafari->uuid) }}"
-                                    title="Show Intersted">
-                                    <i class="bx bx-group text-primary fs-3"></i>
-                                </a>
-                            </td>
-                            @endif
-                            <td class="text-center">
-                                <a href="{{ route('admin.sharedsafari.editsafari', $shareSafari->uuid) }}"
-                                    class="text-center"><i class="bx bx-edit text-dark fs-5"></i></a>
-                                <a href="{{ route('admin.sharedsafari.details', $shareSafari->uuid) }}" wire:navigate=""
-                                    class="text-center"> <i class="bx bx-detail fs-5 text-dark"></i></a>
-                                <a href="javascript:void(0)" title="Delete"
-                                    wire:click="confirmDelete({{ $shareSafari->id }})"> <i
-                                        class="bx bx-trash text-danger fs-5"></i></a>
-                                @if ($shareSafari->organized_type == 'admin')
-                                <a href="{{ route('admin.sharedsafari.persnal-chat', $shareSafari->uuid) }}"
-                                    title="Chat">
-                                    <i class="bx bx-chat text-primary fs-5"></i>
-                                </a>
-                                @endif
-                            </td>
-                        </tr>
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                         @endforeach
                     </tbody>
                 </table>

@@ -151,12 +151,7 @@ class Package extends Model
 
     public function payment()
     {
-<<<<<<< HEAD
         return $this->morphOne(Payment::class, 'payable');
-=======
-        return $this->hasOne(Payment::class, 'payable_id')
-            ->where('payable_type', 'safari-package');
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     }
 
 

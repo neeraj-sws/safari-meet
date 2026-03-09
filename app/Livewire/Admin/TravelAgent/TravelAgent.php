@@ -90,7 +90,6 @@ class TravelAgent extends Component
         ];
 
         $parsed = UserHelper::parseTemplate('REGISTRATIONSTATUS', $data);
-<<<<<<< HEAD
         // Mail::to($user->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
@@ -99,11 +98,6 @@ class TravelAgent extends Component
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
-=======
-        Mail::to($user->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
         $this->resetForm();
         $this->dispatch('swal:toast', [
@@ -204,7 +198,6 @@ class TravelAgent extends Component
                 ];
 
                 $parsed = UserHelper::parseTemplate('REGISTRATIONSTATUS', $data);
-<<<<<<< HEAD
                 // Mail::to($user->email)->queue(
                 //     new DynamicMail($parsed['subject'], $parsed['body'])
                 // );
@@ -213,11 +206,6 @@ class TravelAgent extends Component
                         new DynamicMail($parsed['subject'], $parsed['body'])
                     );
                 })->afterResponse();
-=======
-                Mail::to($user->email)->queue(
-                    new DynamicMail($parsed['subject'], $parsed['body'])
-                );
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                 $user->status =  $this->status;
                 // $user->password =  Hash::make($password);
                 $user->save();
@@ -248,7 +236,6 @@ class TravelAgent extends Component
         ];
 
         $parsed = UserHelper::parseTemplate('REGISTRATIONSTATUS', $data);
-<<<<<<< HEAD
         // Mail::to($user->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
@@ -258,11 +245,6 @@ class TravelAgent extends Component
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
-=======
-        Mail::to($user->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
         $this->reset(['ShowRemark', 'remark']);
 

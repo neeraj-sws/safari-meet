@@ -121,15 +121,9 @@
 
                                         <div><strong>Amount:</strong> ₹{{ $shareSafari->payment->amount }}</div>
 
-<<<<<<< HEAD
                                         @if($shareSafari->payment->utr)
                                         <div class="text-muted">
                                             <strong>UTR / Transaction ID:</strong> {{ $shareSafari->payment->utr }}
-=======
-                                        @if($shareSafari->payment->rrn)
-                                        <div class="text-muted">
-                                            <strong>RRN:</strong> {{ $shareSafari->payment->rrn }}
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                                         </div>
                                         @endif
 
@@ -158,7 +152,6 @@
                                 @if ($shareSafari->is_published == 0)
                                 <span class="badge bg-warning text-dark">Pending</span>
                                 <a class="btn btn-sm btn-outline-success"
-<<<<<<< HEAD
                                     wire:click="confirmPublishStatus({{ $shareSafari->id }},1)">Active</a>
                                 <a class="btn btn-sm btn-outline-danger"
                                     wire:click="confirmPublishStatus({{ $shareSafari->id }},2)">Inactive</a>
@@ -170,19 +163,6 @@
                                 <span class="badge bg-danger text-dark">Inactive</span>
                                 <a class="btn btn-sm btn-outline-success "
                                     wire:click="confirmPublishStatus({{ $shareSafari->id }},1)">Active</a>
-=======
-                                    wire:click="publishedStatus({{ $shareSafari->id }},1)">Active</a>
-                                <a class="btn btn-sm btn-outline-danger"
-                                    wire:click="publishedStatus({{ $shareSafari->id }},2)">Inactive</a>
-                                @elseif($shareSafari->is_published == 1)
-                                <span class="badge bg-success text-dark">Active</span>
-                                <a class="btn btn-sm btn-outline-danger "
-                                    wire:click="publishedStatus({{ $shareSafari->id }},2)">Inactive</a>
-                                @elseif($shareSafari->is_published == 2)
-                                <span class="badge bg-danger text-dark">Inactive</span>
-                                <a class="btn btn-sm btn-outline-success "
-                                    wire:click="publishedStatus({{ $shareSafari->id }},1)">Active</a>
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                                 @endif
                             </td>
                             <td>

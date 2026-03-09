@@ -80,13 +80,8 @@ class TimingAndCost extends Component
                 },
             ],
             'timing_cost_image' => ($this->isEditing && !empty($this->timingCostPreviousImage))
-<<<<<<< HEAD
                 ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360'
                 : 'required|image|mimes:jpg,jpeg,png,webp|max:15360',
-=======
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ], [
             'core_zone.required' => 'The Core Zone is required.',
             'core_zone.regex' => 'The Core Zone can only contain alphabets, commas, and spaces.',
@@ -102,11 +97,7 @@ class TimingAndCost extends Component
             'morning_time.required' => 'The Morning Time is required.',
             'morning_time.regex' => 'The Morning Time can only contain letters, numbers, and the characters: -, /, |, :, ;.',
 
-<<<<<<< HEAD
             'travel_info_image.max'  => 'The banner image must not be greater than 15 MB.',
-=======
-            'travel_info_image.max'  => 'The banner image must not be greater than 5 MB.',
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
         ]);
 

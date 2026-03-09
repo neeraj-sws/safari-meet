@@ -75,13 +75,8 @@ class AboutDetailsComponent extends Component
                 },
             ],
             'aboutImage' => ($this->isEditing
-<<<<<<< HEAD
                 ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360'
                 : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360'),
-=======
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120'),
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             'description' => 'required',
         ];
 
@@ -93,11 +88,7 @@ class AboutDetailsComponent extends Component
             'heading.regex' => 'The heading may only contain letters and single spaces between words.',
 
             'aboutImage.required' => 'The image is required.',
-<<<<<<< HEAD
             'aboutImage.max'  => 'The banner image must not be greater than 15 MB.',
-=======
-            'aboutImage.max'  => 'The banner image must not be greater than 5 MB.',
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             'description.required' => 'The description is required.',
         ];
 

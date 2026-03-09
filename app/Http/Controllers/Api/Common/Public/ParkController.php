@@ -22,14 +22,9 @@ class ParkController extends BaseController
             'parkSafariTypes.safari_type:safari_type_id,name',
             'parkBestTimes:park_best_time_id,park_id,weathers_id',
             'parkBestTimes.weather:park_weather_id,title',
-<<<<<<< HEAD
             'wildlife.species'
         ])
             ->select('park_id', 'name', 'slug', 'short_description', 'city_id', 'state_id', 'country_id', 'display_image', 'famous_for', 'meta_title', 'meta_description', 'top_rated', 'top_safari', 'banner_title', 'popular', 'trending');
-=======
-        ])
-            ->select('park_id', 'name', 'slug', 'short_description', 'city_id', 'state_id', 'country_id', 'display_image', 'famous_for');
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
 
         if ($request->has('state_id')) {
@@ -60,7 +55,6 @@ class ParkController extends BaseController
             });
         }
 
-<<<<<<< HEAD
         if ($request->has('filter')) {
             switch ($request->filter) {
                 case 'popular':
@@ -81,32 +75,21 @@ class ParkController extends BaseController
             }
         }
 
-=======
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         $parks = $query->where('status', true)->paginate(10);
 
         $parks->getCollection()->transform(function ($park) use ($baseUrl) {
             if ($park->display_image) {
                 $park->display_image = rtrim($baseUrl, '/') . '/'  . $park->display_image;
             }
-<<<<<<< HEAD
 
             // Optimize park_safari_types
-=======
-            
-                     // Optimize park_safari_types
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             $park->park_safari_types = $park->parkSafariTypes->map(function ($item) {
                 return [
                     'id' => $item->park_safari_type_id,
                     'type' => $item->safari_type->name ?? null,
                 ];
             });
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             // Optimize park_best_times
             $park->park_best_times = $park->parkBestTimes->map(function ($item) {
                 return [
@@ -114,7 +97,6 @@ class ParkController extends BaseController
                     'weather' => $item->weather->title ?? null,
                 ];
             });
-<<<<<<< HEAD
 
             // Wildlife Found
             $park->wildlife_found = $park->wildlife->map(function ($wildlife) {
@@ -122,9 +104,6 @@ class ParkController extends BaseController
                     ucfirst($wildlife->species?->name);
             });
 
-=======
-        
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             unset($park->parkSafariTypes);
             unset($park->parkBestTimes);
             return $park;
@@ -193,11 +172,7 @@ class ParkController extends BaseController
         }
 
         $parkDetails = Park::with(['DetailsCharacterstic' => function ($query) {
-<<<<<<< HEAD
             $query->select('park_details_tabs_id', 'park_tabs_id', 'park_id', 'title', 'status')->where('status', 1);
-=======
-            $query->select('park_details_tabs_id','park_tabs_id','park_id','title','status')->where('status', 1);
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         }])->where('slug', $slug)->first();
 
         if (!$parkDetails) {
@@ -252,11 +227,7 @@ class ParkController extends BaseController
             ], 404);
         }
 
-<<<<<<< HEAD
         $perPage =  $request->per_page;
-=======
-         $perPage =  $request->per_page;
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         $page =  $request->page;
         $responseData = $this->getSpeciesDataByTitle($charactersticId, $parkId, $perPage, $page);
 
@@ -285,11 +256,7 @@ class ParkController extends BaseController
             case '3':
                 return $this->getSafariInformationData($park_id);
             case '4':
-<<<<<<< HEAD
                 return $this->getAccommodationData($park_id, $perPage, $page);
-=======
-                return $this->getAccommodationData($park_id,$perPage, $page);
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             case '5':
                 return $this->getWildLifeYouMaySeeData($park_id);
             case '6':
@@ -335,11 +302,7 @@ class ParkController extends BaseController
     private function getParkAboutSectionIData($park_id)
     {
         $baseUrl = env('APP_URL');
-<<<<<<< HEAD
         $aboutSections = ParkAboutSection::select('title', 'short_description','image')->where('park_id', $park_id)->get();
-=======
-        $aboutSections = ParkAboutSection::select('title','short_description')->where('park_id', $park_id)->get();
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
         foreach ($aboutSections as $section) {
             if (!empty($section->image)) {
@@ -351,13 +314,8 @@ class ParkController extends BaseController
 
         return $aboutSections->isEmpty() ? [] : $aboutSections;
     }
-<<<<<<< HEAD
 
     private function getAccommodationData($park_id, $perPage, $page)
-=======
-    
-    private function getAccommodationData($park_id,$perPage, $page)
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     {
         $perPage = empty($perPage) ? 10 : $perPage;
 
@@ -365,11 +323,7 @@ class ParkController extends BaseController
             ->paginate($perPage);
 
 
-<<<<<<< HEAD
         if (!empty($accommodations)) {
-=======
-         if (!empty($accommodations)) {
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             return [
                 'accommodations' => $accommodations->items(),
                 'pagination' => [
@@ -413,18 +367,13 @@ class ParkController extends BaseController
             ->map(function ($zone) {
                 return collect($zone)->except(['created_at', 'updated_at', 'park_id']);
             });
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         $parkTimings = ParkSafariTime::with(['details', 'weather'])
             ->where('park_id', $park_id)
             ->get()
             ->map(function ($timing) {
                 // Remove unneeded fields from main timing
                 $timingData = collect($timing)->except([
-<<<<<<< HEAD
                     'created_at',
                     'updated_at',
                     'park_id',
@@ -453,25 +402,6 @@ class ParkController extends BaseController
                     ]);
                 }
 
-=======
-                    'created_at', 'updated_at', 'park_id', 'weather_id', 'start', 'end'
-                ]);
-        
-                // Clean up details
-                $timingData['details'] = collect($timing->details)->map(function ($detail) {
-                    return collect($detail)->except([
-                        'created_at', 'updated_at', 'park_safari_time_id'
-                    ]);
-                });
-        
-                // Clean up weather
-                if ($timing->weather) {
-                    $timingData['weather'] = collect($timing->weather)->except([
-                        'created_at', 'updated_at', 'start', 'end', 'status'
-                    ]);
-                }
-        
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                 return $timingData;
             });
 
@@ -519,7 +449,6 @@ class ParkController extends BaseController
     }
 
 
-<<<<<<< HEAD
     private function getParkReachabilityData($park_id)
     {
         $baseUrl = env('APP_URL');
@@ -532,44 +461,21 @@ class ParkController extends BaseController
         $headings = [];
         $cityData = [];
 
-=======
-     private function getParkReachabilityData($park_id)
-    {
-        $baseUrl = env('APP_URL');
-    
-        $howToReach = ParkReachability::with(['reachabilityDistance.cityData', 'reachability'])
-            ->where('park_id', $park_id)
-            ->get();
-    
-        $howToReachArray = [];
-        $headings = [];
-        $cityData = [];
-    
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         foreach ($howToReach as $reach) {
 
             if (!empty($reach->reachability) && !empty($reach->reachability->display_image)) {
                 $displayImage = $reach->reachability->display_image;
-<<<<<<< HEAD
 
                 if (filter_var($displayImage, FILTER_VALIDATE_URL) === false) {
                     $displayImage = rtrim($baseUrl, '/') . '/' . ltrim($displayImage, '/');
                 }
 
-=======
-    
-                if (filter_var($displayImage, FILTER_VALIDATE_URL) === false) {
-                    $displayImage = rtrim($baseUrl, '/') . '/' . ltrim($displayImage, '/');
-                }
-    
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                 $howToReachArray[] = [
                     'title' => $reach->title ?? '',
                     'description' => $reach->description ?? '',
                     'heading' => $reach->heading ?? '',
                     'display_image' => $displayImage,
                 ];
-<<<<<<< HEAD
 
                 $heading = $reach->heading ?? 'Unknown';
 
@@ -581,39 +487,18 @@ class ParkController extends BaseController
                     foreach ($reach->reachabilityDistance as $distanceEntry) {
                         $cityName = $distanceEntry->cityData->name ?? 'Unknown';
 
-=======
-    
-                $heading = $reach->heading ?? 'Unknown';
-    
-                if (!in_array($heading, $headings)) {
-                    $headings[] = $heading;
-                }
-    
-                if (!empty($reach->reachabilityDistance)) {
-                    foreach ($reach->reachabilityDistance as $distanceEntry) {
-                        $cityName = $distanceEntry->cityData->name ?? 'Unknown';
-    
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                         if (!isset($cityData[$cityName])) {
                             $cityData[$cityName] = [
                                 'From' => $cityName
                             ];
                         }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                         $cityData[$cityName][$heading] = $distanceEntry->distance ?? 'N/A';
                     }
                 }
             }
         }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         foreach ($cityData as $cityName => &$row) {
             foreach ($headings as $heading) {
                 if (!isset($row[$heading])) {
@@ -621,28 +506,16 @@ class ParkController extends BaseController
                 }
             }
         }
-<<<<<<< HEAD
 
         return [
             'HowtoReach' => $howToReachArray,
             'columns' => array_merge(['From'], $headings),
             'rows' => array_values($cityData)
-=======
-    
-        return [
-            'HowtoReach' => $howToReachArray,  
-            'columns' => array_merge(['From'], $headings), 
-            'rows' => array_values($cityData) 
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ];
     }
 
 
-<<<<<<< HEAD
     private function getTraveltipsData($park_id)
-=======
-   private function getTraveltipsData($park_id)
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     {
         $baseUrl = env('APP_URL');
 
@@ -710,34 +583,21 @@ class ParkController extends BaseController
             ], 500);
         }
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     public function getParkSpecies()
     {
         try {
             $parks = Park::where('status', true)->get();
-<<<<<<< HEAD
 
             if ($parks->isEmpty()) {
                 return $this->errorResponse('No active parks found.');
             }
 
-=======
-    
-            if ($parks->isEmpty()) {
-                return $this->errorResponse('No active parks found.');
-            }
-    
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             // Get all species for those parks
             $parkSpecies = ParkSpecies::with('speciesList:species_id,name')
                 ->select('species_id')
                 ->whereIn('park_id', $parks->pluck('park_id'))
                 ->get();
-<<<<<<< HEAD
 
             if ($parkSpecies->isEmpty()) {
                 return $this->errorResponse('No Species found.');
@@ -746,16 +606,6 @@ class ParkController extends BaseController
             // Filter unique species based on species_id
             $uniqueSpecies = $parkSpecies->pluck('speciesList')->unique('species_id')->values();
 
-=======
-    
-            if ($parkSpecies->isEmpty()) {
-                return $this->errorResponse('No Species found.');
-            }
-    
-            // Filter unique species based on species_id
-            $uniqueSpecies = $parkSpecies->pluck('speciesList')->unique('species_id')->values();
-    
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             return response()->json([
                 'success' => true,
                 'message' => 'Species found successfully.',

@@ -67,7 +67,6 @@ class VerifyEmail extends Component
         ];
 
         $parsed = UserHelper::parseTemplate('AFTERREGISTRATION', $data);
-<<<<<<< HEAD
         // Mail::to($this->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
@@ -76,11 +75,6 @@ class VerifyEmail extends Component
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
-=======
-        Mail::to($this->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         if ($user->user_type == 0) {
             $user->status = 0;
             $data = [
@@ -93,7 +87,6 @@ class VerifyEmail extends Component
             ];
 
             $parsed = UserHelper::parseTemplate('REGISTRATIONSTATUS', $data);
-<<<<<<< HEAD
             // Mail::to($user->email)->queue(
             //     new DynamicMail($parsed['subject'], $parsed['body'])
             // );
@@ -103,12 +96,6 @@ class VerifyEmail extends Component
                 );
             })->afterResponse();
 
-=======
-            Mail::to($user->email)->queue(
-                new DynamicMail($parsed['subject'], $parsed['body'])
-            );
-            
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             log_activity('user.approve', [
                 'user_id' => $user->id,
                 'email' => $user->email ?? null,
@@ -152,7 +139,6 @@ class VerifyEmail extends Component
             'year' => date('Y'),
         ];
         $parsed = UserHelper::parseTemplate('AGENTEMAILVERIFY', $data);
-<<<<<<< HEAD
         // Mail::to($this->email)->queue(
         //     new DynamicMail($parsed['subject'], $parsed['body'])
         // );
@@ -161,12 +147,6 @@ class VerifyEmail extends Component
                 new DynamicMail($parsed['subject'], $parsed['body'])
             );
         })->afterResponse();
-=======
-        Mail::to($this->email)->queue(
-            new DynamicMail($parsed['subject'], $parsed['body'])
-        );
-        
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         log_activity('otp.verificationrequest', [
             'actor_type' => class_basename($user),
             'actor_id' => $user->id,

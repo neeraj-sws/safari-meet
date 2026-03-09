@@ -178,21 +178,12 @@ class AddParkComponent extends Component
             ],
 
             'data_image' => ($this->isEditing && !empty($this->previousImage))
-<<<<<<< HEAD
                 ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360'
                 : 'required|image|mimes:jpg,jpeg,png,webp|max:15360',
 
             'banner_image' => ($this->isEditing && !empty($this->previousBannerImage))
                 ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360'
                 : 'required|image|mimes:jpg,jpeg,png,webp|max:15360',
-=======
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
-
-            'banner_image' => ($this->isEditing && !empty($this->previousBannerImage))
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ];
     }
 
@@ -272,13 +263,8 @@ class AddParkComponent extends Component
             'morning_time.*' => 'Morning Time cannot have leading or trailing spaces.',
             'banner_title.*' => 'Banner Title cannot have leading or trailing spaces.',
             'park_name.*' => 'Park Name cannot have leading or trailing spaces.',
-<<<<<<< HEAD
             'data_image.max' => 'The display image must not be greater than 15 MB.',
             'banner_image.max' => 'The banner image must not be greater than 15 MB.',
-=======
-            'data_image.max' => 'The display image must not be greater than 5 MB.',
-            'banner_image.max' => 'The banner image must not be greater than 5 MB.',
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ];
     }
 

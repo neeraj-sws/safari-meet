@@ -88,11 +88,7 @@
                                     Pay Now
                                 </a>
                                 @else
-<<<<<<< HEAD
                                 <a class="btn btn-sm btn-outline-success">Paid</a>
-=======
-                                <a class="btn btn-sm btn-outline-success">Payed</a>
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                                 @endif
                             </td>
 

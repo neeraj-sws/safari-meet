@@ -37,11 +37,7 @@
                             Cancel
                         </button>
                         <button type="button" class="btn btn-primary" wire:click="store">
-<<<<<<< HEAD
                             <i class="fas fa-save"></i> Save
-=======
-                            <i class="bi bi-save"></i> Save
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                         </button>
                     </div>
                 </div>

@@ -38,15 +38,9 @@ class ParkDonts extends Component
         $this->validate([
             'dontsRules' => 'required',
             'donts_image' => ($this->isEditing && !empty($this->dontsPreviousImage)) ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120'
-<<<<<<< HEAD
                 : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
         ], [
             'donts_image.max' => 'The banner image must not be greater than 15 MB.',
-=======
-                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
-        ], [
-            'donts_image.max' => 'The banner image must not be greater than 5 MB.',
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ]);
 
 

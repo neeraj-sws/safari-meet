@@ -51,11 +51,7 @@ class SeoComponent extends Component
                 'string',
                 'max:500',
             ],
-<<<<<<< HEAD
             'meta_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360',
-=======
-            'meta_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ], [
 
             'meta_title.required' => 'Meta Title is required.',
@@ -68,11 +64,7 @@ class SeoComponent extends Component
             'meta_description.max' => 'Meta Description cannot be longer than 500 characters.',
             'meta_description.regex' => 'Meta Description contains invalid characters or spacing. Please avoid leading, trailing, or multiple consecutive spaces.',
 
-<<<<<<< HEAD
             'meta_image.max' => 'Meta Image must not be larger than 15 MB.',
-=======
-            'meta_image.max' => 'Meta Image must not be larger than 5MB.',
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             'meta_image.mimes' => 'Only JPG, JPEG, PNG, WEBP images are allowed.',
         ]);
 

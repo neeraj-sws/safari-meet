@@ -9,10 +9,7 @@ class Enquiry extends Model
 {
     use HasFactory;
     protected $table = "enquiries";
-<<<<<<< HEAD
     protected $primaryKey = 'enquiry_id';
-=======
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
     protected $fillable = [
          'safaris',

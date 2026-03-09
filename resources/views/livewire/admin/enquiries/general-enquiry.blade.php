@@ -5,31 +5,6 @@
                 'Enquiries',
             ],
         ])
-<<<<<<< HEAD
-=======
-    {{-- Filter Card --}}
-    {{-- <div class="card mb-4">
-        <div class="card-body">
-            <div class="row g-3 row-cols-1 row-cols-sm-2 row-cols-md-6 row-cols-lg-6">
-                <div class="col-4 mb-2">
-                    <div class="form-group">
-                        <select id="filter_accommodation" class="form-select select2" wire:model="filter_accommodation">
-                            <option value="">Select Accommodation</option>
-                            @foreach ($accommodations as $item)
-                                <option value="{{ $item->id }}">{{ $item->title }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col d-flex align-items-center gap-2 mt-md-0 mt-2">
-                    <button type="button" class="btn btn-info text-white me-2" wire:click="applyFilter">Apply</button>
-                    <button type="button" class="btn btn-secondary text-white" wire:click="resetFilter">Clear</button>
-                </div>
-
-            </div>
-        </div>
-    </div> --}}
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
     {{-- FAQ Management Table --}}
     <div class="card">

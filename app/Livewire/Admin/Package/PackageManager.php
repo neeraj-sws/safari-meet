@@ -19,10 +19,7 @@ class PackageManager extends Component
     use WithFileUploads;
     use WithPagination;
     public $showModal = false, $isEditing = false, $editId, $deleteId;
-<<<<<<< HEAD
     public $publishedStatusId, $publishedStatusValue;
-=======
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     public $modalTitle = 'Add', $pageTitle = 'Package';
     public $search = '';
     public $step = 1;
@@ -335,7 +332,6 @@ class PackageManager extends Component
         ]);
     }
 
-<<<<<<< HEAD
     public function confirmPublishStatus($id, $status)
     {
         $this->publishedStatusId = $id;
@@ -354,8 +350,6 @@ class PackageManager extends Component
         ]);
     }
 
-=======
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     #[On('delete')]
     public function delete()
     {
@@ -419,13 +413,8 @@ class PackageManager extends Component
             'no_of_safari' => 'required|integer|min:1',
 
             'display_image' => ($this->editId && !empty($this->previousImage))
-<<<<<<< HEAD
                 ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:15360'
                 : 'required|image|mimes:jpg,jpeg,png,webp|max:15360',
-=======
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ];
     }
 
@@ -464,11 +453,7 @@ class PackageManager extends Component
             'display_image.required' => 'Display Image is required.',
             'display_image.image' => 'Display Image must be an image file.',
             'display_image.mimes' => 'Display Image must be a jpg, jpeg, png, or webp file.',
-<<<<<<< HEAD
             'display_image.max' => 'The banner image must not be greater than 15 MB.',
-=======
-            'display_image.max' => 'The banner image must not be greater than 5 MB.',
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ];
     }
 
@@ -516,18 +501,11 @@ class PackageManager extends Component
         $this->dispatch('swal:toast', ['type' => 'success', 'title' => '', 'message' => 'Status Changed Successfully']);
     }
 
-<<<<<<< HEAD
     #[On('executePublishStatus')]
     public function executePublishStatus()
     {
         $park = Package::findOrFail($this->publishedStatusId);
         $park->is_published = $this->publishedStatusValue;
-=======
-    public function publishedStatus($id, $status)
-    {
-        $park = Package::findOrFail($id);
-        $park->is_published = $status;
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         $park->save();
 
         $this->dispatch('swal:toast', ['type' => 'success', 'title' => '', 'message' => 'Status Changed Successfully']);

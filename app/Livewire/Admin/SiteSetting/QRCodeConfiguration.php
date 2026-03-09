@@ -15,12 +15,8 @@ class QRCodeConfiguration extends Component
         'USER_SAFARI_PRICE' => '',
         'AGENT_SAFARI_PRICE' => '',
         'AGENT_PACKAGE_PRICE' => '',
-<<<<<<< HEAD
         'UPI_ID' => "",
         'UPI_MERCHANT_NAME' => '',
-=======
-        'QR_IMAGE' => null,
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
     ];
 
     public $existingQrImage; // for showing saved image
@@ -30,21 +26,12 @@ class QRCodeConfiguration extends Component
         $settings = SiteSetting::pluck('value', 'key')->toArray();
 
         foreach ($this->key as $k => $v) {
-<<<<<<< HEAD
             $this->key[$k] = $settings[$k] ?? '';
-=======
-            if ($k === 'QR_IMAGE') {
-                $this->existingQrImage = $settings[$k] ?? null;
-            } else {
-                $this->key[$k] = $settings[$k] ?? '';
-            }
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         }
     }
 
     public function save()
     {
-<<<<<<< HEAD
         $this->validate(
             [
                 'key.USER_SAFARI_PRICE'   => 'required|integer',
@@ -73,24 +60,6 @@ class QRCodeConfiguration extends Component
 
         foreach ($this->key as $key => $value) {
 
-=======
-        $this->validate([
-            'key.USER_SAFARI_PRICE' => 'required|integer',
-            'key.AGENT_SAFARI_PRICE' => 'required|integer',
-            'key.AGENT_PACKAGE_PRICE' => 'required|integer',
-            'key.QR_IMAGE' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-        ]);
-
-        foreach ($this->key as $key => $value) {
-
-            if ($key === 'QR_IMAGE' && $value) {
-                $path = 'uploads/QR';
-                 ImageUploadHelper::delete($this->existingQrImage);
-                $value = ImageUploadHelper::upload($value, $path);
-                $this->existingQrImage = $value;
-            }
-
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             SiteSetting::updateOrCreate(
                 ['key' => $key],
                 ['value' => $value]

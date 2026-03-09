@@ -23,7 +23,6 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
-<<<<<<< HEAD
                         <label class="form-label">UPI ID *</label>
                         <input type="text" class="form-control" wire:model="key.UPI_ID">
                         @error('key.UPI_ID') <small class="text-danger">{{ $message }}</small> @enderror
@@ -34,37 +33,6 @@
                         @error('key.UPI_MERCHANT_NAME') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
 
-=======
-                        <label class="form-label">QR Code Image</label>
-                        <input type="file"
-                            class="form-control"
-                            accept="image/*"
-                            wire:model="key.QR_IMAGE">
-
-                        @error('key.QR_IMAGE') <small class="text-danger">{{ $message }}</small> @enderror
-                    </div>
-
-                    {{-- Preview before upload --}}
-                    @if ($key['QR_IMAGE'])
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Preview (New)</label><br>
-                            <img src="{{ $key['QR_IMAGE']->temporaryUrl() }}"
-                                 class="img-thumbnail"
-                                 style="max-height: 150px;">
-                        </div>
-                    @endif
-
-                    {{-- Show saved image --}}
-                    @if ($existingQrImage && !$key['QR_IMAGE'])
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Current QR Code</label><br>
-                            <img src="{{ asset($existingQrImage) }}"
-                                 class="img-thumbnail"
-                                 style="max-height: 150px;">
-                        </div>
-                    @endif
-
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                 </div>
 
                 <div class="text-end">

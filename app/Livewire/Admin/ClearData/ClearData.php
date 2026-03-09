@@ -2,10 +2,7 @@
 
 namespace App\Livewire\Admin\ClearData;
 
-<<<<<<< HEAD
 use App\Http\Controllers\Admin\TableTruncateController;
-=======
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 use App\Models\SpeciesFamilyModel as Model;
 use App\Models\{
     AdaptationModel,
@@ -74,10 +71,7 @@ class ClearData extends Component
             2 => 'deletepark',
             3 => 'deletePackage',
             4 => 'deleteSharedSafari',
-<<<<<<< HEAD
             5 => 'deleteAllData',
-=======
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         ];
 
         $this->dispatch('swal:confirm', [
@@ -290,7 +284,6 @@ class ClearData extends Component
             'message' => 'Shared Safari Data Cleared Successfully'
         ]);
     }
-<<<<<<< HEAD
        #[On('deleteAllData')]
     public function deleteAllData()
     {
@@ -312,6 +305,4 @@ class ClearData extends Component
         }
     }
 
-=======
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 }

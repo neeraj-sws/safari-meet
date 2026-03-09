@@ -91,13 +91,8 @@ class DietDetailsComponent extends Component
                 },
             ],
             'dietImage' => ($this->isEditing)
-<<<<<<< HEAD
                 ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360'
                 : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:15360',
-=======
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120'
-                : 'required|image|mimes:jpg,jpeg,png,webp,JPG,JPEG|max:5120',
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
             'description' => 'required|string',
         ];
         $messages = [
@@ -110,11 +105,7 @@ class DietDetailsComponent extends Component
 
             'dietImage.required' => 'The diet image is required.',
             'dietImage.image' => 'The diet image must be a valid image file (jpg, png, etc.).',
-<<<<<<< HEAD
             'dietImage.max' => 'The display image must not be greater than 15 MB.',
-=======
-            'dietImage.max' => 'The display image must not be greater than 5 MB.',
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
             'description.required' => 'The Diet Details is required.',
             'description.string' => 'The Diet Details must be a string.',

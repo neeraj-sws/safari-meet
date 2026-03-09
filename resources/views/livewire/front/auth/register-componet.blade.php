@@ -188,11 +188,7 @@
 
                                 </div>
                             </div>
-<<<<<<< HEAD
 							{{-- <div>
-=======
-                            <div>
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
                                 <hr class="my-3">
                             </div>
                             <div class="d-grid mb-2">
@@ -207,11 +203,7 @@
                                     type="button">
                                     <i class="fab fa-facebook-f me-2"></i> Sign up with Facebook
                                 </button>
-<<<<<<< HEAD
                             </div> --}}
-=======
-                            </div>
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
                             @if (session()->has('success'))
                                 <div class="alert alert-success text-center mt-2">

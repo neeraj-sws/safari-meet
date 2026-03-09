@@ -22,11 +22,7 @@ class Detail extends Component
     public $selectedResion;
     public $notes;
     public $reportResions = [],$organizer;
-<<<<<<< HEAD
     public $showReportModal = false,$seoContents;
-=======
-    public $showReportModal = false;
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
 
     public function mount($slug)
     {
