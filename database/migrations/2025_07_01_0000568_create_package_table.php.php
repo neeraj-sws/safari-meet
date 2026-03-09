@@ -12,7 +12,6 @@ class CreatePackageTable extends Migration
     public function up(): void
     {
         Schema::create('packages', function (Blueprint $table) {
-<<<<<<< HEAD
             $table->bigIncrements('package_id');
             $table->unsignedBigInteger('upload_id')->nullable();
             $table->string('title', 255)->nullable();
@@ -47,25 +46,6 @@ class CreatePackageTable extends Migration
             $table->timestamps();
 
             $table->index('park_id');
-=======
-            $table->id(); // bigint(20) unsigned, auto_increment
-            $table->unsignedBigInteger('upload_id')->nullable();
-            $table->string('title', 255);
-            $table->unsignedBigInteger('safari_park_id');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->integer('no_of_safari');
-            $table->unsignedBigInteger('visit_purpose_id');
-            $table->unsignedBigInteger('stay_category_id');
-            $table->integer('min_price_pp');
-            $table->integer('max_price_pp');
-            $table->integer('total_seats');
-            $table->string('share_seats', 255);
-            $table->text('safari_plan');
-            $table->string('display_image', 255);
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
->>>>>>> 89a5c42040adfeb70ab0b1e6118742b9b6d90d5b
         });
     }
 
