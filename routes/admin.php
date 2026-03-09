@@ -2,6 +2,7 @@
 
 use App\Helpers\ImageHelper;
 use App\Http\Controllers\CkEditorController;
+use App\Http\Controllers\Admin\TableTruncateController;
 use App\Http\Controllers\TestController;
 use App\Livewire\Admin\Auth\{LoginComponent};
 use App\Livewire\Admin\{AdminProfile, HomePageBanner, AlbumForm, CityCrud, ContactSettingForm, Countries, Coupon, Dashboard, FaqCategoryManager, FaqManager, Features, PaymentHistory, ReachabilityModes, ReportMaster, ReportResion, SafariTypes, SiteSettingForm, SpeciesFamily, SpeciesGenu, States, SystemFaqCrud, ThingToCarries, weatherComponent, WildlifeCrud};
@@ -85,6 +86,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::prefix('data-cleaner')->name('cleardata.')->group(function () {
             Route::get('/', ClearData::class)->name('cleardata');
+            Route::post('/truncate-table', TableTruncateController::class)->name('truncate-table');
         });
         Route::prefix('notification')->name('notification.')->group(function () {
             Route::get('templates', Templates::class)->name('template');

@@ -65,5 +65,25 @@
                 </div>
             </div>
         </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div>
+                        <h5 class="card-title">All Data Clear</h5>
+                    </div>
+                    <p class="card-text">All data will be permanently deleted, and there will be no
+                        option to recover it.</p>
+                    <a title="Delete Permanently" wire:click="confirmDelete(5)" wire:loading.attr="disabled"
+                        wire:target="confirmDelete(5),deleteAllData" class="btn btn-danger">
+                        <span wire:loading.remove wire:target="confirmDelete(5),deleteAllData">Delete Permanently</span>
+                        <span wire:loading wire:target="confirmDelete(5),deleteAllData">
+                            <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                            Processing...
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
